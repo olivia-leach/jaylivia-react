@@ -1,24 +1,97 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- *
- * NOTE: while this component should technically be a stateless functional
- * component (SFC), hot reloading does not currently support SFCs. If hot
- * reloading is not a necessity for you then you can refactor it and remove
- * the linting exception.
- */
-
 import React from 'react';
+import Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 
-export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+const Scroll = require('react-scroll');
+
+const Link = Scroll.Link;
+const Element = Scroll.Element;
+const Events = Scroll.Events;
+const scroll = Scroll.animateScroll;
+const scrollSpy = Scroll.scrollSpy;
+
+import Button from 'components/Button';
+
+import messages from './messages';
+import ImgContainer from './ImgContainer';
+import VideoContainer from './VideoContainer';
+import Hashtags from './Hashtags';
+
+export default class HomePage extends React.PureComponent {
+  constructor() {
+    super();
+    this.state = {
+      videoLoading: false,
+      videoLoaded: false,
+      donePlaying: false,
+    };
+  }
+
+  handlePlay() {
+    const reactRef = this;
+    this.setState({
+      videoLoading: true
+    }, function() {
+      const player = new YT.Player('theVideo', {
+        events: {
+          onReady: onPlayerReady,
+          onStateChange: onPlayerStateChange,
+        }
+      });
+
+      function onPlayerReady() {
+        player.playVideo();
+        reactRef.setState({
+          videoLoaded: true,
+        });
+      }
+
+      function onPlayerStateChange(event) {
+        if (event.data === 1) {
+          reactRef.setState({
+            videoLoaded: true,
+            videoLoading: false,
+          });
+        }
+        if (event.data === 0) {
+          player.stopVideo();
+          reactRef.setState({
+            donePlaying: true,
+          });
+        }
+      }
+    });
+  }
+
   render() {
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
+      <article>
+        <Helmet
+          title="Home"
+          meta={[
+            { name: 'description', content: 'Jay and Olivia' },
+          ]}
+        />
+        <ImgContainer>
+          <Hashtags>
+            <FormattedMessage {...messages.hashtags.olivia} />
+            <FormattedMessage {...messages.hashtags.jay} />
+            <Link to="video" spy smooth offset={20} duration={500}>
+              <Button>watch the video  &lt;3</Button>
+            </Link>
+          </Hashtags>
+        </ImgContainer>
+        <Element name="video">
+          <VideoContainer>
+            <div className="video-container">
+              <div className={`video-cover ${this.state.videoLoaded && !this.state.donePlaying ? 'hidden' : ''}`} onClick={() => this.handlePlay()}>
+                <i className={`fa fa-${this.state.videoLoading ? 'spinner fa-pulse' : 'play'}`} aria-hidden="true" />
+              </div>
+              <iframe id="theVideo" width="560" height="315" src="https://www.youtube.com/embed/cUl_ecN2ETs?enablejsapi=1" frameBorder="0" allowFullScreen />
+            </div>
+          </VideoContainer>
+        </Element>
+      </article>
     );
   }
 }

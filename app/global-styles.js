@@ -9,17 +9,14 @@ injectGlobal`
   }
 
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
-
-  body.fontLoaded {
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
   }
 
   #app {
     background-color: #fafafa;
     min-height: 100%;
-    min-width: 100%;
+    min-width: 100%;s
   }
 
   p,
