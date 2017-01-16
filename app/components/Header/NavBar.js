@@ -9,12 +9,9 @@ export default styled.div`
   z-index: 2000;
   padding: 30px 100px;
   transition: .2s all ease-in-out;
-  .logo {
-    position: absolute;
-    left: 40px;
-    height: 100px;
-    transition: .2s height ease-in-out;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   a {
     font-size: 0.9rem;
     font-weight: bold;
@@ -25,10 +22,5 @@ export default styled.div`
   &.fixed {
     background-color: #1E1B14;
     padding: 10px 100px;
-    .logo {
-      height: 65px;
-      top: 5px;
-      left: 30px;
-    }
   }
 `;

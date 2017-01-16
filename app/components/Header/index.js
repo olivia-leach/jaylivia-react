@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router';
 
 import NavBar from './NavBar';
 import HeaderLink from './HeaderLink';
@@ -24,11 +25,7 @@ export default class Header extends React.Component {
       ],
       active: props.routes[1].name,
       status: 'initial',
-      logo: {
-        home: LogoInverse,
-        'where-when': LogoPlain,
-        fixed: LogoInverse,
-      }
+      logo: LogoInverse,
     };
   }
 
@@ -69,12 +66,10 @@ export default class Header extends React.Component {
     return (
       <div>
         <NavBar className={this.state.status}>
-          <img
-            className="logo"
-            src={this.state.status === 'fixed' ? this.state.logo.fixed : this.state.logo[this.state.active]}
-            role="presentation"
-          />
-          {links}
+          <HeaderLink className="logo" to="/" onClick={() => this.setState({ active: 'home' })}>olivia + jay</HeaderLink>
+          <span>
+            {links}
+          </span>
         </NavBar>
       </div>
     );

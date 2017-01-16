@@ -72,7 +72,7 @@ export default class HomePage extends React.PureComponent {
           <Hashtags>
             <FormattedMessage {...messages.hashtags.olivia} />
             <FormattedMessage {...messages.hashtags.jay} />
-            <Link to="video" spy smooth offset={20} duration={500}>
+            <Link to="video" spy smooth offset={-20} duration={500}>
               <Button>watch the video  &lt;3</Button>
             </Link>
           </Hashtags>

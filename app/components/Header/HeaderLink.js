@@ -23,4 +23,12 @@ export default styled(Link)`
   &:active {
     color: #000;
   }
+
+  &.logo {
+    font-size: 1.7rem;
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
 `;
