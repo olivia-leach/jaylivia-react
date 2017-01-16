@@ -6,7 +6,6 @@ export default styled(Link)`
   padding: 0.25em;
   margin: 0.5em 1em;
   text-decoration: none;
-  border-radius: 4px;
   -webkit-font-smoothing: antialiased;
   -webkit-touch-callout: none;
   user-select: none;
@@ -22,6 +21,6 @@ export default styled(Link)`
   }
 
   &:active {
-    color: #FFF;
+    color: #000;
   }
 `;

@@ -1,21 +1,17 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
-
-const Scroll = require('react-scroll');
-
-const Link = Scroll.Link;
-const Element = Scroll.Element;
-const Events = Scroll.Events;
-const scroll = Scroll.animateScroll;
-const scrollSpy = Scroll.scrollSpy;
-
 import Button from 'components/Button';
 
 import messages from './messages';
 import ImgContainer from './ImgContainer';
 import VideoContainer from './VideoContainer';
 import Hashtags from './Hashtags';
+
+const Scroll = require('react-scroll');
+
+const Link = Scroll.Link;
+const Element = Scroll.Element;
 
 export default class HomePage extends React.PureComponent {
   constructor() {

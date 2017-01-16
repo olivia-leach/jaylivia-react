@@ -50,6 +50,38 @@ export default function createRoutes(store) {
           importModules.catch(errorLoading);
         },
     }, {
+        path: '/travel',
+        name: 'travel',
+        getComponent(nextState, cb) {
+          const importModules = Promise.all([
+            System.import('containers/TravelPage'),
+          ]);
+
+          const renderRoute = loadModule(cb);
+
+          importModules.then(([component]) => {
+            renderRoute(component);
+          });
+
+          importModules.catch(errorLoading);
+        },
+    }, {
+        path: '/where-when',
+        name: 'where-when',
+        getComponent(nextState, cb) {
+          const importModules = Promise.all([
+            System.import('containers/WherePage'),
+          ]);
+
+          const renderRoute = loadModule(cb);
+
+          importModules.then(([component]) => {
+            renderRoute(component);
+          });
+
+          importModules.catch(errorLoading);
+        },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
