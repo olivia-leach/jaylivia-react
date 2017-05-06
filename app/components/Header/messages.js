@@ -1,13 +1,9 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  // home: {
-  //   id: 'boilerplate.components.Header.home',
-  //   defaultMessage: 'Home',
-  // },
   home: {
     id: 'boilerplate.components.Header.home',
-    defaultMessage: 'US',
+    defaultMessage: 'HELLO',
   },
   'where-when': {
     id: 'boilerplate.components.Header.where',

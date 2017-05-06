@@ -63,19 +63,19 @@ export default class HomePage extends React.PureComponent {
     return (
       <article>
         <Helmet
-          title="Home"
+          title="Hello!"
           meta={[
             { name: 'description', content: 'Jay and Olivia' },
           ]}
         />
-        <ImgContainer>
-          <Hashtags>
+        <ImgContainer className='img-container'>
+          <div className='hashtags'>
             <FormattedMessage {...messages.hashtags.olivia} />
             <FormattedMessage {...messages.hashtags.jay} />
-            <Link to="video" spy smooth offset={-20} duration={500}>
-              <Button>watch the video  &lt;3</Button>
+            <Link to="video" spy smooth offset={-5} duration={500}>
+              <Button className='watch-video'>watch the video  &lt;3</Button>
             </Link>
-          </Hashtags>
+          </div>
         </ImgContainer>
         <Element name="video">
           <VideoContainer>

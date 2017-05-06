@@ -1,14 +1,9 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router';
 
 import NavBar from './NavBar';
 import HeaderLink from './HeaderLink';
 import messages from './messages';
-import Logo from './logo.png';
-import LogoClear from './logo_clear.png';
-import LogoPlain from './logo_darkwhite.png';
-import LogoTeal from './logo_teal.png';
 import LogoInverse from './logo_simp.png';
 
 export default class Header extends React.Component {
@@ -56,7 +51,7 @@ export default class Header extends React.Component {
           key={page}
           to={page === 'home' ? '/' : `/${page}`}
           onClick={() => this.setState({ active: page })}
-          className={this.state.active === page ? 'active' : ''}
+          className={`${this.state.active === page ? 'active' : ''} ${this.state.active === 'where-when' ? 'black' : ''}`}
         >
           <FormattedMessage {...messages[page]} />
         </HeaderLink>
@@ -65,12 +60,12 @@ export default class Header extends React.Component {
 
     return (
       <div>
-        <NavBar className={this.state.status}>
-          <HeaderLink className="logo" to="/" onClick={() => this.setState({ active: 'home' })}>olivia + jay</HeaderLink>
-          <span>
+        <header className={this.state.status}>
+          <HeaderLink className={`logo ${this.state.active === 'where-when' ? 'black' : ''}`} to="/" onClick={() => this.setState({ active: 'home' })}>olivia + jay</HeaderLink>
+          {/*<span>
             {links}
-          </span>
-        </NavBar>
+          </span>*/}
+        </header>
       </div>
     );
   }

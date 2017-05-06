@@ -1,0 +1,44 @@
+header {
+  text-align: right;
+  background-color: 'transparent';
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 2000;
+  padding: 30px 100px;
+  transition: .2s all ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  span {
+    display: flex;
+    @include bp(mobileonly) {
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  }
+  a {
+    font-size: 0.9rem;
+    font-weight: bold;
+    &.active {
+      border-bottom: 3px solid #36b3a8;
+    }
+    &.black {
+      color: #1E1B14;
+    }
+  }
+  &.fixed {
+    background-color: #1E1B14;
+    padding: 10px 100px;
+    justify-content: center;
+    a {
+      color: #fff;
+    }
+  }
+  @include bp(mobileonly) {
+    padding: 1rem;
+    &.fixed {
+      // padding: 0 1rem;
+    }
+  }
+}

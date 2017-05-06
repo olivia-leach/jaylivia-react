@@ -13,6 +13,7 @@ const Button = styled.button`
   font-size: 0.8rem;
   &:hover {
     background-color: rgba(54, 179, 168, 0.8);
+    letter-spacing: 3px;
   }
 `;
 

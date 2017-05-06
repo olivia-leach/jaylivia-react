@@ -23,7 +23,11 @@ export default class WherePage extends React.PureComponent {
           ]}
         />
         <ImgContainer>
-          <Jumbotron>June 23, 2018</Jumbotron>
+          <Jumbotron>
+            <span>June 23, 2018</span>
+            <span><a href="http://www.onteora.com/">Onteora Mountain House</a></span>
+            <span className="small">Boiceville, New York</span>
+          </Jumbotron>
         </ImgContainer>
       </article>
     );

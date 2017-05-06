@@ -30,6 +30,9 @@ import { translationMessages } from './i18n';
 import 'sanitize.css/sanitize.css';
 import './global-styles';
 
+// import styles
+import 'stylesheets/style.scss';
+
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
 const ralewayObserver = new FontFaceObserver('Raleway', {});

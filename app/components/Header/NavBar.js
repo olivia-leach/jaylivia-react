@@ -18,9 +18,15 @@ export default styled.div`
     &.active {
       border-bottom: 3px solid #36b3a8;
     }
+    &.black {
+      color: #1E1B14;
+    }
   }
   &.fixed {
     background-color: #1E1B14;
     padding: 10px 100px;
+    a {
+      color: #fff;
+    }
   }
 `;

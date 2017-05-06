@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Hero from './catskills.jpg';
+import Hero from './mountains.jpg';
 
 export default styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export default styled.div`
   overflow: hidden;
   width: 100%;
   height: 100vh;
-  background: radial-gradient(circle, rgba(209, 207, 17, 0.05), rgba(3, 5, 23, 0.4)), url(${Hero});
+  background: url(${Hero});
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
