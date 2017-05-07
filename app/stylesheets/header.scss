@@ -30,7 +30,6 @@ header {
   &.fixed {
     background-color: #1E1B14;
     padding: 10px 100px;
-    justify-content: center;
     a {
       color: #fff;
     }
@@ -38,6 +37,7 @@ header {
   @include bp(mobileonly) {
     padding: 1rem;
     &.fixed {
+      justify-content: center;
       // padding: 0 1rem;
     }
   }

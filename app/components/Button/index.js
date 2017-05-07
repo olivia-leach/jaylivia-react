@@ -12,7 +12,7 @@ const Button = styled.button`
   font-family: inherit;
   font-size: 0.8rem;
   &:hover {
-    background-color: rgba(54, 179, 168, 0.8);
+    background-color: rgba(54, 179, 168, 1);
     letter-spacing: 3px;
   }
 `;
