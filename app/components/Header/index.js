@@ -16,7 +16,7 @@ export default class Header extends React.Component {
         // 'about',
         'where-when',
         // 'when',
-        // 'travel',
+        // 'accomodations',
       ],
       active: props.routes[1].name,
       status: 'initial',
@@ -62,9 +62,9 @@ export default class Header extends React.Component {
       <div>
         <header className={this.state.status}>
           <HeaderLink className={`logo ${this.state.active === 'where-when' ? 'black' : ''}`} to="/" onClick={() => this.setState({ active: 'home' })}>olivia + jay</HeaderLink>
-          {/*<span>
+          <span>
             {links}
-          </span>*/}
+          </span>
         </header>
       </div>
     );
