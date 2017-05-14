@@ -3,11 +3,11 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   home: {
     id: 'boilerplate.components.Header.home',
-    defaultMessage: 'HELLO',
+    defaultMessage: 'HI',
   },
-  'where-when': {
+  where: {
     id: 'boilerplate.components.Header.where',
-    defaultMessage: 'WHERE + WHEN',
+    defaultMessage: 'WHERE',
   },
   travel: {
     id: 'boilerplate.components.Header.travel',

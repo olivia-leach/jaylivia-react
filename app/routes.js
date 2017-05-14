@@ -66,8 +66,8 @@ export default function createRoutes(store) {
           importModules.catch(errorLoading);
         },
     }, {
-        path: '/where-when',
-        name: 'where-when',
+        path: '/where',
+        name: 'where',
         getComponent(nextState, cb) {
           const importModules = Promise.all([
             System.import('containers/WherePage'),

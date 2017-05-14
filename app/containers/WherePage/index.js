@@ -18,7 +18,7 @@ export default class WherePage extends React.PureComponent {
     return (
       <article>
         <Helmet
-          title="Where+When"
+          title="Where"
           meta={[
             { name: 'description', content: 'Jay and Olivia' },
           ]}
