@@ -15,7 +15,7 @@
     width: 95%;
     min-width: 95%;
     height: 70vh;
-    margin-top: 2rem;
+    // margin-top: 2rem;
     // bottom: 0;
   }
   > .map-canvas {
@@ -60,7 +60,7 @@
       margin-left: .5rem;
       > div {
         background-color: white;
-        height: 100%;
+        height: 31px;
         display: flex;
         align-items: center;
         padding: 0 .5rem;

@@ -14,7 +14,6 @@ export default styled.div`
   background-attachment: fixed;
   background-size: cover;
   color: #fff;
-  margin-top: -2rem;
   a {
     position: absolute;
     top: 3rem;

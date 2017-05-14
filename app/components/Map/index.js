@@ -7,7 +7,7 @@ export default class Map extends React.PureComponent {
       directionsRequest: false,
       directionsType: 'DRIVING',
       onteora: { lat: 42.014140, lng: -74.257930 },
-      poughkeepsie: { lat: 41.707155, lng: -73.937679 },
+      rhinecliff: { lat: 41.921277, lng: -73.951379 },
     };
   }
 
@@ -136,7 +136,7 @@ export default class Map extends React.PureComponent {
     const transit = reactRef.state.directionsType === 'TRANSIT'
     const directionsRequest = {
       origin: place.geometry.location,
-      destination: !transit ? reactRef.state.onteora : reactRef.state.poughkeepsie,
+      destination: !transit ? reactRef.state.onteora : reactRef.state.rhinecliff,
       provideRouteAlternatives: true,
       travelMode: reactRef.state.directionsType,
     }
@@ -190,7 +190,7 @@ export default class Map extends React.PureComponent {
           </div>
         </div>
         {this.state.directionsType === 'TRANSIT' && this.state.directionsDetail &&
-          <p className='footnote'>We recommend taking Amtrak to the Poughkeepsie train station and then hopping in a taxi or Uber/Lyft/On-demand-car-service-of-your-choosing</p>
+          <p className='footnote'>We recommend taking Amtrak to the Rhinecliff–Kingston train station and then hopping in a taxi or Uber/Lyft/On-demand-car-service-of-your-choosing. Onteora is about a 30 minute drive from the station.</p>
         }
       </div>
     );
