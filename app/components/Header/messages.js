@@ -9,8 +9,8 @@ export default defineMessages({
     id: 'boilerplate.components.Header.where',
     defaultMessage: 'WHERE',
   },
-  travel: {
-    id: 'boilerplate.components.Header.travel',
-    defaultMessage: 'TRAVEL',
+  hotels: {
+    id: 'boilerplate.components.Header.hotels',
+    defaultMessage: 'HOTELS',
   },
 });

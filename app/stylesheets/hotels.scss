@@ -1,0 +1,95 @@
+.hotels-page {
+  background-image: url('/images/catskills.jpg');
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 120px 60px 60px 60px;
+  @include bp(laptop) {
+    padding: 120px 120px 120px 120px;
+  }
+  @include bp(mobileonly) {
+    padding: 120px 20px 20px 20px;
+  }
+  justify-content: space-between;
+  align-items: flex-start;
+  > h4 {
+    width: 100%;
+    text-align: center;
+    padding-bottom: .5rem;
+    margin: 3rem 30% 1rem;
+  }
+  .little-cards {
+    @include bp(laptop) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .footnote {
+    font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: center;
+    margin-top: 2rem;
+    padding: 0 15%;
+  }
+}
+
+.card {
+  background-color: #fff;
+  position: relative;
+  @include shadow(1);
+  padding-bottom: 5rem;
+  .img {
+    background-image: url('/images/catskills.jpg');
+    background-size: contain;
+    text-align: center;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 120px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    h3, h4 {
+      margin: 0;
+      color: #fff;
+    }
+  }
+  p {
+    text-align: center;
+    padding: 0.3rem 3rem;
+    font-size: 0.9rem;
+    font-family: 'helvetica';
+  }
+  .deets {
+    p {
+      margin: 0;
+    }
+  }
+  .button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 2rem;
+    button {
+      @include shadow(1);
+    }
+  }
+  &.big-card {
+    width: 100%;
+    p {
+      padding: 0 15%;
+    }
+  }
+  &.little-card {
+    margin-top: 1rem;
+    &:first-of-type {
+      margin-top: 0;
+    }
+    @include bp(laptop) {
+      width: 30%;
+      min-height: 200px;
+      margin: 0;
+    }
+  }
+}
