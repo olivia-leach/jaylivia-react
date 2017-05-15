@@ -73,10 +73,15 @@
     bottom: 2rem;
     button {
       @include shadow(1);
+      a {
+        text-decoration: none;
+        color: #fff;
+      }
     }
   }
   &.big-card {
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
     p {
       padding: 0 15%;
     }

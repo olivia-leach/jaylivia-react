@@ -15,7 +15,7 @@ export default class HotelsPage extends React.PureComponent {
         <div className='content-wrapper hotels-page'>
           <div className='card big-card'>
             <div className='img kattskill'>
-              <h3>Kattskill Mountain Club</h3>
+              <h3>Kaatskill Mountain Club</h3>
               <h4>Hunter, NY</h4>
             </div>
             <p>
@@ -42,7 +42,13 @@ export default class HotelsPage extends React.PureComponent {
               <div className='deets'>
                 <p>Price range: $100 - $200</p>
               </div>
-              <div className='button-container'><Button className='action'>Search Air BnB</Button></div>
+              <div className='button-container'>
+                <Button className='action'>
+                  <a target="_blank" href="https://www.airbnb.com/s/Woodstock--NY--United-States/all?guests=2&checkin=2018-06-22&checkout=2018-06-24">
+                    Search AirBnB
+                  </a>
+                </Button>
+              </div>
             </div>
             <div className='card little-card'>
               <div className='img kattskill'>
@@ -69,7 +75,9 @@ export default class HotelsPage extends React.PureComponent {
               <div className='deets'>
                 <p>Price range: $100 - $200</p>
               </div>
-              <div className='button-container'><Button className='action'>Book a room</Button></div>
+              <div className='button-container'>
+                <Button className='action'>Book a room</Button>
+              </div>
             </div>
           </div>
           <p className='footnote'>
