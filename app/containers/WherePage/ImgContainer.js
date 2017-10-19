@@ -14,10 +14,4 @@ export default styled.div`
   background-attachment: fixed;
   background-size: cover;
   color: #fff;
-  a {
-    position: absolute;
-    top: 3rem;
-    font-size: 1rem;
-    margin-top: 2rem;
-  }
 `;

@@ -15,10 +15,4 @@ export default styled.div`
   background-size: cover;
   color: #fff;
   margin-top: -2rem;
-  a {
-    position: absolute;
-    top: 3rem;
-    font-size: 1rem;
-    margin-top: 1rem;
-  }
 `;
