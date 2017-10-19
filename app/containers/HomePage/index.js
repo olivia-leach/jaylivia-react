@@ -6,7 +6,6 @@ import Button from 'components/Button';
 import messages from './messages';
 import ImgContainer from './ImgContainer';
 import VideoContainer from './VideoContainer';
-import Hashtags from './Hashtags';
 
 const Scroll = require('react-scroll');
 
