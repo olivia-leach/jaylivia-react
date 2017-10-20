@@ -153,7 +153,7 @@ export default class Map extends React.PureComponent {
             duration: details.duration.text,
           },
           place: place.geometry.location,
-        })
+        }, () => window.scrollTo(0, 0))
       }
     })
   }

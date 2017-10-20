@@ -14,9 +14,8 @@
   @include bp(mobileonly) {
     width: 95%;
     min-width: 95%;
-    height: 70vh;
-    // margin-top: 2rem;
-    // bottom: 0;
+    height: 45vh;
+    margin-top: -28vh;
   }
   > .map-canvas {
     width: 100%;
@@ -52,6 +51,9 @@
         width: 0;
         padding: 0;
       }
+      @include bp(mobileonly) {
+        font-size: 16px;
+      }
     }
     .radios {
       color: black;
@@ -81,10 +83,17 @@
     }
   }
   .footnote {
-    font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 12px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
     margin-top: 0;
     letter-spacing: 1px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0;
+    @include bp(mobileonly) {
+      background-color: rgba(0, 0, 0, 0.3s);
+      padding: 10px 15px;
+    }
   }
 }
 
