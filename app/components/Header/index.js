@@ -1,7 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import NavBar from './NavBar';
 import HeaderLink from './HeaderLink';
 import messages from './messages';
 import LogoInverse from './logo_simp.png';
@@ -33,7 +32,8 @@ export default class Header extends React.Component {
   }
 
   handleScroll() {
-    if (document.body.scrollTop > 50) {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+    if (scrollTop > 50) {
       this.setState({
         status: 'fixed',
       });
