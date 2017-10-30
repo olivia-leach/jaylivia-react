@@ -105,6 +105,7 @@ export default class Map extends React.PureComponent {
     const marker = new google.maps.Marker({
       position: this.state.onteora,
       map,
+      animation: google.maps.Animation.DROP,
     });
     infowindow.open(map, marker)
     this.initDirections();
