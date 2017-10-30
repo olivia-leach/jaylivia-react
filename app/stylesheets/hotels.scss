@@ -20,6 +20,7 @@
     margin: 3rem 30% 1rem;
   }
   .little-cards {
+    margin-top: 40px;
     @include bp(laptop) {
       display: flex;
       justify-content: space-between;
@@ -80,10 +81,15 @@
     }
   }
   &.big-card {
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
     p {
       padding: 0 15%;
+    }
+    .button-container {
+      button:last-of-type {
+        margin-left: 20px;
+      }
     }
   }
   &.little-card {
