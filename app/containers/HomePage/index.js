@@ -22,6 +22,11 @@ export default class HomePage extends React.PureComponent {
     };
   }
 
+  componentDidMount() {
+    window.sr = ScrollReveal();
+    sr.reveal('.hashtag', 250);
+  }
+
   handlePlay() {
     const reactRef = this;
     this.setState({
@@ -69,8 +74,8 @@ export default class HomePage extends React.PureComponent {
         />
         <ImgContainer className='img-container'>
           <div className='hashtags'>
-            <FormattedMessage {...messages.hashtags.olivia} />
-            <FormattedMessage {...messages.hashtags.jay} />
+            <span className="hashtag"><FormattedMessage {...messages.hashtags.olivia} /></span>
+            <span className="hashtag"><FormattedMessage {...messages.hashtags.jay} /></span>
             <Link to="video" spy smooth offset={-5} duration={500}>
               <Button className='watch-video'>watch the video  &lt;3</Button>
             </Link>
