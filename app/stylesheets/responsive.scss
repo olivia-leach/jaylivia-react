@@ -1,6 +1,9 @@
 .content-wrapper {
-  // margin-top: 111px;
   width: 100%;
   display: flex;
   justify-content: center;
+  &.vertical {
+    flex-direction: column;
+    align-items: center;
+  }
 }

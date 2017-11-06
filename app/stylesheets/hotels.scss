@@ -4,7 +4,7 @@
   min-height: 100vh;
   display: flex;
   flex-wrap: wrap;
-  padding: 120px 60px 60px 60px;
+  padding: 140px 60px 60px 60px;
   @include bp(laptop) {
     padding: 120px 120px 120px 120px;
   }
@@ -20,10 +20,11 @@
     margin: 3rem 30% 1rem;
   }
   .little-cards {
-    margin-top: 40px;
+    margin-top: 1rem;
     @include bp(laptop) {
       display: flex;
       justify-content: space-between;
+      margin-top: 40px;
     }
   }
   .footnote {
@@ -35,17 +36,16 @@
 }
 
 .card {
-  background-color: #fff;
+  background-color: rgba(#fff, 0.8);
   position: relative;
   @include shadow(1);
   padding-bottom: 5rem;
   .img {
-    background-image: url('/images/catskills.jpg');
     background-size: contain;
     text-align: center;
     padding: 2rem;
-    background-color: rgba(0, 0, 0, 0.3);
-    height: 120px;
+    background-color: rgba(#958C91, 0.8);
+    height: 100px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -53,13 +53,25 @@
     h3, h4 {
       margin: 0;
       color: #fff;
+      line-height: 20px;
+    }
+    h3 {
+      font-size: 23px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    h4 {
+      margin-top: 10px;
     }
   }
   p {
     text-align: center;
-    padding: 0.3rem 3rem;
-    font-size: 0.9rem;
+    padding: 0.3rem 2rem;
+    font-size: 14px;
     font-family: 'helvetica';
+    @include bp(desktop) {
+      padding: 0.3rem 3rem;
+    }
   }
   .deets {
     p {
@@ -78,13 +90,22 @@
         text-decoration: none;
         color: #fff;
       }
+      &:hover {
+        @include shadow(2);
+      }
     }
   }
   &.big-card {
-    width: 70%;
+    width: 75%;
     margin: 0 auto;
     p {
       padding: 0 15%;
+    }
+    @media only screen and (max-width : 64em) {
+      width: 100%;
+      p {
+        padding: 0.3rem 3rem;
+      }
     }
     .button-container {
       button:last-of-type {
@@ -98,7 +119,7 @@
       margin-top: 0;
     }
     @include bp(laptop) {
-      width: 30%;
+      width: 32%;
       min-height: 200px;
       margin: 0;
     }

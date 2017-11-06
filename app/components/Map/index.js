@@ -170,7 +170,7 @@ export default class Map extends React.PureComponent {
   render() {
     return (
       <div className='map-container'>
-        {/*}<h2>June 23, 2018</h2>*/}
+        <h1 className='script-header'>The Catskill Mountains</h1>
         {this.state.directionsDetail &&
           <div className="directions">
             <div>{this.state.directionsDetail.duration}</div>
@@ -190,9 +190,9 @@ export default class Map extends React.PureComponent {
             </div>
           </div>
         </div>
-        {this.state.directionsType === 'TRANSIT' && this.state.directionsDetail &&
+        {/*this.state.directionsType === 'TRANSIT' && this.state.directionsDetail &&
           <p className='footnote'>We recommend taking Amtrak to the Rhinecliff–Kingston train station and then hopping in a taxi or Uber/Lyft/On-demand-car-service-of-your-choosing. Onteora is about a 30 minute drive from the station.</p>
-        }
+        */}
       </div>
     );
   }

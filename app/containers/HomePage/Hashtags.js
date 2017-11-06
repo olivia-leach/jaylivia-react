@@ -13,7 +13,7 @@ export default styled.div`
   line-height: 3.5rem;
   text-shadow: 1px 1px 10px black;
   font-weight: 200;
-  span:last-of-type {
+  > span:last-of-type {
     margin-left: 2rem;
   }
 `;

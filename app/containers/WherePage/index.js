@@ -23,7 +23,7 @@ export default class WherePage extends React.PureComponent {
           ]}
         />
         <ImgContainer>
-          <div className='content-wrapper'>
+          <div className='content-wrapper vertical'>
             <Map />
           </div>
         </ImgContainer>

@@ -5,7 +5,7 @@ export default class Card extends React.Component {
   render() {
     const buttons = this.props.buttons.map((button) => {
       return (
-        <Button className="action">
+        <Button className="action" key={button.label}>
           <a href={button.link} target="_blank">{button.label || 'Book a room'}</a>
         </Button>
       )
@@ -14,7 +14,7 @@ export default class Card extends React.Component {
       <div className={this.props.className}>
         <div className="img">
           <h3>{this.props.name}</h3>
-          <h4>{this.props.location}</h4>
+          {this.props.location && <h4>{this.props.location}</h4>}
         </div>
         <div className='body'>
           <p>

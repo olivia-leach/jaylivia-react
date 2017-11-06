@@ -4,12 +4,15 @@
   height: 55vh;
   opacity: .85;
   position: relative;
-  margin-top: -3rem;
+  margin-top: -7rem;
   h2 {
     margin: 0;
     text-align: center;
     letter-spacing: 2px;
     margin-bottom: .5rem;
+  }
+  @include bp(tablet) {
+    min-width: 800px;
   }
   @include bp(mobileonly) {
     width: 95%;
