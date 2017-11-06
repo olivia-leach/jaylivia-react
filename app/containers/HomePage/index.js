@@ -73,6 +73,11 @@ export default class HomePage extends React.PureComponent {
           ]}
         />
         <ImgContainer className='img-container'>
+          <div className='date-box'>
+            <h2>June</h2>
+            <h4>23</h4>
+            <h2>2018</h2>
+          </div>
           <div className='hashtags'>
             <span className="hashtag"><FormattedMessage {...messages.hashtags.olivia} /></span>
             <span className="hashtag"><FormattedMessage {...messages.hashtags.jay} /></span>

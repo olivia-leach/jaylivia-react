@@ -6,23 +6,67 @@
   display: flex;
   justify-content: center;
   position: absolute;
-  bottom: 10rem;
+  bottom: 11rem;
   left: 0;
-  letter-spacing: .3rem;
+  letter-spacing: 2px;
   line-height: 3.5rem;
-  text-shadow: 1px 1px 10px black;
-  font-weight: 200;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  font-weight: 300;
+  transition: .3s ease-in-out all;
   > span:last-of-type {
     margin-left: 2rem;
     @include bp(mobileonly) {
-      margin: 0;
+      margin-left: 10px;
     }
   }
   @include bp(mobileonly) {
-    flex-direction: column;
+    font-size: 20px;
+    bottom: 11.5rem;
+  }
+}
+
+.date-box {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  bottom: 15rem;
+  h4 {
+    margin: 0 10px;
+    font-size: 100px;
+    margin-top: -15px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    line-height: 80px;
+    transition: .3s ease-in-out all;
+    @include bp(mobileonly) {
+      font-size: 80px;
+    }
+  }
+  h2 {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 50px;
+    font-weight: 400;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    font-family: 'Slabo 27px';
+    margin: 0;
+    letter-spacing: 1px;
+    display: flex;
     align-items: center;
-    position: relative;
-    margin-top: 130%;
+    transition: .3s ease-in-out all;
+    @include bp(mobileonly) {
+      font-size: 40px;
+    }
+    &:first-of-type:before, &:last-of-type:after {
+      content: '';
+      display: block;
+      border-bottom: 1px solid white;
+      width: 80px;
+      height: 1px;
+      margin: 0 5px;
+      transition: .3s ease-in-out all;
+      @include bp(mobileonly) {
+        width: 15px;
+      }
+    }
   }
 }
 
@@ -53,9 +97,7 @@
       }
     }
     @include bp(mobileonly) {
-      position: relative;
       margin-top: 0;
-      font-size: .8rem;
       white-space: nowrap;
     }
   }
@@ -76,7 +118,7 @@
   font-family: 'Pacifico';  
   font-size: 40px;
   font-weight: normal;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.26);
   margin-bottom: 20px;
   letter-spacing: 2px;
   margin-left: -10px;

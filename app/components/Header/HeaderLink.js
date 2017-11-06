@@ -30,5 +30,6 @@ export default styled(Link)`
     padding: 0;
     font-weight: 400;
     letter-spacing: 1px;
+    font-family: 'Slabo 27px';
   }
 `;
