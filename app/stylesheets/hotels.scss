@@ -35,6 +35,14 @@
   }
 }
 
+.hotel-image {
+  background: url('/hotel.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
 .card {
   background-color: rgba(#fff, 0.8);
   position: relative;

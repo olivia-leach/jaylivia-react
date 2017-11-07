@@ -18,7 +18,7 @@ export default class HotelsPage extends React.PureComponent {
             { name: 'description', content: 'Jay and Olivia' },
           ]}
         />
-        <ImgContainer className='imgage'>
+        <ImgContainer className='hotel-image'>
           <div className='content-wrapper hotels-page'>
             <Card
               name="Woodstock"
