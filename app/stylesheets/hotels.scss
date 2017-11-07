@@ -9,7 +9,7 @@
     padding: 120px 120px 120px 120px;
   }
   @include bp(mobileonly) {
-    padding: 120px 20px 20px 20px;
+    padding: 80px 20px 20px 20px;
   }
   justify-content: space-between;
   align-items: flex-start;
@@ -112,12 +112,15 @@
     @media only screen and (max-width : 64em) {
       width: 100%;
       p {
-        padding: 0.3rem 3rem;
+        padding: 0.3rem 2rem;
       }
     }
     .button-container {
       button:last-of-type {
         margin-left: 20px;
+        @include bp(mobileonly) {
+          margin-left: 10px;
+        }
       }
     }
   }
