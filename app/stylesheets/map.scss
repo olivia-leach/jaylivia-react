@@ -17,8 +17,9 @@
   @include bp(mobileonly) {
     width: 95%;
     min-width: 95%;
-    height: 60vh;
-    margin-top: -15vh;
+    height: calc(100vh - 45px - 50px - 72px - 20px - 50px);
+    margin-top: -50px;
+    min-height: 200px;
   }
   > .map-canvas {
     width: 100%;
