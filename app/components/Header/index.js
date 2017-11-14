@@ -12,10 +12,9 @@ export default class Header extends React.Component {
     this.state = {
       pages: [
         'home',
-        // 'about',
         'where',
-        // 'when',
         'hotels',
+        'rsvp',
       ],
       active: props.routes[1].name,
       status: 'initial',
@@ -51,7 +50,7 @@ export default class Header extends React.Component {
   }
 
   render() {
-    const darkLinks = this.state.active === 'where' || this.state.active === 'hotels'
+    const darkLinks = this.state.active === 'where' || this.state.active === 'hotels' || this.state.active === 'rsvp'
 
     const links = this.state.pages.map((page) => {
       return (

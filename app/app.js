@@ -13,6 +13,11 @@ import 'file?name=[name].[ext]!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import '!file-loader?name=[name].[ext]!./assets/images/hotel.jpg';
+import '!file-loader?name=[name].[ext]!./assets/images/woodstock.jpg';
+import '!file-loader?name=[name].[ext]!./assets/images/camping.jpg';
+import '!file-loader?name=[name].[ext]!./assets/images/emerson.jpg';
+import '!file-loader?name=[name].[ext]!./assets/images/bestwestern.jpeg';
+import '!file-loader?name=[name].[ext]!./assets/images/rsvp.png';
 
 // Import all the third party stuff
 import React from 'react';

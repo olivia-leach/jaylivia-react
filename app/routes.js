@@ -82,6 +82,22 @@ export default function createRoutes(store) {
           importModules.catch(errorLoading);
         },
     }, {
+        path: '/rsvp',
+        name: 'rsvp',
+        getComponent(nextState, cb) {
+          const importModules = Promise.all([
+            System.import('containers/RSVPPage'),
+          ]);
+
+          const renderRoute = loadModule(cb);
+
+          importModules.then(([component]) => {
+            renderRoute(component);
+          });
+
+          importModules.catch(errorLoading);
+        },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {

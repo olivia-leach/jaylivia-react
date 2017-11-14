@@ -1,0 +1,18 @@
+.content-wrapper.rsvp-page {
+  min-height: 100vh;
+  padding: 140px 60px 60px 60px;
+  @include bp(laptop) {
+    padding: 120px 120px 120px 120px;
+  }
+  @include bp(mobileonly) {
+    padding: 80px 20px 20px 20px;
+  }
+  background: url('/rsvp.png');
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-position-y: 14%;
+  background-size: 35%;
+  form {
+    margin-top: 220px;
+  }
+}

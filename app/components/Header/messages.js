@@ -13,4 +13,8 @@ export default defineMessages({
     id: 'boilerplate.components.Header.hotels',
     defaultMessage: 'HOTELS',
   },
+  rsvp: {
+    id: 'boilerplate.components.Header.rsvp',
+    defaultMessage: 'RSVP',
+  },
 });
