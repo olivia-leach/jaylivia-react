@@ -81,6 +81,7 @@ export default class RSVPPage extends React.PureComponent {
   // }
 
   submitForm(event) {
+    this.setState({ submitting: true })
     event.preventDefault();
     const form = document.getElementById('gform');
     const data = this.getFormData();         // get the values submitted in the form
@@ -95,9 +96,14 @@ export default class RSVPPage extends React.PureComponent {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
       console.log(xhr.status, xhr.statusText)
-      console.log(xhr.responseText);
+      console.log(xhr.responseText)
+      if (xhr.status === 200) {
+        this.setState({
+          submitted: true
+        })
+      }
       return;
-    };
+    }.bind(this);
 
     // url encode form data for sending as post data
     let encoded = Object.keys(data).map(function(k) {
@@ -126,7 +132,7 @@ export default class RSVPPage extends React.PureComponent {
         />
         <div className='content-wrapper rsvp-page'>
           {this.state.submitted ?
-            <div>Thanks!</div>
+            <div className='thanks'>Thanks for RSVPing{this.state.first_name ? `, ${this.state.first_name}` : ''}. {this.state.rsvp === 'yes' ? "We'll see you in June!" : "We're sorry you can't make it!"}</div>
           :
           <form id='gform'>
             <div className="form-group">
@@ -183,7 +189,7 @@ export default class RSVPPage extends React.PureComponent {
                 <div className='form-group'>
                   <div className="form-check">
                     <label className="form-check-label">
-                      <input className="form-check-input" type="checkbox" name="rsvp_tubing" onChange={this.onInputChange} /> Tubing the Espopus River on Friday in Phoenicia
+                      <input className="form-check-input" type="checkbox" name="rsvp_tubing" onChange={this.onInputChange} /> Tubing the Esopus River on Friday in Phoenicia
                     </label>
                   </div>
                   <div className="form-check">
@@ -202,7 +208,7 @@ export default class RSVPPage extends React.PureComponent {
             <div className="form-group">
               <textarea className="form-control" name='message' id="messageText" rows="3" placeholder="Send us a note!" onChange={this.onInputChange}></textarea>
             </div>
-            <button className='btn btn-primary btn-block' type='submit' onClick={this.submitForm}>Submit</button>
+            <button className='btn btn-primary btn-block' type='submit' onClick={this.submitForm} disabled={this.state.submitting}>Submit</button>
           </form>}
         </div>
       </article>
