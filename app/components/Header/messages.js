@@ -9,9 +9,9 @@ export default defineMessages({
     id: 'boilerplate.components.Header.where',
     defaultMessage: 'WHERE ?',
   },
-  accomodations: {
-    id: 'boilerplate.components.Header.accomodations',
-    defaultMessage: 'ACCOMODATIONS',
+  accommodations: {
+    id: 'boilerplate.components.Header.accommodations',
+    defaultMessage: 'ACCOMMODATIONS',
   },
   rsvp: {
     id: 'boilerplate.components.Header.rsvp',
