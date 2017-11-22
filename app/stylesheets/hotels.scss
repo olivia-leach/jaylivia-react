@@ -57,16 +57,6 @@
   }
 }
 
-.hotel-image {
-  // background-color: #e8eaf6;
-  // background: url('/hotel.jpg');
-  // background-position: center center;
-  // background-repeat: no-repeat;
-  // background-attachment: fixed;
-  // background-size: cover;
-  // background-color: gainsboro;
-}
-
 .card:nth-child(4) .img {
   background-image: url('/bestwestern.jpeg');
 }
@@ -89,7 +79,6 @@
   background-color: rgba(#fff, 0.8);
   position: relative;
   @include shadow(1);
-  // padding-bottom: 4rem;
   .body {
     padding: 20px 30px;
     display: flex;
@@ -99,7 +88,6 @@
   .body > p {
     max-width: 450px;
     line-height: 20 px;
-    // margin: 0 auto;
   }
   .img {
     background-size: cover;
@@ -108,23 +96,17 @@
     background-color: rgba(#958C91, 0.8);
     height: 150px;
     display: flex;
-    // align-items: center;
     flex-direction: column;
     justify-content: flex-end;
     .text {
       padding: 20px;
-      // padding-bottom: 10px;
-      // height: 100%;
       background-color: rgba(0, 0, 0, 0.2);
       width: 100%;
-      // padding: 10px 0;
       min-height: 75px;
       text-align: left;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      // border-top: 1px solid rgba(0, 0, 0, .2);
-      // border-bottom: 1px solid rgba(0, 0, 0, .2);
     }
     h3, h4 {
       margin: 0;
@@ -147,16 +129,12 @@
   }
   p {
     text-align: center;
-    // padding: 10px;
     font-size: 14px;
     font-family: 'helvetica';
     margin-bottom: 10px;
     &.left {
       font-weight: bold;
       text-align: left;
-    }
-    @include bp(desktop) {
-      // padding: 10px 30px;
     }
   }
   .deets {
@@ -170,9 +148,6 @@
     display: flex;
     justify-content: center;
     margin-top: 15px;
-    // position: absolute;
-    // bottom: 2rem;
-    // left: 0;
     button {
       @include shadow(1);
       a {
