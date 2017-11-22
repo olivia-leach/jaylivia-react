@@ -50,8 +50,8 @@ export default function createRoutes(store) {
           importModules.catch(errorLoading);
         },
     }, {
-        path: '/hotels',
-        name: 'hotels',
+        path: '/accomodations',
+        name: 'accomodations',
         getComponent(nextState, cb) {
           const importModules = Promise.all([
             System.import('containers/HotelsPage'),

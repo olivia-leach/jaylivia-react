@@ -23,8 +23,9 @@ export default class Card extends React.Component {
             {this.props.textBody}
           </p>
           <div className="deets">
-            <p>{this.props.priceRange} per night</p>
+            {this.props.priceRange && <p>{this.props.priceRange} per night</p>}
           </div>
+          {this.props.extraDeets}
           <div className="button-container">
             {buttons}
           </div>

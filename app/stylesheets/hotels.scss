@@ -1,12 +1,19 @@
 .hotels-page {
-  background-image: url('/images/catskills.jpg');
   background-size: cover;
   min-height: 100vh;
-  display: flex;
+  display: block;
   flex-wrap: wrap;
-  padding: 140px 60px 60px 60px;
+  padding: 140px 40px 60px;
+  a {
+    color: #1976d2;
+    font-size: 14px;
+    &:hover {
+      color: darken(#1976d2, 15%);
+    }
+  }
   @include bp(laptop) {
-    padding: 120px 120px 120px 120px;
+    display: flex;
+    padding: 120px 60px 50px;
   }
   @include bp(mobileonly) {
     padding: 80px 20px 20px 20px;
@@ -20,11 +27,10 @@
     margin: 3rem 30% 1rem;
   }
   .little-cards {
-    margin-top: 1rem;
     @include bp(laptop) {
       display: flex;
       justify-content: space-between;
-      margin-top: 40px;
+      flex-wrap: wrap;
     }
   }
   .footnote {
@@ -35,63 +41,138 @@
   }
 }
 
+.col {
+  width: 100%;
+  padding: 0 10px;
+  @include bp(laptop) {
+    min-height: 82vh;
+  }
+  &:first-of-type {
+    margin-bottom: 16px;
+    height: auto;
+    @include bp(laptop) {
+      max-width: 40%;
+      margin-bottom: 0;
+    }
+  }
+}
+
 .hotel-image {
-  background: url('/hotel.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+  // background-color: #e8eaf6;
+  // background: url('/hotel.jpg');
+  // background-position: center center;
+  // background-repeat: no-repeat;
+  // background-attachment: fixed;
+  // background-size: cover;
+  // background-color: gainsboro;
+}
+
+.card:nth-child(4) .img {
+  background-image: url('/bestwestern.jpeg');
+}
+
+.card:nth-child(2) .img {
+  background-image: url('/camping.jpg');
+}
+
+.card:nth-child(1) .img {
+  background-image: url('/emerson.jpg');
+}
+
+.card:nth-child(3) .img {
+  background-image: url('/kates.jpg');
 }
 
 .card {
+  border: 0;
+  overflow: hidden;
   background-color: rgba(#fff, 0.8);
   position: relative;
   @include shadow(1);
-  padding-bottom: 5rem;
-  .img {
-    background-size: contain;
-    text-align: center;
-    padding: 2rem;
-    background-color: rgba(#958C91, 0.8);
-    height: 100px;
+  // padding-bottom: 4rem;
+  .body {
+    padding: 20px 30px;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+  }
+  .body > p {
+    max-width: 450px;
+    line-height: 20 px;
+    // margin: 0 auto;
+  }
+  .img {
+    background-size: cover;
+    background-position: center center;
+    text-align: center;
+    background-color: rgba(#958C91, 0.8);
+    height: 150px;
+    display: flex;
+    // align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    .text {
+      padding: 20px;
+      // padding-bottom: 10px;
+      // height: 100%;
+      background-color: rgba(0, 0, 0, 0.2);
+      width: 100%;
+      // padding: 10px 0;
+      min-height: 75px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      // border-top: 1px solid rgba(0, 0, 0, .2);
+      // border-bottom: 1px solid rgba(0, 0, 0, .2);
+    }
     h3, h4 {
       margin: 0;
       color: #fff;
       line-height: 20px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 1), 0 1px 2px rgba(0, 0, 0, 1);
     }
     h3 {
       font-size: 23px;
-      font-weight: 500;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      font-weight: 600;
     }
     h4 {
-      margin-top: 10px;
+      margin-top: 5px;
+      letter-spacing: 1px;
+      font-size: 14px;
+      line-height: 15px;
+      margin-bottom: -5px;
     }
   }
   p {
     text-align: center;
-    padding: 0.3rem 2rem;
+    // padding: 10px;
     font-size: 14px;
     font-family: 'helvetica';
+    margin-bottom: 10px;
+    &.left {
+      font-weight: bold;
+      text-align: left;
+    }
     @include bp(desktop) {
-      padding: 0.3rem 3rem;
+      // padding: 10px 30px;
     }
   }
   .deets {
     p {
       margin: 0;
+      font-weight: bold;
     }
   }
   .button-container {
     width: 100%;
     display: flex;
     justify-content: center;
-    position: absolute;
-    bottom: 2rem;
+    margin-top: 15px;
+    // position: absolute;
+    // bottom: 2rem;
+    // left: 0;
     button {
       @include shadow(1);
       a {
@@ -104,22 +185,16 @@
     }
   }
   &.big-card {
-    width: 75%;
-    margin: 0 auto;
-    p {
-      padding: 0 15%;
-    }
-    @media only screen and (max-width : 64em) {
-      width: 100%;
-      p {
-        padding: 0.3rem 2rem;
-      }
+    height: calc(100% - 15px);
+    .img {
+      background-image: url('/woodstock.jpg');
     }
     .button-container {
-      button:last-of-type {
-        margin-left: 20px;
+      flex-wrap: wrap;
+      button {
+        margin: 10px;
         @include bp(mobileonly) {
-          margin-left: 10px;
+          margin: 5px;
         }
       }
     }
@@ -130,9 +205,10 @@
       margin-top: 0;
     }
     @include bp(laptop) {
-      width: 32%;
-      min-height: 200px;
+      width: calc(50% - 10px);
       margin: 0;
+      margin-bottom: 15px;
+      margin-right: 5px;
     }
   }
 }

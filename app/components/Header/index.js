@@ -13,7 +13,7 @@ export default class Header extends React.Component {
       pages: [
         'home',
         'where',
-        'hotels',
+        'accomodations',
         // 'rsvp',
       ],
       active: props.routes[1].name,
@@ -32,7 +32,7 @@ export default class Header extends React.Component {
 
   handleScroll() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
-    if (scrollTop > 50) {
+    if (scrollTop > 20) {
       this.setState({
         status: 'fixed',
       });
@@ -50,7 +50,7 @@ export default class Header extends React.Component {
   }
 
   render() {
-    const darkLinks = this.state.active === 'where' || this.state.active === 'hotels' || this.state.active === 'rsvp'
+    const darkLinks = this.state.active === 'where' || this.state.active === 'accomodations' || this.state.active === 'rsvp'
 
     const links = this.state.pages.map((page) => {
       return (
