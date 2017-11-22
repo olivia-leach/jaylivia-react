@@ -73,18 +73,17 @@ export default class HomePage extends React.PureComponent {
           ]}
         />
         <ImgContainer className='img-container'>
+          <img alt="Jay and Olivia" src="https://fontmeme.com/permalink/171122/dcbff10d52e2d4383e039db03dd53b61.png" />
           <div className='date-box'>
-            <h2>June</h2>
-            <h4>23</h4>
-            <h2>2018</h2>
+            <h2>June 23, 2018</h2><span className='bullet'>&#9679;</span><h2>Onteora Mountain House, Boiceville, NY</h2>
           </div>
           <div className='hashtags'>
             <span className="hashtag"><FormattedMessage {...messages.hashtags.olivia} /></span>
             <span className="hashtag"><FormattedMessage {...messages.hashtags.jay} /></span>
-            <Link to="video" spy smooth offset={-5} duration={500}>
-              <Button className='watch-video'>watch the video  &lt;3</Button>
-            </Link>
           </div>
+          <Link to="video" spy smooth offset={-5} duration={500}>
+            <Button className='watch-video'>watch our engagement video  <i className="fa fa-hand-o-down" aria-hidden="true"></i></Button>
+          </Link>
         </ImgContainer>
         <Element name="video">
           <VideoContainer>

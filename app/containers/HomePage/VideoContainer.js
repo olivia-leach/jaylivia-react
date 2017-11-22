@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import VideoCover from './video-cover.jpg';
+import VideoCover from './hero2.jpg';
 
 export default styled.div`
   display: flex;
@@ -9,7 +9,7 @@ export default styled.div`
   width: 100%;
   height: 100vh;
   .video-container {
-    width: 70%;
+    width: 80%;
     height: 70%;
     overflow: hidden;
     dispaly: flex;
@@ -39,7 +39,7 @@ export default styled.div`
     height: 100%;
   }
   .fa {
-    font-size: 8rem;
+    font-size: 6rem;
     color: #fff;
   }
 `;

@@ -12,7 +12,7 @@ export default class Header extends React.Component {
     this.state = {
       pages: [
         'home',
-        'where',
+        // 'where',
         'accommodations',
         // 'rsvp',
       ],

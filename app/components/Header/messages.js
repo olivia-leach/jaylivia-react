@@ -3,11 +3,11 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   home: {
     id: 'boilerplate.components.Header.home',
-    defaultMessage: 'HI THERE !',
+    defaultMessage: 'HELLO !',
   },
   where: {
     id: 'boilerplate.components.Header.where',
-    defaultMessage: 'WHERE ?',
+    defaultMessage: 'VENUE',
   },
   accommodations: {
     id: 'boilerplate.components.Header.accommodations',

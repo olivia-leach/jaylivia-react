@@ -170,7 +170,7 @@ export default class Map extends React.PureComponent {
   render() {
     return (
       <div className='map-container'>
-        <h1 className='script-header'>The Catskill Mountains</h1>
+        {/*}<h1 className='script-header'>The Catskill Mountains</h1>*/}
         {this.state.directionsDetail &&
           <div className="directions">
             <div>{this.state.directionsDetail.duration}</div>
