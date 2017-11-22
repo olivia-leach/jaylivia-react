@@ -22,11 +22,11 @@ export default class HotelsPage extends React.PureComponent {
           <div className='content-wrapper hotels-page'>
             <Card
               name="Woodstock"
-              textBody="We highly encourage our guests to stay in Woodstock during our wedding weekend. Off the beaten path, Woodstock is a funky town about 15 minutes from the venue, where you'll find many B&Bs, small hotels, and homes for rent. Shuttles will be provided from the center of town to the venue and back again. Our after party will be held at The Lodge at 20 Country Club Lane, which also has 15 rooms on site that are available to book."
+              textBody="We highly encourage our guests to stay in Historic Woodstock during our wedding weekend. Off the beaten path, Woodstock is a funky town about 15 minutes from the venue, where you'll find many B&Bs, small hotels, and homes for rent. Shuttles will be provided from the center of town to the venue and back again."
               priceRange="$100 - $200"
               buttons={[
                 { label: 'Search AirBnb', link: 'https://www.airbnb.com/s/Woodstock--NY--United-States/all?guests=2&checkin=2018-06-22&checkout=2018-06-24' },
-                { label: 'The Lodge', link: 'http://thelodgewoodstock.com/' }
+                // { label: 'The Lodge', link: 'http://thelodgewoodstock.com/' }
               ]}
               className="card big-card"
             />
@@ -59,7 +59,7 @@ export default class HotelsPage extends React.PureComponent {
                 priceRange="$259"
                 className="card little-card"
                 buttons={[
-                  { label: 'Book Now', link: 'http://www.thegrahamandco.com/' }
+                  { label: 'Book Now', link: 'https://emersonresort.com/' }
                 ]}
               />
             </div>

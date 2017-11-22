@@ -14,7 +14,7 @@ export default class Header extends React.Component {
         'home',
         'where',
         'hotels',
-        'rsvp',
+        // 'rsvp',
       ],
       active: props.routes[1].name,
       status: 'initial',

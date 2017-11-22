@@ -33,7 +33,7 @@ header {
   &.fixed {
     background-color: #1E1B14;
     @include bp(tablet) {
-      padding: 10px 50px;
+      padding: 10px 100px;
     }
     .hamburger {
       .hamburger-box {

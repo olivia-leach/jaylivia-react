@@ -13,8 +13,10 @@ export default class Card extends React.Component {
     return (
       <div className={this.props.className}>
         <div className="img">
-          <h3>{this.props.name}</h3>
-          {this.props.location && <h4>{this.props.location}</h4>}
+          <div className="text">
+            <h3>{this.props.name}</h3>
+            {this.props.location && <h4>{this.props.location}</h4>}
+          </div>
         </div>
         <div className='body'>
           <p>
