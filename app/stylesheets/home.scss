@@ -63,6 +63,12 @@
     }
     text-align: center;
     margin-bottom: 10px;
+    @include bp(mobileonly) {
+      display: block;
+      span {
+        display: block;
+      }
+    }
     @include bp(tablet) {
       font-weight: 200;
       &:last-of-type {

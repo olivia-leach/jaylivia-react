@@ -75,7 +75,7 @@ export default class HomePage extends React.PureComponent {
         <ImgContainer className='img-container'>
           <img alt="Jay and Olivia" src="https://fontmeme.com/permalink/171122/dcbff10d52e2d4383e039db03dd53b61.png" />
           <div className='date-box'>
-            <h2>June 23, 2018</h2><span className='bullet'>&#9679;</span><h2>Onteora Mountain House, Boiceville, NY</h2>
+            <h2>June 23, 2018</h2><span className='bullet'>&#9679;</span><h2><span>Onteora Mountain House, </span><span>Boiceville, NY</span></h2>
           </div>
           <div className='hashtags'>
             <span className="hashtag"><FormattedMessage {...messages.hashtags.olivia} /></span>
