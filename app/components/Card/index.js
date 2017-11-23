@@ -10,14 +10,23 @@ export default class Card extends React.Component {
         </Button>
       )
     })
+
+    const buttonContainer = (
+      <div className="button-container">
+        {buttons}
+      </div>
+    )
+
     return (
       <div className={this.props.className}>
         <div className="img">
+          {this.props.bigCard && <i className='fa fa-star' />}
           <div className="text">
             <h3>{this.props.name}</h3>
             {this.props.location && <h4>{this.props.location}</h4>}
           </div>
         </div>
+        {this.props.bigCard && buttonContainer}
         <div className='body'>
           <p>
             {this.props.textBody}
@@ -26,9 +35,7 @@ export default class Card extends React.Component {
             {this.props.priceRange && <p>{this.props.priceRange} per night</p>}
           </div>
           {this.props.extraDeets}
-          <div className="button-container">
-            {buttons}
-          </div>
+          {!this.props.bigCard && buttonContainer}
         </div>
       </div>
     );

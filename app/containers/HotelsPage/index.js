@@ -53,6 +53,7 @@ export default class HotelsPage extends React.PureComponent {
                 ]}
                 className="card big-card"
                 extraDeets={woodstockDeets}
+                bigCard
               />
             </div>
             <div className="col little-cards">
