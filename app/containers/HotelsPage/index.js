@@ -36,7 +36,7 @@ export default class HotelsPage extends React.PureComponent {
     return (
       <article>
         <Helmet
-          title="accommodations"
+          title="Accommodations"
           meta={[
             { name: 'description', content: 'Jay and Olivia' },
           ]}
