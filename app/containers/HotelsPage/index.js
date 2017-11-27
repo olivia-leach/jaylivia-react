@@ -60,7 +60,7 @@ export default class HotelsPage extends React.PureComponent {
               <Card
                 name="Emerson Resort & Spa"
                 location="Phoenicia, NY"
-                textBody="Just 5 minutes from our venue, this resort may be the choice for our guests looking to treat themselves as it has a luxury spa on site. Many rooms can hold up to 5 guests. Extra bonus: it has the World's Largest Kaleidoscope. And it's dog friendly! Rosie approves."
+                textBody="Just 5 minutes from our venue, this resort may be the choice for our guests looking to treat themselves as it has a luxury spa on site. Many rooms can hold up to 5 guests. Extra bonus: it has the World's Largest Kaleidoscope. And it's dog friendly! Rosie approves. Rooms at Emerson will be available to book beginning January 2018."
                 priceRange="$259"
                 className="card little-card wide"
                 buttons={[
