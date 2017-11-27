@@ -22,10 +22,10 @@
   }
   @include bp(laptop) {
     display: flex;
-    padding: 120px 60px 50px;
+    padding: 100px 60px;
   }
   @include bp(mobileonly) {
-    padding: 80px 20px 20px 20px;
+    padding: 60px 20px;
   }
   justify-content: space-between;
   align-items: flex-start;
@@ -66,7 +66,7 @@
   }
 }
 
-.card:nth-child(4) .img {
+.card:nth-child(3) .img {
   background-image: url('/bestwestern.jpeg');
 }
 
@@ -78,9 +78,9 @@
   background-image: url('/emerson.jpg');
 }
 
-.card:nth-child(3) .img {
-  background-image: url('/kates.jpg');
-}
+// .card:nth-child(3) .img {
+//   background-image: url('/kates.jpg');
+// }
 
 .card {
   border: 0;
@@ -187,6 +187,12 @@
     margin-top: 1rem;
     &:first-of-type {
       margin-top: 0;
+    }
+    &.wide {
+      width: 100%;
+      .body > p {
+        max-width: 90%;
+      }
     }
     @include bp(laptop) {
       width: calc(50% - 10px);

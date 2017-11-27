@@ -160,3 +160,23 @@ a {
     color: white;
   }
 }
+
+.rosie {
+  width: 100%;
+  height: 50vh;
+  background: url('/rosie.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  @include bp(mobileonly) {
+    height: 30vh;
+    background-attachment: scroll !important;
+  }
+}
+
+#home > div:last-of-type {
+  @include bp(mobileonly) {
+    height: 50vh;
+  }
+}

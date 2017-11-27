@@ -12,7 +12,7 @@ export default styled.div`
     width: 80%;
     height: 70%;
     overflow: hidden;
-    dispaly: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     position: relative;

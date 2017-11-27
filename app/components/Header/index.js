@@ -5,6 +5,10 @@ import HeaderLink from './HeaderLink';
 import messages from './messages';
 import LogoInverse from './logo_simp.png';
 
+const Scroll = require('react-scroll');
+
+const Link = Scroll.Link;
+
 export default class Header extends React.Component {
   constructor(props) {
     super();
@@ -50,17 +54,22 @@ export default class Header extends React.Component {
   }
 
   render() {
-    const darkLinks = this.state.active === 'where' || this.state.active === 'accommodations' || this.state.active === 'rsvp'
-
     const links = this.state.pages.map((page) => {
       return (
-        <HeaderLink
-          key={page}
-          to={page === 'home' ? '/' : `/${page}`}
-          onClick={() => this.setState({ active: page, menuOpen: false })}
-          className={`${this.state.active === page ? 'active' : ''} ${darkLinks ? 'black' : ''}`}
-        >
-          <FormattedMessage {...messages[page]} />
+        <HeaderLink key={page}>
+          <Link
+            to={page}
+            spy
+            smooth
+            offset={-50}
+            duration={500}
+            href={page}
+            onClick={() => this.setState({ active: page, menuOpen: false })}
+            // className={`${page === 'home' ? 'active' : ''}`}
+            isDynamic
+          >
+            <FormattedMessage {...messages[page]} />
+          </Link>
         </HeaderLink>
       );
     });
@@ -68,16 +77,16 @@ export default class Header extends React.Component {
     return (
       <div>
         <header className={this.state.status}>
-          <HeaderLink className={`logo ${darkLinks ? 'black' : ''}`} to="/" onClick={() => this.setState({ active: 'home' })}>olivia + jay</HeaderLink>
+          <HeaderLink className="logo" to="/" onClick={() => this.setState({ active: 'home' })}>olivia + jay</HeaderLink>
           <div
-            className={`hamburger hamburger--elastic ${darkLinks ? 'black' : ''} ${this.state.menuOpen ? 'is-active' : ''}`}
+            className={`hamburger hamburger--elastic ${this.state.menuOpen ? 'is-active' : ''}`}
             onClick={this.toggleMenu.bind(this)}
           >
             <span className="hamburger-box">
               <span className="hamburger-inner"></span>
             </span>
           </div>
-          <span className={`header-links ${this.state.menuOpen ? 'open' : ''}`}>
+          <span className={`header-links ${this.state.menuOpen ? 'open' : ''}`} id="nav">
             {links}
           </span>
         </header>

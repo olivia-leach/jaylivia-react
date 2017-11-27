@@ -20,9 +20,10 @@ header {
       align-items: flex-end;
     }
   }
-  a {
+  a > a {
     font-size: 0.9rem;
     font-weight: bold;
+    padding: 10px;
     &.active {
       border-bottom: 3px solid #36b3a8;
     }
@@ -82,6 +83,9 @@ header {
     }
   }
   .header-links {
+    a span {
+      color: #fff;
+    }
     @include bp(mobileonly) {
       display: flex;
       flex-direction: column;
@@ -98,7 +102,9 @@ header {
       transition: .15s ease-in-out all;
       a {
         display: none;
-        color: black;
+        span {
+          color: black;
+        }
       }
       &.open {
         max-height: 500px;

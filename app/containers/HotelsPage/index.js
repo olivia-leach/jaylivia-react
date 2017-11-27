@@ -5,8 +5,8 @@ import Card from 'components/Card';
 
 export default class HotelsPage extends React.PureComponent {
   componentDidMount() {
-    window.sr = ScrollReveal();
-    sr.reveal('.card', 50);
+    // window.sr = ScrollReveal();
+    // sr.reveal('.card', 50);
   }
 
   render() {
@@ -34,22 +34,22 @@ export default class HotelsPage extends React.PureComponent {
     )
 
     return (
-      <article>
-        <Helmet
+      <article id="accommodations">
+        {/*}<Helmet
           title="Accommodations"
           meta={[
             { name: 'description', content: 'Jay and Olivia' },
           ]}
-        />
+        />*/}
         <ImgContainer className='hotel-image'>
           <div className='content-wrapper hotels-page'>
             <div className='col'>
               <Card
                 name="Woodstock, NY"
-                textBody="We highly encourage our guests to stay in historic Woodstock during our wedding weekend. Woodstock is a funky town about 15 minutes from the venue, where you'll find many B&Bs, small hotels, and homes for rent. Shuttles will be provided from the center of town to the venue and back again."
+                textBody="We highly encourage our guests to stay in historic Woodstock during our wedding weekend. Woodstock is a funky town about 15 minutes from the venue, where you'll find many B&Bs, small hotels, and homes for rent. Shuttles will be provided from the center of town to the venue and back again, and also to The Lodge hotel, where we will have our after party."
                 buttons={[
                   { label: 'Search AirBnb', link: 'https://www.airbnb.com/s/Woodstock--NY--United-States/all?guests=2&checkin=2018-06-22&checkout=2018-06-24' },
-                  { label: 'Search VRBO', link: 'https://www.vrbo.com/results?pets=false&q=Woodstock%2C+NY%2C+USA&infants=0&to-date=06%2F24%2F2018&children=0&from-date=06%2F22%2F2018&adults=2&uuid=' }
+                  { label: 'The Lodge', link: 'http://thelodgewoodstock.com/' }
                 ]}
                 className="card big-card"
                 extraDeets={woodstockDeets}
@@ -60,9 +60,9 @@ export default class HotelsPage extends React.PureComponent {
               <Card
                 name="Emerson Resort & Spa"
                 location="Phoenicia, NY"
-                textBody="Just 5 minutes from our venue, this resort may be the choice for our guests looking to treat themselves as it has a luxury spa on site. And it's dog friendly! Rosie approves."
+                textBody="Just 5 minutes from our venue, this resort may be the choice for our guests looking to treat themselves as it has a luxury spa on site. Many rooms can hold up to 5 guests. Extra bonus: it has the World's Largest Kaleidoscope. And it's dog friendly! Rosie approves."
                 priceRange="$259"
-                className="card little-card"
+                className="card little-card wide"
                 buttons={[
                   { label: 'Book Now', link: 'https://emersonresort.com/' }
                 ]}
@@ -78,7 +78,7 @@ export default class HotelsPage extends React.PureComponent {
                 ]}
                 dogFriendly
               />
-              <Card
+              {/*}<Card
                 name="Kate's Lazy Meadow"
                 location="Mt Tremper, NY"
                 textBody="Owned by Kate Pierson of The B-52s fame, the 8-unit “mod motel” boasts a funky getaway experience. It features rustic-style suites with vintage furniture, private baths, 50s-style kitchens and an abundance of color. Small dogs are welcome."
@@ -88,7 +88,7 @@ export default class HotelsPage extends React.PureComponent {
                   { label: 'Book Now', link: 'https://www.lazymeadow.com/index.php?page=cabins' }
                 ]}
                 dogFriendly
-              />
+              />*/}
               <Card
                 name="Best Western"
                 location="Kingston, NY"
