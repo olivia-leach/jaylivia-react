@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Hero from './hero.jpg';
+import Hero from './hero_highres.jpg';
 
 export default styled.div`
   background: url(${Hero});
