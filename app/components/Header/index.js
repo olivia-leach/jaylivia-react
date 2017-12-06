@@ -17,6 +17,7 @@ export default class Header extends React.Component {
       pages: [
         'home',
         // 'where',
+        'timeline',
         'accommodations',
         // 'rsvp',
       ],
@@ -61,7 +62,7 @@ export default class Header extends React.Component {
             to={page}
             spy
             smooth
-            offset={-50}
+            offset={-100}
             duration={500}
             href={page}
             onClick={() => this.setState({ active: page, menuOpen: false })}

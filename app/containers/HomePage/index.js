@@ -8,6 +8,7 @@ import ImgContainer from './ImgContainer';
 import VideoContainer from './VideoContainer';
 import HotelsPage from '../HotelsPage';
 // import RSVPPage from '../RSVPPage';
+import Timeline from '../Timeline';
 
 const Scroll = require('react-scroll');
 
@@ -27,8 +28,9 @@ export default class HomePage extends React.PureComponent {
   componentDidMount() {
     window.sr = ScrollReveal();
     sr.reveal('.hashtag', 250);
-    sr.reveal('.card', 300);
+    sr.reveal('.card');
     sr.reveal('.form-group', 50);
+    sr.reveal('.timeline-event');
   }
 
   handlePlay() {
@@ -86,21 +88,23 @@ export default class HomePage extends React.PureComponent {
               <span className="hashtag"><FormattedMessage {...messages.hashtags.olivia} /></span>
               <span className="hashtag"><FormattedMessage {...messages.hashtags.jay} /></span>
             </div>
-            <Link to="video" smooth offset={-80} duration={500}>
-              <Button className='watch-video'>watch our engagement video  <i className="fa fa-hand-o-down" aria-hidden="true"></i></Button>
+            <Link to="timeline" smooth offset={-80} duration={500}>
+              <Button className='watch-video'>our wedding weekend <i className="fa fa-hand-o-down" aria-hidden="true"></i></Button>
             </Link>
           </ImgContainer>
-          <VideoContainer id="video">
-            <div className="video-container">
-              <div className={`video-cover ${this.state.videoLoaded && !this.state.donePlaying ? 'hidden' : ''}`} onClick={() => this.handlePlay()}>
-                <i className={`fa fa-${this.state.videoLoading ? 'spinner fa-pulse' : 'play'}`} aria-hidden="true" />
-              </div>
-              <iframe id="theVideo" width="560" height="315" src="https://www.youtube.com/embed/cUl_ecN2ETs?enablejsapi=1" frameBorder="0" allowFullScreen />
-            </div>
-          </VideoContainer>
         </div>
+        <Timeline />
         <div className="rosie" />
         <HotelsPage />
+        <div className="rosie num2" />
+        <VideoContainer id="video">
+          <div className="video-container">
+            <div className={`video-cover ${this.state.videoLoaded && !this.state.donePlaying ? 'hidden' : ''}`} onClick={() => this.handlePlay()}>
+              <i className={`fa fa-${this.state.videoLoading ? 'spinner fa-pulse' : 'play'}`} aria-hidden="true" />
+            </div>
+            <iframe id="theVideo" width="560" height="315" src="https://www.youtube.com/embed/cUl_ecN2ETs?enablejsapi=1" frameBorder="0" allowFullScreen />
+          </div>
+        </VideoContainer>
       </article>
     );
   }

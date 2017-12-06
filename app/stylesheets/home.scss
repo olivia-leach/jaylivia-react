@@ -80,6 +80,7 @@
 }
 
 .img-container {
+  position: relative;
   img {
     max-width: 80%;
     margin: 0 auto;
@@ -169,6 +170,13 @@ a {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  &.num2 {
+    background: url('/rosie2.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
   @include bp(mobileonly) {
     height: 30vh;
     background-attachment: scroll !important;

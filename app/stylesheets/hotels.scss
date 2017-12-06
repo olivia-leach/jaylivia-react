@@ -3,7 +3,7 @@
   min-height: 100vh;
   display: block;
   flex-wrap: wrap;
-  padding: 140px 40px 60px;
+  padding: 0 60px 40px 60px;
   .fa-star {
     color: yellow;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 1), 0 1px 2px rgba(0, 0, 0, 1);
@@ -22,10 +22,10 @@
   }
   @include bp(laptop) {
     display: flex;
-    padding: 100px 60px;
+    padding: 0 60px 100px;
   }
   @include bp(mobileonly) {
-    padding: 60px 20px;
+    padding: 0 20px 60px 20px;
   }
   justify-content: space-between;
   align-items: flex-start;
