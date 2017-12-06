@@ -15,7 +15,7 @@ header {
   align-items: center;
   span {
     display: flex;
-    @include bp(mobileonly) {
+    @include bp(tabletOrSmaller) {
       flex-direction: column;
       align-items: flex-end;
     }
@@ -54,7 +54,7 @@ header {
       color: #fff;
     }
   }
-  @include bp(mobileonly) {
+  @include bp(tabletOrSmaller) {
     padding: 1rem;
     &.fixed {
       // justify-content: center;
@@ -70,7 +70,7 @@ header {
     position: absolute;
     right: 1.5rem;
     top: 1rem;
-    @include bp(mobileonly) {
+    @include bp(tabletOrSmaller) {
       display: block;
     }
     &.black, &.is-active {
@@ -86,7 +86,7 @@ header {
     a span {
       color: #fff;
     }
-    @include bp(mobileonly) {
+    @include bp(tabletOrSmaller) {
       display: flex;
       flex-direction: column;
       position: absolute;

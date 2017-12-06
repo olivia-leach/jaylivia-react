@@ -15,7 +15,7 @@ export default class Header extends React.Component {
 
     this.state = {
       pages: [
-        'home',
+        // 'home',
         // 'where',
         'timeline',
         'accommodations',
@@ -66,7 +66,7 @@ export default class Header extends React.Component {
             duration={500}
             href={page}
             onClick={() => this.setState({ active: page, menuOpen: false })}
-            // className={`${page === 'home' ? 'active' : ''}`}
+            // className={`${page === this.state.active ? 'active' : ''}`}
             isDynamic
           >
             <FormattedMessage {...messages[page]} />

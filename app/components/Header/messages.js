@@ -7,7 +7,7 @@ export default defineMessages({
   },
   timeline: {
     id: 'boilerplate.components.Header.timeline',
-    defaultMessage: 'EVENTS',
+    defaultMessage: 'WEDDING WEEEKND',
   },
   where: {
     id: 'boilerplate.components.Header.where',
