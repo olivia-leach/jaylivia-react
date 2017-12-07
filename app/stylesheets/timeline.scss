@@ -14,6 +14,7 @@
     }
   }
   .section-p {
+    margin-bottom: 50px;
     @include bp(laptop) {
       width: 45%;
       align-self: flex-start;
@@ -40,11 +41,11 @@
     height: calc(100% - 60px);
     position: absolute;
     @include shadow(1);
-    margin-top: -50px;
+    margin-top: -70px;
     @include bp(laptop) {
-      margin-top: -70px;
+      margin-top: -90px;
       width: 10px;
-      height: calc(100% - 20px);
+      height: calc(100% + 40px);
     }
   }
   .timeline-event {
@@ -53,7 +54,7 @@
     @include shadow(1);
     padding: 20px;
     width: 40%;
-    margin: -50px 5%;
+    margin: -70px 5%;
     border-radius: 3px;
     align-self: flex-end;
     padding: 10px;
@@ -63,7 +64,7 @@
     }
     @include bp(laptop) {
       width: 30%;
-      margin: -70px 15%;
+      margin: -90px 15%;
       padding: 35px;
       h3 {
         font-size: 18px;
@@ -106,6 +107,15 @@
         left: calc(-15% + 8px);
         top: 35px;
         width: calc(15% - 8px);
+      }
+    }
+    &:last-of-type:after {
+      top: 65%;
+    }
+    &:last-of-type:before {
+      top: calc(65% - 15px);
+      @include bp(mobileonly) {
+        top: calc(65% - 10px);
       }
     }
     &.left {
@@ -167,5 +177,10 @@
   @include bp(laptop) {
     margin-top: 0;
     padding: 0 0 0 70px;
+  }
+  a {
+    color: #36b3a8 !important;
+    cursor: pointer;
+    font-weight: bold;
   }
 }

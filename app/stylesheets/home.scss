@@ -171,11 +171,10 @@ a {
   background-attachment: fixed;
   background-size: cover;
   &.num2 {
-    background: url('/rosie2.jpg');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+    background-image: url('/rosie2.jpg');
+  }
+  &.woods {
+    background-image: url('/woods.jpg');
   }
   @include bp(mobileonly) {
     height: 30vh;
@@ -187,4 +186,12 @@ a {
   @include bp(mobileonly) {
     height: 50vh;
   }
+}
+
+.things {
+  text-align: center;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

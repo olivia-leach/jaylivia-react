@@ -22,6 +22,9 @@ import '!file-loader?name=[name].[ext]!./assets/images/rsvp.png';
 import '!file-loader?name=[name].[ext]!./assets/images/rosie.jpg';
 import '!file-loader?name=[name].[ext]!./assets/images/rosie2.jpg';
 import '!file-loader?name=[name].[ext]!./assets/images/proposal.jpg';
+import '!file-loader?name=[name].[ext]!./assets/images/thelodge.jpg';
+import '!file-loader?name=[name].[ext]!./assets/images/woods.jpg';
+import '!file-loader?name=[name].[ext]!./assets/theLodge.pdf';
 
 // Import all the third party stuff
 import React from 'react';

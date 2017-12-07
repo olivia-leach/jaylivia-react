@@ -10,7 +10,7 @@ export default styled.div`
   height: 70vh;
   .video-container {
     width: 80%;
-    height: 70%;
+    height: 80%;
     overflow: hidden;
     display: flex;
     justify-content: center;

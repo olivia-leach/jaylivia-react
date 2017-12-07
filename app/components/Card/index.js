@@ -20,7 +20,6 @@ export default class Card extends React.Component {
     return (
       <div className={this.props.className}>
         <div className="img">
-          {this.props.bigCard && <i className='fa fa-star' />}
           <div className="text">
             <h3>{this.props.name}</h3>
             {this.props.location && <h4>{this.props.location}</h4>}

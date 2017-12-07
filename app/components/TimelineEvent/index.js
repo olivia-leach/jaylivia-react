@@ -10,6 +10,7 @@ export default class TimelineEvent extends React.Component {
           {this.props.image && <img src={this.props.image} />}
           <div>
             <p>{this.props.desc}</p>
+            {this.props.desc2 && <p>{this.props.desc2}</p>}
           </div>
         </div>
       </div>

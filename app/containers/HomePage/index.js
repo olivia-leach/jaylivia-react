@@ -89,14 +89,19 @@ export default class HomePage extends React.PureComponent {
               <span className="hashtag"><FormattedMessage {...messages.hashtags.jay} /></span>
             </div>
             <Link to="timeline" smooth offset={-80} duration={500}>
-              <Button className='watch-video'>our wedding weekend <i className="fa fa-hand-o-down" aria-hidden="true"></i></Button>
+              <Button className='watch-video'>celebrate with us! <i className="fa fa-hand-o-down" aria-hidden="true"></i></Button>
             </Link>
           </ImgContainer>
         </div>
         <Timeline />
         <div className="rosie" />
         <HotelsPage />
-        <div className="rosie num2" />
+        <div className="rosie woods" />
+        <div className='things' id='things'>
+          <h1>Things to Do</h1>
+          <p>Coming soon!</p>
+        </div>
+        <div className='rosie num2' />
         <VideoContainer id="video">
           <div className="video-container">
             <div className={`video-cover ${this.state.videoLoaded && !this.state.donePlaying ? 'hidden' : ''}`} onClick={() => this.handlePlay()}>
