@@ -15,6 +15,7 @@
   }
   .section-p {
     margin-bottom: 50px;
+    z-index: 100;
     @include bp(laptop) {
       width: 45%;
       align-self: flex-start;
