@@ -30,7 +30,7 @@ export default class HotelsPage extends React.PureComponent {
       </div>
     )
     
-    const accomParagraph = "We encourage our guests to stay in historic Woodstock, a funky town about 15 minutes from our wedding venue. There are many B&Bs, small hotels, and homes for rent. We've secured a block at The Lodge, which will also host the after party. Shuttle service will provide transport from to and from Woodstock locations."
+    const accomParagraph = "We encourage our guests to stay in historic Woodstock, a funky town about 15 minutes from our wedding venue. There are many B&Bs, small hotels, and homes for rent. We've secured a block at The Lodge, which will also host the after party. Shuttle service will provide transport to and from Woodstock locations."
 
     return (
       <article id="accommodations">
@@ -59,7 +59,7 @@ export default class HotelsPage extends React.PureComponent {
                 ]}
                 className="woodstock card"
                 extraDeets={woodstockDeets}
-                textBody="We've compiled a list of inns and bed and breakfasts in and around Woodstock. Many guests are renting homes through Airbnb, VRBO, or Homeaway as well. Shuttle service will be provided from the center of town."
+                textBody="Below is a list of inns and bed and breakfasts in and around Woodstock. Many guests are renting homes through Airbnb, VRBO, or Homeaway as well. Shuttle service will be provided from the center of town."
                 bigCard
               />
             </div>
