@@ -1,6 +1,6 @@
 import React from 'react';
 import TimelineEvent from 'components/TimelineEvent'
-import BasementBoys from './basementBoys.jpg'
+import BasementBoys from './basementBoysArrow.png'
 import Onteora from './onteora.jpg'
 import Lodge from './thelodge.jpg'
 import Reception from './reception.jpg'
