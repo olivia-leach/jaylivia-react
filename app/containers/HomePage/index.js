@@ -71,7 +71,7 @@ export default class HomePage extends React.PureComponent {
 
   render() {
     return (
-      <article>
+      <article className='page-wrapper'>
         <Helmet
           title="Olivia & Jay"
           meta={[
@@ -97,11 +97,6 @@ export default class HomePage extends React.PureComponent {
         <div className="rosie" />
         <HotelsPage />
         <div className="rosie woods" />
-        <div className='things' id='things'>
-          <h1>Things to Do</h1>
-          <p>Coming soon!</p>
-        </div>
-        <div className='rosie num2' />
         <VideoContainer id="video">
           <div className="video-container">
             <div className={`video-cover ${this.state.videoLoaded && !this.state.donePlaying ? 'hidden' : ''}`} onClick={() => this.handlePlay()}>

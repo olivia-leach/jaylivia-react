@@ -8,6 +8,7 @@ import LogoInverse from './logo_simp.png';
 const Scroll = require('react-scroll');
 
 const Link = Scroll.Link;
+const scroll = Scroll.animateScroll;
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -17,9 +18,9 @@ export default class Header extends React.Component {
       pages: [
         // 'home',
         // 'where',
-        'timeline',
-        'accommodations',
-        // 'rsvp',
+        { id: 'timeline', route: '' },
+        { id: 'accommodations', route: '' },
+        { id: 'thingstodo', route: 'thingstodo' },
       ],
       active: props.routes[1].name,
       status: 'initial',
@@ -33,6 +34,22 @@ export default class Header extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll.bind(this));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.pathname === 'thingstodo') {
+      this.setState({ active: nextProps.location.pathname })
+    } else if (nextProps.location.pathname !== this.props.location.pathname) {
+      this.setState({ scrollTo: this.state.active })
+    }
+  }
+
+  componentDidUpdate() {
+    const el = document.getElementById(this.state.active)
+    if (el && this.state.scrollTo) {
+      scroll.scrollTo(document.getElementById(this.state.active).offsetTop - 100, { duration: 0 });
+      this.setState({ scrollTo: null })
+    }
   }
 
   handleScroll() {
@@ -55,22 +72,29 @@ export default class Header extends React.Component {
   }
 
   render() {
+    const darkLinks = this.state.active === 'thingstodo'
+
     const links = this.state.pages.map((page) => {
+      const correctRoute = `/${page.route}` === this.props.location.pathname
       return (
-        <HeaderLink key={page}>
-          <Link
-            to={page}
-            spy
-            smooth
-            offset={-100}
-            duration={500}
-            href={page}
-            onClick={() => this.setState({ active: page, menuOpen: false })}
-            // className={`${page === this.state.active ? 'active' : ''}`}
-            isDynamic
-          >
-            <FormattedMessage {...messages[page]} />
-          </Link>
+        <HeaderLink key={page.id} to={correctRoute ? null : page.route} onClick={() => this.setState({ active: page.id, menuOpen: false })}>
+          {correctRoute ?
+            <Link
+              to={page.id}
+              spy
+              smooth
+              offset={-100}
+              duration={500}
+              // href={`${page.route}#${page.id}`}
+              onClick={() => this.setState({ active: page.id, menuOpen: false })}
+              className={`${darkLinks ? 'black' : ''}`}
+              isDynamic
+            >
+              <FormattedMessage {...messages[page.id]} />
+            </Link> :
+              <a className={`${darkLinks ? 'black' : ''}${this.state.active === page.id ? ' active' : ''}`}>
+                <span><FormattedMessage {...messages[page.id]} /></span>
+              </a>}
         </HeaderLink>
       );
     });
@@ -78,7 +102,7 @@ export default class Header extends React.Component {
     return (
       <div>
         <header className={this.state.status}>
-          <HeaderLink className="logo" to="/" onClick={() => this.setState({ active: 'home' })}>olivia + jay</HeaderLink>
+          <HeaderLink className={`logo ${darkLinks ? 'black' : ''}`} to="/" onClick={() => this.setState({ active: 'home' })}>olivia + jay</HeaderLink>
           <div
             className={`hamburger hamburger--elastic ${this.state.menuOpen ? 'is-active' : ''}`}
             onClick={this.toggleMenu.bind(this)}

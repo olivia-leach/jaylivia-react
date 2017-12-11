@@ -31,5 +31,8 @@ export default styled(Link)`
     font-weight: 400;
     letter-spacing: 1px;
     // font-family: 'Slabo 27px';
+    &.black {
+      color: #000;
+    }
   }
 `;

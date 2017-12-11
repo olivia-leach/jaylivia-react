@@ -5,18 +5,17 @@ import Onteora from './onteora.jpg'
 import Lodge from './thelodge.jpg'
 import Reception from './reception.jpg'
 import Brunch from './onteoraDiningHall.jpg'
+import { Link } from 'react-router';
 
-const Scroll = require('react-scroll');
-const Link = Scroll.Link;
+// const Scroll = require('react-scroll');
+// const Link = Scroll.Link;
 
 export default class RSVPPage extends React.PureComponent {
   render() {
     const welcomeParagraph =
       <span>
         <span>Let's party! We're looking forward to celebrating the start of married life and sharing the beautiful Catskills with you. We want to see you as much as we can, so we've planned a buncha gatherings to pack in the memories. Want to make a long weekend out of it? Check out more&nbsp;</span>
-        <Link to='things' smooth offset={-80} duration={500}>
-          Things To Do
-        </Link>
+        <Link to='thingstodo'>Things To Do</Link>
         <span>&nbsp;and join us. We'll be in town starting Thursday!</span>
       </span>
 

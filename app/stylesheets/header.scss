@@ -27,7 +27,7 @@ header {
     &.active {
       border-bottom: 3px solid #36b3a8;
     }
-    &.black {
+    &.black span {
       color: #1E1B14;
     }
   }
@@ -50,8 +50,8 @@ header {
         }
       }
     }
-    a {
-      color: #fff;
+    a, a span {
+      color: #fff !important;
     }
   }
   @include bp(tabletOrSmaller) {

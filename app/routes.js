@@ -81,6 +81,22 @@ export default function createRoutes(store) {
 
           importModules.catch(errorLoading);
         },
+      }, {
+          path: '/thingstodo',
+          name: 'thingstodo',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              System.import('containers/ThingsToDo'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([component]) => {
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
     }, {
         path: '/rsvp',
         name: 'rsvp',
