@@ -1,0 +1,22 @@
+.things {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 150px;
+  @include bp(mobileonly) {
+    padding-top: 80px;
+  }
+  .hero {
+    background-image: url('/rosie2.jpg');
+    background-size: contain;
+    background-position: bottom center;
+    max-height: 60vh;
+    min-width: 100%;
+    height: 400px;
+  }
+  p {
+    margin-top: 15px;
+  }
+}

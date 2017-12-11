@@ -34,7 +34,7 @@ header {
   &.fixed {
     background-color: #1E1B14;
     @include bp(tablet) {
-      padding: 10px 100px;
+      padding: 10px 50px;
     }
     .hamburger {
       .hamburger-box {
@@ -50,8 +50,10 @@ header {
         }
       }
     }
-    a, a span {
-      color: #fff !important;
+    @include bp(tablet) {
+      a, a span {
+        color: #fff !important;
+      }
     }
   }
   @include bp(tabletOrSmaller) {

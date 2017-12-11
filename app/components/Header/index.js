@@ -104,7 +104,7 @@ export default class Header extends React.Component {
         <header className={this.state.status}>
           <HeaderLink className={`logo ${darkLinks ? 'black' : ''}`} to="/" onClick={() => this.setState({ active: 'home' })}>olivia + jay</HeaderLink>
           <div
-            className={`hamburger hamburger--elastic ${this.state.menuOpen ? 'is-active' : ''}`}
+            className={`hamburger hamburger--squeeze ${this.state.menuOpen ? 'is-active' : ''} ${darkLinks ? 'black' : ''}`}
             onClick={this.toggleMenu.bind(this)}
           >
             <span className="hamburger-box">
