@@ -10,15 +10,20 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import Bears from './bears.jpg';
 
 export default class NotFound extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
+      <div className='page-not-found'>
+        <div className='page-container'>
+          <div className='white-box'>
+            <h2>Bad news!</h2>
+            <p>We can't find the page you're looking for.</p>
+            <img src={Bears} />
+          </div>
+        </div>
+      </div>
     );
   }
 }

@@ -72,7 +72,7 @@ export default class Header extends React.Component {
   }
 
   render() {
-    const darkLinks = this.state.active === 'thingstodo'
+    const darkLinks = this.props.location.pathname !== '/'
 
     const links = this.state.pages.map((page) => {
       const correctRoute = `/${page.route}` === this.props.location.pathname
