@@ -17,6 +17,10 @@ export default defineMessages({
     id: 'boilerplate.components.Header.accommodations',
     defaultMessage: 'ACCOMMODATIONS',
   },
+  travel: {
+    id: 'boilerplate.components.Header.travel',
+    defaultMessage: 'TRAVEL',
+  },
   rsvp: {
     id: 'boilerplate.components.Header.rsvp',
     defaultMessage: 'RSVP',

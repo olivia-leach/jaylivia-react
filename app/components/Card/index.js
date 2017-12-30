@@ -3,7 +3,7 @@ import Button from '../Button';
 
 export default class Card extends React.Component {
   render() {
-    const buttons = this.props.buttons.map((button) => {
+    const buttons = this.props.buttons && this.props.buttons.map((button) => {
       return (
         <Button className="action" key={button.label}>
           <a href={button.link} target="_blank">{button.label || 'Book a room'}</a>
@@ -20,6 +20,7 @@ export default class Card extends React.Component {
     return (
       <div className={this.props.className}>
         <div className="img">
+          {this.props.img && <img src={this.props.img} />}
           <div className="text">
             <h3>{this.props.name}</h3>
             {this.props.location && <h4>{this.props.location}</h4>}

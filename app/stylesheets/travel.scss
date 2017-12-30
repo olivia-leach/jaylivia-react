@@ -1,0 +1,107 @@
+#travel .section-header {
+  padding-bottom: 0;
+  padding-left: 20px;
+  @include bp(tablet) {
+    padding-left: 50px;
+  }
+  @include bp(laptop) {
+    padding-left: 200px;
+  }
+}
+
+#travel {
+  position: relative;
+  overflow: hidden;
+}
+
+.content-wrapper.travel {
+  padding: 20px;
+  @include bp(tablet) {
+    padding: 20px 50px 50px;
+  }
+  @include bp(laptop) {
+    padding: 20px 200px 50px;
+  }
+  flex-direction: column;
+  p {
+    font-family: 'Helvetica';
+    font-size: 15px;
+  }
+  ul {
+    @include bp(tablet) {
+      display: flex;
+    }
+    width: 100%;
+    justify-content: center;
+  }
+  li {
+    list-style-type: none;
+    @include bp(tablet) {
+      width: 50%;
+      p {
+        margin-bottom: 0;
+      }
+    }
+    &:first-of-type {
+      padding-right: 40px;
+    }
+    h3 {
+      font-weight: bold;
+      font-size: 24px;
+    }
+  }
+  img {
+    position: absolute;
+    height: 50px;
+    animation-fill-mode: forwards;
+    &.airplane {
+      top: 200px;
+      left: 80px;
+      transform: rotate(-10deg) !important;
+      // animation: linear;
+      // animation-name: plane;
+      // animation-duration: 2s;
+    }
+    &.car {
+      top: 390px;
+      right: 100px;
+      transform: scaleX(-1) !important;
+      // animation: linear;
+      // animation-name: car;
+      // animation-duration: 2s;
+    }
+    &.train {
+      right: 150px;
+      @include bp(laptop) {
+        top: 675px;
+      }
+      @include bp(desktop) {
+        top: 650px;
+      }
+      transform: scaleX(-1) !important;
+      // animation: linear;
+      // animation-direction: reverse;
+      // animation-name: train;
+      // animation-duration: 2s;
+    }
+    &.bus {
+      top: 580px;
+      left: 120px;
+    }
+  }
+}
+
+@keyframes plane {
+    0% { left: 0; top: 300px; }
+    100% { left: 80px; top: 200px; }
+}
+
+@keyframes car {
+    0% { right: calc(0% - 100px); }
+    100% { right: 100px; }
+}
+
+@keyframes train {
+    0% { right: calc(0% - 100px); }
+    100% { right: 300px; }
+}

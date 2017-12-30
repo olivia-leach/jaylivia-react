@@ -7,6 +7,7 @@ import messages from './messages';
 import ImgContainer from './ImgContainer';
 import VideoContainer from './VideoContainer';
 import HotelsPage from '../HotelsPage';
+import TravelPage from '../TravelPage';
 // import RSVPPage from '../RSVPPage';
 import Timeline from '../Timeline';
 
@@ -31,6 +32,7 @@ export default class HomePage extends React.PureComponent {
     sr.reveal('.card');
     sr.reveal('.form-group', 50);
     sr.reveal('.timeline-event');
+    // sr.reveal('.travel-img');
   }
 
   handlePlay() {

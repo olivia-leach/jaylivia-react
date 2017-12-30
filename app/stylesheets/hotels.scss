@@ -184,6 +184,21 @@
       margin-right: 5px;
     }
   }
+  &.only-image {
+    .body, .text {
+      display: none;
+    }
+    .img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    img {
+      flex-shrink: 0;
+      min-width: 100%;
+      min-height: 100%;
+    }
+  }
 }
 
 .bw .img {
