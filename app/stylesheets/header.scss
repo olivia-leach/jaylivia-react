@@ -6,14 +6,16 @@ header {
   top: 0;
   z-index: 2000;
   padding: 30px 50px;
+  @include bp(tablet) {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
   @include bp(laptop) {
-    padding: 30px 100px;
+    padding: 30px 40px;
   }
   transition: .2s all ease-in-out;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   span {
     display: flex;
     @include bp(tabletOrSmaller) {
@@ -35,7 +37,7 @@ header {
   &.fixed {
     background-color: #1E1B14;
     @include bp(tablet) {
-      padding: 10px 50px;
+      padding: 10px 30px;
     }
     .hamburger {
       .hamburger-box {
@@ -88,6 +90,9 @@ header {
   .header-links {
     a span {
       color: #fff;
+    }
+    a {
+      margin: 0;
     }
     @include bp(tabletOrSmaller) {
       display: flex;

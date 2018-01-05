@@ -77,7 +77,7 @@ export default class HomePage extends React.PureComponent {
         <Helmet
           title="Olivia & Jay"
           meta={[
-            { name: 'description', content: 'Jay and Olivia' },
+            { name: 'description', content: 'Jay and Olivia are getting married! Welcome to our wedding website.' },
           ]}
         />
         <div id='home'>

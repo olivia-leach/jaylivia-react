@@ -33,7 +33,7 @@ export default class ThingsToDo extends React.PureComponent {
           <img src={Mountains} />
           <div className="hero">
             <h1>Welcome to the Catskills!</h1>
-            <p>We are so excited to have all of our friends and family in one of our favorite parts of the country. Check out this page for some inspiration for activities while you are in the area.</p>
+            <p>We&#39;re super excited to have all our friends and family in one place. We think you&#39;ll love it here! The Catskills & Hudson River valley host some amazing experiences, ready for you to explore.</p>
           </div>
         </div>
         <div className="row links">
@@ -63,20 +63,7 @@ export default class ThingsToDo extends React.PureComponent {
           </Link>
         </div>
         <div className="content">
-          <div className="row" id="outdoors">
-            <Card
-              className="card only-image"
-              img={Tubing}
-            />
-            <div className="right">
-              <h3>Tube the Esopus River</h3>
-              <p>Join us the morning of June 22nd to tube this river at the launching off point in Phoenicia, NY (a 20 minute drive from Woodstock). </p>
-              <Button>
-                <a href="http://www.towntinker.com/" target="_blank">More Info</a>
-              </Button>
-            </div>
-          </div>
-          <div className="row left">
+          <div className="row left" id="outdoors">
             <div>
               <h3>Kaaterskill Falls</h3>
               <p>This short, moderately difficult hike (2 miles out and back) has an amazing payoff--the waterfall is one of the tallest in the Eastern US. The trailhead is a 30 minute drive north of Woodstock.</p>
@@ -92,27 +79,27 @@ export default class ThingsToDo extends React.PureComponent {
           <div className="row">
             <Card
               className="card only-image"
-              img={Fawns}
+              img={Overlook}
             />
             <div className="right">
-              <h3>Fawn&#39;s Leap</h3>
-              <p>This popular swimming hole and waterfall is great for kids or thrill seekers alike. Follow the footsteps of a young Jay Clark and jump off the cliffs into the crystal-clear water below.</p>
-              <Button>
-                <a href="http://www.catskillmountaineer.com/WF-KC-FL.html" target="_blank">More Info</a>
-              </Button>
-            </div>
-          </div>
-          <div className="row left">
-            <div>
-              <h3>Hike Overlook Mountain</h3>
+              <h3>Overlook Mountain</h3>
               <p>This moderate-to-difficult 4.8 mile hike pays off for the views at the top. Check out the old hotel ruins on the way up, and be sure to climb the fire tower at the peak! Find the trailhead at 335 Meads Mountain Road in Woodstock (and check out the Buddhist temple located across the street if you have the time!).</p>
               <Button>
                 <a target="_blank" href="https://www.alltrails.com/trail/us/new-york/overlook-mountain-trail">More Info</a>
               </Button>
             </div>
+          </div>
+          <div className="row left">
+            <div>
+              <h3>Platte Clove Preserve</h3>
+              <p>Explore the beautiful 208 acres of this nature preserve (and its many waterfalls!) just north of Woodstock. For artists and art-lovers, be sure to check out the little red cabin atop one of the waterfalls, where you can see the work of the Artists in Residence who are hosted at the preserve during the summer months.</p>
+              <Button>
+                <a href="http://catskillcenter.org/platte-clove-preserve/" target="_blank">More Info</a>
+              </Button>
+            </div>
             <Card
               className="card only-image"
-              img={Overlook}
+              img={Platte}
             />
           </div>
           <div className="row">
@@ -130,16 +117,29 @@ export default class ThingsToDo extends React.PureComponent {
           </div>
           <div className="row left">
             <div>
-              <h3>Platte Clove Preserve</h3>
-              <p>Explore this beautiful nature preserve</p>
+              <h3>Tube the Esopus River</h3>
+              <p>Join us the morning of June 22nd to tube this river at the launching off point in Phoenicia, NY (a 20 minute drive from Woodstock). </p>
               <Button>
-                <a href="http://catskillcenter.org/platte-clove-preserve/" target="_blank">More Info</a>
+                <a href="http://www.towntinker.com/" target="_blank">More Info</a>
               </Button>
             </div>
             <Card
               className="card only-image"
-              img={Platte}
+              img={Tubing}
             />
+          </div>
+          <div className="row">
+            <Card
+              className="card only-image"
+              img={Fawns}
+            />
+            <div className="right">
+              <h3>Fawn&#39;s Leap</h3>
+              <p>A popular swimming hole and waterfall, great for kids or thrill seekers alike! Follow the footsteps of a young Jay Clark and jump off the cliffs into the crystal-clear water below.</p>
+              <Button>
+                <a href="http://www.catskillmountaineer.com/WF-KC-FL.html" target="_blank">More Info</a>
+              </Button>
+            </div>
           </div>
           <div className="hl" />
           <div className="row" id="eats">

@@ -29,4 +29,8 @@ export default defineMessages({
     id: 'boilerplate.components.Header.rsvp',
     defaultMessage: 'THINGS TO DO',
   },
+  registry: {
+    id: 'boilerplate.components.Header.rsvp',
+    defaultMessage: 'REGISTRY',
+  },
 });

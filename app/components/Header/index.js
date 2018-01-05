@@ -22,6 +22,7 @@ export default class Header extends React.Component {
         { id: 'accommodations', route: '' },
         // { id: 'travel', route: '' },
         { id: 'thingstodo', route: 'thingstodo' },
+        // { id: 'rsvp', route: 'rsvp' },
       ],
       active: props.routes[1].name,
       status: 'initial',
@@ -115,6 +116,7 @@ export default class Header extends React.Component {
           </div>
           <span className={`header-links ${this.state.menuOpen ? 'open' : ''}`} id="nav">
             {links}
+            <HeaderLink to='https://www.zola.com/registry/oliviajay' target='_blank'><a><span>REGISTRY</span></a></HeaderLink>
           </span>
         </header>
       </div>
