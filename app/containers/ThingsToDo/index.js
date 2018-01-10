@@ -15,6 +15,7 @@ import Flea from './flea.png'
 import Kingston from './kingston.png'
 import Katterskill from './katterskill.png'
 import Fawns from './fawns.png'
+import Zipline from './zipline.jpg'
 
 const Scroll = require('react-scroll');
 
@@ -66,7 +67,7 @@ export default class ThingsToDo extends React.PureComponent {
           <div className="row left" id="outdoors">
             <div>
               <h3>Kaaterskill Falls</h3>
-              <p>This short, moderately difficult hike (2 miles out and back) has an amazing payoff--the waterfall is one of the tallest in the Eastern US. The trailhead is a 30 minute drive north of Woodstock.</p>
+              <p>A short, moderate hike with an amazing payoff. The waterfall is one of the tallest in the Eastern US. 2 miles out and back. The trailhead is a 30 minute drive north of Woodstock.</p>
               <Button>
                 <a target="_blank" href="http://hikethehudsonvalley.com/kaaterskill-falls/">More Info</a>
               </Button>
@@ -83,7 +84,7 @@ export default class ThingsToDo extends React.PureComponent {
             />
             <div className="right">
               <h3>Overlook Mountain</h3>
-              <p>This moderate-to-difficult 4.8 mile hike pays off for the views at the top. Check out the old hotel ruins on the way up, and be sure to climb the fire tower at the peak! Find the trailhead at 335 Meads Mountain Road in Woodstock (and check out the Buddhist temple located across the street if you have the time!).</p>
+              <p>This moderate-to-difficult 4.8 mile hike has amazing views at the top. Check out the old hotel ruins on the way up, and be sure to climb the fire tower at the peak! Find the trailhead at 335 Meads Mountain Road in Woodstock (and check out the Buddhist temple across the street if you have time!).</p>
               <Button>
                 <a target="_blank" href="https://www.alltrails.com/trail/us/new-york/overlook-mountain-trail">More Info</a>
               </Button>
@@ -92,7 +93,7 @@ export default class ThingsToDo extends React.PureComponent {
           <div className="row left">
             <div>
               <h3>Platte Clove Preserve</h3>
-              <p>Explore the beautiful 208 acres of this nature preserve (and its many waterfalls!) just north of Woodstock. For artists and art-lovers, be sure to check out the little red cabin atop one of the waterfalls, where you can see the work of the Artists in Residence who are hosted at the preserve during the summer months.</p>
+              <p>A nature preserve 20 minutes north of Woodstock with 208 acres of trails and waterfalls.</p>
               <Button>
                 <a href="http://catskillcenter.org/platte-clove-preserve/" target="_blank">More Info</a>
               </Button>
@@ -109,7 +110,7 @@ export default class ThingsToDo extends React.PureComponent {
             />
             <div className="right">
               <h3>Poet&#39;s Walk</h3>
-              <p>Pop over to Jay&#39;s hometown of Red Hook to bask in the beauty of this 120 acre park, which features two miles of trails through woods and rolling meadows with splendid views of the Hudson.</p>
+              <p>A staple of Red Hook (Jay&#39;s Hometown) - A 120 acre park with a relaxing, rejuvinating two mile loop through woods and rolling meadows with splendid views of the Hudson. 20 minutes from Woodstock.</p>
               <Button>
                 <a href="https://www.scenichudson.org/parks/poetswalk" target="_blank">More Info</a>
               </Button>
@@ -118,7 +119,7 @@ export default class ThingsToDo extends React.PureComponent {
           <div className="row left">
             <div>
               <h3>Tube the Esopus River</h3>
-              <p>Join us the morning of June 22nd to tube this river at the launching off point in Phoenicia, NY (a 20 minute drive from Woodstock). </p>
+              <p>Join us the morning of June 22nd to tube this river at the launching off point in Phoenicia, NY. 20 minutes from Woodstock.</p>
               <Button>
                 <a href="http://www.towntinker.com/" target="_blank">More Info</a>
               </Button>
@@ -135,11 +136,24 @@ export default class ThingsToDo extends React.PureComponent {
             />
             <div className="right">
               <h3>Fawn&#39;s Leap</h3>
-              <p>A popular swimming hole and waterfall, great for kids or thrill seekers alike! Follow the footsteps of a young Jay Clark and jump off the cliffs into the crystal-clear water below.</p>
+              <p>A thrilling 30-foot cliff jump into a natural swimming hole. A great opportunity to "take the leap" yourself before the wedding.</p>
               <Button>
                 <a href="http://www.catskillmountaineer.com/WF-KC-FL.html" target="_blank">More Info</a>
               </Button>
             </div>
+          </div>
+          <div className="row left">
+            <div>
+              <h3>New York Zip Line</h3>
+              <p>40 minutes away in Hunter, NY is the largest zipline canopy tour in North America.</p>
+              <Button>
+                <a href="https://www.ziplinenewyork.com/" target="_blank">More Info</a>
+              </Button>
+            </div>
+            <Card
+              className="card only-image"
+              img={Zipline}
+            />
           </div>
           <div className="hl" />
           <div className="row" id="eats">
@@ -202,7 +216,7 @@ export default class ThingsToDo extends React.PureComponent {
             />
             <div className="right">
               <h3>Woodstock Flea Market</h3>
-              <p>Meet some local artists and vendors by perusing this flea market on Saturday morning from 9am - 5:30pm. Located one block from the town center.</p>
+              <p>Every Saturday from 9-5. Meet some local makers, artists and vendors and peruse the market.</p>
               <Button>
                 <a href="http://www.mowerssaturdayfleamarket.com/" target="_blank">More Info</a>
               </Button>

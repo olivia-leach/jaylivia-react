@@ -116,7 +116,7 @@ export default class Header extends React.Component {
           </div>
           <span className={`header-links ${this.state.menuOpen ? 'open' : ''}`} id="nav">
             {links}
-            <HeaderLink to='https://www.zola.com/registry/oliviajay' target='_blank'><a><span>REGISTRY</span></a></HeaderLink>
+            {/*}<HeaderLink to='https://www.zola.com/registry/oliviajay' target='_blank'><a><span>REGISTRY</span></a></HeaderLink>*/}
           </span>
         </header>
       </div>
