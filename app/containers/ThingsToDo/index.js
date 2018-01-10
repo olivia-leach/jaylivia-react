@@ -7,7 +7,7 @@ import Poets from './poets.jpg';
 import Overlook from './overlook.jpg';
 import Platte from './platte.jpg';
 import Kaleidoscope from './kaleidoscope.jpg'
-import Joshuas from './joshuas.png'
+import Joshuas from './joshuas.jpg'
 import Shindig from './shindig.jpg'
 import Silvia from './silvia.png'
 import Breadalone from './breadalone.jpg'
