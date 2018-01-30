@@ -12,6 +12,9 @@ header {
   @include bp(laptop) {
     padding: 30px 40px;
   }
+  .logo.black {
+    text-shadow: none;
+  }
   transition: .2s all ease-in-out;
   display: flex;
   justify-content: space-between;
@@ -32,6 +35,7 @@ header {
     }
     &.black span {
       color: #1E1B14;
+      text-shadow: none;
     }
   }
   &.fixed {

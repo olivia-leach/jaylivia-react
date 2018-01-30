@@ -1,5 +1,9 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import leafTwo from './leaf2.png'
+import leafThree from './leaf3.png'
+import leafFour from './leaf4.png'
+
 
 export default class RSVPPage extends React.PureComponent {
   constructor(props) {
@@ -123,7 +127,7 @@ export default class RSVPPage extends React.PureComponent {
 
   render() {
     return (
-      <article>
+      <article className='rsvp'>
         <Helmet
           title="RSVP"
           meta={[
@@ -131,6 +135,10 @@ export default class RSVPPage extends React.PureComponent {
           ]}
         />
         <div className='content-wrapper rsvp-page'>
+          <img className='leaf leaf-two' src={leafTwo} />
+          <img className='leaf leaf-three' src={leafThree} />
+          <img className='leaf leaf-four' src={leafFour} />
+
           {this.state.submitted ?
             <div className='thanks'>Thanks for RSVPing{this.state.first_name ? `, ${this.state.first_name}` : ''}. {this.state.rsvp === 'yes' ? "We'll see you in June!" : "We're sorry you can't make it!"}</div>
           :
@@ -187,11 +195,11 @@ export default class RSVPPage extends React.PureComponent {
                   <p>Yessss! How about these fun activities?</p>
                 </div>
                 <div className='form-group'>
-                  <div className="form-check">
+                  {/*<div className="form-check">
                     <label className="form-check-label">
                       <input className="form-check-input" type="checkbox" name="rsvp_tubing" onChange={this.onInputChange} /> Tubing the Esopus River on Friday in Phoenicia
                     </label>
-                  </div>
+                  </div>*/}
                   <div className="form-check">
                     <label className="form-check-label">
                       <input className="form-check-input" type="checkbox" name="rsvp_drinks" onChange={this.onInputChange} /> Welcome drinks on Friday night in Woodstock

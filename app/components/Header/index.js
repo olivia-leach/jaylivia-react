@@ -22,7 +22,7 @@ export default class Header extends React.Component {
         { id: 'accommodations', route: '' },
         // { id: 'travel', route: '' },
         { id: 'thingstodo', route: 'thingstodo' },
-        // { id: 'rsvp', route: 'rsvp' },
+        { id: 'rsvp', route: 'rsvp' },
       ],
       active: props.routes[1].name,
       status: 'initial',
@@ -74,8 +74,7 @@ export default class Header extends React.Component {
   }
 
   render() {
-    // const darkLinks = this.props.location.pathname !== '/'
-    const darkLinks = false
+    const darkLinks = this.state.active === 'rsvp'
 
     const links = this.state.pages.map((page) => {
       const correctRoute = `/${page.route}` === this.props.location.pathname
