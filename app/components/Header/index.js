@@ -22,7 +22,7 @@ export default class Header extends React.Component {
         { id: 'accommodations', route: '' },
         // { id: 'travel', route: '' },
         { id: 'thingstodo', route: 'thingstodo' },
-        { id: 'rsvp', route: 'rsvp' },
+        // { id: 'rsvp', route: 'rsvp' },
       ],
       active: props.routes[1].name,
       status: 'initial',
