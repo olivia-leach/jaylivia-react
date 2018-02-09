@@ -25,6 +25,7 @@ import '!file-loader?name=[name].[ext]!./assets/images/proposal.jpg';
 import '!file-loader?name=[name].[ext]!./assets/images/thelodge.jpg';
 import '!file-loader?name=[name].[ext]!./assets/images/woods.jpg';
 import '!file-loader?name=[name].[ext]!./assets/theLodge.pdf';
+import '!file-loader?name=[name].[ext]!./assets/images/paper.jpg';
 
 // Import all the third party stuff
 import React from 'react';
