@@ -7,8 +7,6 @@ import messages from './messages';
 import ImgContainer from './ImgContainer';
 import VideoContainer from './VideoContainer';
 import HotelsPage from '../HotelsPage';
-import TravelPage from '../TravelPage';
-// import RSVPPage from '../RSVPPage';
 import Timeline from '../Timeline';
 
 const Scroll = require('react-scroll');

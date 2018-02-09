@@ -5,12 +5,15 @@ header {
   width: 100%;
   top: 0;
   z-index: 2000;
-  padding: 30px 50px;
+  padding: 30px 20px;
   @include bp(tablet) {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   }
   @include bp(laptop) {
     padding: 30px 40px;
+  }
+  @include bp(desktop) {
+    padding: 30px 50px;
   }
   .logo.black {
     text-shadow: none;

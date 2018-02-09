@@ -12,8 +12,7 @@ const scroll = Scroll.animateScroll;
 
 export default class Header extends React.Component {
   constructor(props) {
-    super();
-
+    super(props);
     this.state = {
       pages: [
         // 'home',
@@ -22,7 +21,8 @@ export default class Header extends React.Component {
         { id: 'accommodations', route: '' },
         // { id: 'travel', route: '' },
         { id: 'thingstodo', route: 'thingstodo' },
-        // { id: 'rsvp', route: 'rsvp' },
+        { id: 'registry', href: 'https://www.zola.com/registry/oliviajay' },
+        { id: 'rsvp', route: 'rsvp' },
       ],
       active: props.routes[1].name,
       status: 'initial',
@@ -77,9 +77,15 @@ export default class Header extends React.Component {
     const darkLinks = this.state.active === 'rsvp'
 
     const links = this.state.pages.map((page) => {
-      const correctRoute = `/${page.route}` === this.props.location.pathname
+      const correctRoute = `/${page.route}` === this.props.location.pathname && page.id !== 'rsvp'
       return (
-        <HeaderLink key={page.id} to={correctRoute ? null : page.route} onClick={() => this.setState({ active: page.id, menuOpen: false })}>
+        <HeaderLink
+          key={page.id}
+          href={page.href}
+          target={page.href ? '_blank' : ''}
+          to={correctRoute || page.herf ? null : page.route}
+          onClick={() => this.setState({ active: page.href ? this.state.active : page.id, menuOpen: false })}
+        >
           {correctRoute ?
             <Link
               to={page.id}
