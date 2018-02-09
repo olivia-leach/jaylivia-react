@@ -1,11 +1,14 @@
 .content-wrapper.rsvp-page {
   min-height: 100vh;
-  padding: 150px 20px 100px 20px;
+  padding: 7% 20px 100px 20px;
   background: url('/rsvp.png');
   background-position: top center;
   background-repeat: no-repeat;
-  background-position-y: 150px;
+  background-position-y: 15%;
   background-size: 350px;
+  @include bp(phablet) {
+    padding-top: 120px;
+  }
   form, .thanks {
     margin-top: 160px;
     text-align: center;
@@ -38,14 +41,11 @@ article.rsvp {
     height: 250px;
     @include bp(desktop) {
       right: 7%;
-      height: 350px;
+      height: 300px;
     }
   }
   &.leaf-four, &.leaf-three {
     width: 350px;
-    @include bp(desktop) {
-      width: 450px;
-    }
   }
   &.leaf-four {
     top: 15%;
@@ -60,8 +60,8 @@ article.rsvp {
     transform: rotate(-90deg);
     left: 20px;
     @include bp(desktop) {
-      left: 15%;
-      top: 40%;
+      left: 14%;
+      top: 52%;
     }
   }
 }
@@ -74,14 +74,19 @@ article.rsvp {
   }
   .leaf {
     z-index: 0;
-    &.leaf-four, &.leaf-three {
-      display: none;
+    &.leaf-four {
+      width: 180px;
+      top: 90px;
+      left: -60px;
     }
     &.leaf-two {
       right: -15px;
       height: 150px;
       transform: rotate(-90deg);
       top: 40px;
+    }
+    &.leaf-three {
+      display: none;
     }
   }
 }
