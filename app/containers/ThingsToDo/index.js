@@ -6,7 +6,7 @@ import Tubing from './tubing.jpg';
 import Poets from './poets.jpg';
 import Overlook from './overlook.jpg';
 import Platte from './platte.jpg';
-import Kaleidoscope from './kaleidoscope.jpg'
+import Emerson from './emerson.jpg'
 import Joshuas from './joshuas.jpg'
 import Shindig from './shindig.jpg'
 import Silvia from './silvia.jpg'
@@ -17,6 +17,8 @@ import Katterskill from './katterskill.jpg'
 import Fawns from './fawns.jpg'
 import Zipline from './zipline.jpg'
 import Ashokan from './ashokan.jpg'
+import BlueHole from './bluehole.jpg'
+import Cucina from './cucina.jpg'
 
 const Scroll = require('react-scroll');
 
@@ -35,22 +37,22 @@ export default class ThingsToDo extends React.PureComponent {
           <img src={Mountains} />
           <div className="hero">
             <h1>Welcome to the Catskills!</h1>
-            <p>We&#39;re super excited to have all our friends and family in one place. We think you&#39;ll love it here! The Catskills & Hudson River valley host some amazing experiences, ready for you to explore.</p>
           </div>
         </div>
         <div className="row links">
           <Link
             to="outdoors"
             smooth
-            offset={-150}
+            offset={-100}
             duration={500}
+            className='active'
           >
             The Great Outdoors
           </Link>
           <Link
             to="eats"
             smooth
-            offset={-150}
+            offset={-100}
             duration={500}
           >
             Eats and Drinks
@@ -58,14 +60,16 @@ export default class ThingsToDo extends React.PureComponent {
           <Link
             to="more"
             smooth
-            offset={-150}
+            offset={-100}
             duration={500}
           >
             And More!
           </Link>
         </div>
         <div className="content">
-          <div className="row" id="outdoors">
+          <p className='blurb'>We&#39;re super excited to have all our friends and family in one place.<br />We think you&#39;ll love it here!</p>
+          <h1 id="outdoors" className='section-head'><span className='line' />the great outdoors<span className='line' /></h1>
+          <div className="row">
             <div>
               <h3>Kaaterskill Falls</h3>
               <p>A short, moderate hike with an amazing payoff. The waterfall is one of the tallest in the Eastern US. 2 miles out and back. The <a href="https://goo.gl/maps/Z87PLsy4uQx" target="_blank" className="dark-link">trailhead</a> is a 30 minute drive north of Woodstock.</p>
@@ -89,6 +93,20 @@ export default class ThingsToDo extends React.PureComponent {
             <Card
               className="card only-image"
               img={Overlook}
+            />
+          </div>
+          <div className="row">
+            <div>
+              <h3>Local Swimming Holes</h3>
+              <p>It's summer! Need to cool off? Blue Hole in Sundown, NY is one of the state&#39;s best swimming holes (and is kind of a local secret, shhhh). Little <a className='dark-link' href='http://www.dec.ny.gov/docs/lands_forests_pdf/peekamooseparking.pdf'>tricky to find</a> but worth it.</p>
+              <p>Also check out <a className='dark-link' href='https://seeswim.com/location/big-deep-woodstock/'>The Big Deep</a> in Woodstock, close to town and popular on summer weekends. Park near the plant nursery on the side of Route 212 that looks like a wooded driveway. Follow the trail to the stream and a swimming hole.</p>
+              <Button>
+                <a href="http://kingstonweekender.com/swimming/" target="_blank">More Swimming Holes</a>
+              </Button>
+            </div>
+            <Card
+              className="card only-image"
+              img={BlueHole}
             />
           </div>
           <div className="row">
@@ -170,13 +188,14 @@ export default class ThingsToDo extends React.PureComponent {
               img={Ashokan}
             />
           </div>
-          <span className="hl" />
-          <div className="row" id="eats">
+          <h1 id='eats' className='section-head'><span className='line' />eats and drinks<span className='line' /></h1>
+          <div className="row">
             <div>
               <h3>Joshua&#39;s Cafe</h3>
-              <p>Mediterranean food with a great brunch.<br />51 Tinker Street in Woodstock</p>
+              <p>Mediterranean food with a great brunch.</p>
+              <p><a target="_blank" href="https://goo.gl/maps/YB65RHXqvay">51 Tinker Street in Woodstock</a></p>
               <Button>
-                <a href="http://joshuaswoodstock.com/" target="_blank">More Info</a>
+                <a href="http://joshuaswoodstock.com/" target="_blank">Website</a>
               </Button>
             </div>
             <Card
@@ -184,12 +203,27 @@ export default class ThingsToDo extends React.PureComponent {
               img={Joshuas}
             />
           </div>
+          <div className="row" id="eats">
+            <div>
+              <h3>Cucina</h3>
+              <p>Fabulous Italian restaurant located in a restored farmhouse.</p>
+              <p><a target="_blank" href="https://goo.gl/maps/9uMGESpFdvk">109 Mill Hill Rd in Woodstock</a></p>
+              <Button>
+                <a href="http://www.cucinawoodstock.com/" target="_blank">Website</a>
+              </Button>
+            </div>
+            <Card
+              className="card only-image"
+              img={Cucina}
+            />
+          </div>
           <div className="row">
             <div>
               <h3>Shindig</h3>
-              <p>In the heart of Woodstock, Shindig is a cute breakfast and lunch place with a nice selection of burgers.<br />1 Tinker Street in Woodstock</p>
+              <p>In the heart of Woodstock, Shindig is a cute breakfast and lunch place with a nice selection of burgers.</p>
+              <p><a target="_blank" href="https://goo.gl/maps/KgHRdzbMaNK2">1 Tinker Street in Woodstock</a></p>
               <Button>
-                <a href="http://www.woodstockshindig.com/" target="_blank">More Info</a>
+                <a href="http://www.woodstockshindig.com/" target="_blank">Website</a>
               </Button>
             </div>
             <Card
@@ -200,9 +234,10 @@ export default class ThingsToDo extends React.PureComponent {
           <div className="row">
             <div>
               <h3>Bread Alone Bakery</h3>
-              <p>Delicious bakery & coffee shop centrally located in Woodstock serving breakfast, lunch, and brunch.<br />22 Mill Hill Road in Woodstock</p>
+              <p>Delicious bakery & coffee shop centrally located in Woodstock serving breakfast, lunch, and brunch.</p>
+              <p><a target="_blank" href="https://goo.gl/maps/pomy63YFdDB2">22 Mill Hill Road in Woodstock</a></p>
               <Button>
-                <a href="https://www.breadalone.com/woodstock" target="_blank">More Info</a>
+                <a href="https://www.breadalone.com/woodstock" target="_blank">Website</a>
               </Button>
             </div>
             <Card
@@ -213,9 +248,10 @@ export default class ThingsToDo extends React.PureComponent {
           <div className="row">
             <div>
               <h3>Silvia</h3>
-              <p>This fancier-than-average Woodstock restaurant features locally-sourced, organic food. Check out the great cocktails and fun outdoor patio!<br />42 Mill Hill Road in Woodstock</p>
+              <p>This fancier-than-average Woodstock restaurant features locally-sourced, organic food. Check out the great cocktails and fun outdoor patio!</p>
+              <p><a target="_blank" href="https://goo.gl/maps/rGTokYnMWNF2">42 Mill Hill Road in Woodstock</a></p>
               <Button>
-                <a href="https://www.silviawoodstockny.com/" target="_blank">More Info</a>
+                <a href="https://www.silviawoodstockny.com/" target="_blank">Website</a>
               </Button>
             </div>
             <Card
@@ -223,8 +259,8 @@ export default class ThingsToDo extends React.PureComponent {
               img={Silvia}
             />
           </div>
-          <span className="hl" />
-          <div className="row" id="more">
+          <h1 id='more' className='section-head'><span className='line' />more activities<span className='line' /></h1>
+          <div className="row">
             <div>
               <h3>Woodstock Flea Market</h3>
               <p>Every Saturday from 9-5. Meet some local makers, artists and vendors and peruse the market.</p>
@@ -240,7 +276,16 @@ export default class ThingsToDo extends React.PureComponent {
           <div className="row">
             <div>
               <h3>Historic Kingston Waterfront</h3>
-              <p>There are all kinds of neat things to explore by the Kingston waterfront: Shopping, antiquing, wine bars, bakeries, kayak rentals, sailing, museums, a lighthouse, etc. Drive on Broadway towards the Hudson River/Rondout Creek, park near the water and explore!</p>
+              <p>There are all kinds of things to explore by the Kingston waterfront: shopping, antiquing, wine bars, bakeries, kayak rentals, museums, etc. Drive on Broadway towards the Hudson River/Rondout Creek, park near the water and explore!</p>
+              <p>Check out some of our favorite spots:</p>
+              <p>
+              <ul>
+                <li><a target="_blank" href="http://www.duobistro.com/">Duo Bistro for brunch or dinner</a></li>
+                <li><a target="_blank" href="https://www.roughdraftny.com/">Rough Draft (coffee/bar/bookstore)</a></li>
+                <li><a target="_blank" href="http://stockadetavern.com/">Stockade Tavern for cocktails</a></li>
+                <li><a target="_blank" href="http://www.brunettewinebar.com/">Brunette Wine Bar</a></li>
+              </ul>
+              </p>
               <Button>
                 <a href="http://thekingstonwaterfront.com/discover-downtown/" target="_blank">More Info</a>
               </Button>
@@ -260,7 +305,7 @@ export default class ThingsToDo extends React.PureComponent {
             </div>
             <Card
               className="card only-image"
-              img={Kaleidoscope}
+              img={Emerson}
             />
           </div>
         </div>
