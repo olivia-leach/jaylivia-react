@@ -32,8 +32,6 @@
   h1 {
     font-size: 1.6em;
     margin-top: 0;
-    color: $green;
-    font-weight: bold;
   }
   @include bp(laptop) {
     padding: 20px 120px 50px;
