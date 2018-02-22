@@ -8,6 +8,7 @@ import ImgContainer from './ImgContainer';
 import VideoContainer from './VideoContainer';
 import HotelsPage from '../HotelsPage';
 import Timeline from '../Timeline';
+import Travel from '../TravelPage'
 
 const Scroll = require('react-scroll');
 
@@ -30,7 +31,7 @@ export default class HomePage extends React.PureComponent {
     sr.reveal('.card');
     sr.reveal('.form-group', 50);
     sr.reveal('.timeline-event');
-    // sr.reveal('.travel-img');
+    sr.reveal('.travel-block');
   }
 
   handlePlay() {
@@ -97,6 +98,8 @@ export default class HomePage extends React.PureComponent {
         <div className="rosie" />
         <HotelsPage />
         <div className="rosie woods" />
+        <Travel />
+        <div className="rosie num2" />
         <VideoContainer id="video">
           <div className="video-container">
             <div className={`video-cover ${this.state.videoLoaded && !this.state.donePlaying ? 'hidden' : ''}`} onClick={() => this.handlePlay()}>

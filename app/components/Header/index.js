@@ -19,7 +19,7 @@ export default class Header extends React.Component {
         // 'where',
         { id: 'timeline', route: '' },
         { id: 'accommodations', route: '' },
-        // { id: 'travel', route: '' },
+        { id: 'travel', route: '' },
         { id: 'thingstodo', route: 'thingstodo' },
         { id: 'registry', href: 'https://www.zola.com/registry/oliviajay' },
         { id: 'rsvp', route: 'rsvp' },

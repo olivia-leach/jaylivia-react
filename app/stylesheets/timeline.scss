@@ -20,7 +20,7 @@
       width: 45%;
       align-self: flex-start;
       position: absolute;
-      margin-top: -17px;
+      margin-top: 10px;
       left: 0;
     }
   }
@@ -183,5 +183,14 @@
     color: #36b3a8 !important;
     cursor: pointer;
     font-weight: bold;
+  }
+}
+
+.section-header {
+  font-family: 'Satisfy';
+  font-size: 50px;
+  color: $greyish-brown;
+  @include bp(laptop) {
+    font-size: 60px;
   }
 }

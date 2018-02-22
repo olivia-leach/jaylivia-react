@@ -5,7 +5,7 @@
     padding-left: 50px;
   }
   @include bp(laptop) {
-    padding-left: 200px;
+    padding-left: 60px;
   }
 }
 
@@ -16,20 +16,37 @@
 
 .content-wrapper.travel {
   padding: 20px;
+  display: block;
   @include bp(tablet) {
     padding: 20px 50px 50px;
   }
-  @include bp(laptop) {
-    padding: 20px 200px 50px;
+  a {
+    font-family: 'arial';
+    color: $green;
+    transition: .2s ease-in-out all;
+    cursor: pointer;
+    &:hover {
+      color: darken($green, 10%);
+    }
   }
-  flex-direction: column;
+  h1 {
+    font-size: 1.6em;
+    margin-top: 0;
+    color: $green;
+    font-weight: bold;
+  }
+  @include bp(laptop) {
+    padding: 20px 120px 50px;
+  }
   p {
     font-family: 'Helvetica';
     font-size: 15px;
   }
   ul {
+    padding-left: 0;
     @include bp(tablet) {
       display: flex;
+      padding-left: 20px;
     }
     width: 100%;
     justify-content: center;
@@ -37,71 +54,53 @@
   li {
     list-style-type: none;
     @include bp(tablet) {
-      width: 50%;
+      width: calc(50% - 20px);
       p {
         margin-bottom: 0;
       }
     }
     &:first-of-type {
-      padding-right: 40px;
+      margin-bottom: 20px;
+      @include bp(tablet) {
+        margin-right: 20px;
+        margin-bottom: 0;
+
+      }
     }
-    h3 {
+    h4 {
       font-weight: bold;
-      font-size: 24px;
-    }
-  }
-  img {
-    position: absolute;
-    height: 50px;
-    animation-fill-mode: forwards;
-    &.airplane {
-      top: 200px;
-      left: 80px;
-      transform: rotate(-10deg) !important;
-      // animation: linear;
-      // animation-name: plane;
-      // animation-duration: 2s;
-    }
-    &.car {
-      top: 390px;
-      right: 100px;
-      transform: scaleX(-1) !important;
-      // animation: linear;
-      // animation-name: car;
-      // animation-duration: 2s;
-    }
-    &.train {
-      right: 150px;
-      @include bp(laptop) {
-        top: 675px;
-      }
-      @include bp(desktop) {
-        top: 650px;
-      }
-      transform: scaleX(-1) !important;
-      // animation: linear;
-      // animation-direction: reverse;
-      // animation-name: train;
-      // animation-duration: 2s;
-    }
-    &.bus {
-      top: 580px;
-      left: 120px;
+      font-size: 20px;
     }
   }
 }
 
-@keyframes plane {
-    0% { left: 0; top: 300px; }
-    100% { left: 80px; top: 200px; }
+.flex {
+  display: flex;
+  align-items: center;
 }
 
-@keyframes car {
-    0% { right: calc(0% - 100px); }
-    100% { right: 100px; }
-}
-
-@keyframes train {
-    0% { right: calc(0% - 100px); }
-    100% { right: 300px; }
+.travel-block {
+  @include shadow(1);
+  z-index: 200;
+  display: inline-block;
+  vertical-align: top;
+  background-color: white;
+  color: $greyish-brown;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 10px;
+  @include bp(desktop) {
+    margin: 20px;
+    width: calc(50% - 40px);
+  }
+  p {
+    margin-bottom: 0;
+  }
+  &:last-of-type {
+    @include bp(desktop) {
+      width: 100%;
+      display: block;
+      margin-bottom: 0;
+    }
+  }
 }
