@@ -20,6 +20,8 @@ export default class RSVPPage extends React.PureComponent {
       rsvp_drinks: '',
       rsvp_rehersal: '',
       rsvp_tubing: '',
+      lodging: '',
+      needs_shuttle: '',
     }
 
     this.submitForm = this.submitForm.bind(this)
@@ -191,6 +193,7 @@ export default class RSVPPage extends React.PureComponent {
             </div>
             {this.state.rsvp === 'yes' &&
               <div>
+                <hr />
                 <div className='form-group'>
                   <p>Yessss! How about these fun activities?</p>
                 </div>
@@ -211,8 +214,33 @@ export default class RSVPPage extends React.PureComponent {
                     </label>
                   </div>
                 </div>
+                <hr />
+                <div className='form-group'>
+                  <p>Help us with logistics!<br />Do you know where you are staying?</p>
+                  <div className='col'>
+                    <input type="text" className="form-control" placeholder="Hotel name or address of where you're staying" aria-label="Lodging" name='lodging' onChange={this.onInputChange} />
+                  </div>
+                </div>
+                <div className='form-group'>
+                  <p>
+                    We will be providing bus transportation to the wedding from various locations around Woodstock.
+                    Do you anticipate using the buses?
+                    (Keep in mind that parking at the venue exists but is fairly limited.)
+                  </p>
+                  <div className="form-check form-check-inline">
+                    <label className="form-check-label">
+                      <input className="form- check-input" type="radio" name="needs_shuttle" id="inlineRadio1" value="yes" onChange={this.onInputChange} /> Yes
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <label className="form-check-label">
+                      <input className="form-check-input" type="radio" name="needs_shuttle" id="inlineRadio2" value="no" onChange={this.onInputChange} /> Nope
+                    </label>
+                  </div>
+                </div>
               </div>
             }
+            <hr />
             <div className="form-group">
               <textarea className="form-control" name='message' id="messageText" rows="3" placeholder="Send us a note!" onChange={this.onInputChange}></textarea>
             </div>

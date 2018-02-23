@@ -4,7 +4,8 @@
   background: url('/rsvp.png');
   background-position: top center;
   background-repeat: no-repeat;
-  background-position-y: 15%;
+  // background-position-y: 15%;
+  background-position-y: 120px;
   background-size: 350px;
   @include bp(phablet) {
     padding-top: 120px;
@@ -19,6 +20,10 @@
       padding-left: 10px;
     }
   }
+}
+
+.form-group {
+  max-width: 400px;
 }
 
 article.rsvp {
