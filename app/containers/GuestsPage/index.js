@@ -9,6 +9,7 @@ export default class GuestsPage extends React.PureComponent {
       username: '',
       password: '',
       guests: [],
+      token: sessionStorage.getItem('token') || '',
     }
 
     this.logIn = this.logIn.bind(this)
@@ -18,6 +19,13 @@ export default class GuestsPage extends React.PureComponent {
     this.toggleEdit = this.toggleEdit.bind(this)
     this.toggleSave = this.toggleSave.bind(this)
     this.handleTableEdit = this.handleTableEdit.bind(this)
+    this.getGuests = this.getGuests.bind(this)
+  }
+
+  componentWillMount() {
+    if (sessionStorage.getItem('token')) {
+      this.getGuests()
+    }
   }
 
   onInputChange(e) {
@@ -31,21 +39,22 @@ export default class GuestsPage extends React.PureComponent {
 
   signInSuccess(response) {
     this.setState({
-      signedIn: true,
       token: response.user.token,
       person: response.user.email[0].toUpperCase() + _.rest(response.user.email).join(''),
     })
 
+    sessionStorage.setItem('token', response.token)
+    this.getGuests()
+  }
+
+  getGuests() {
     this.newXHRRequest('GET', '/guests', null, this.guestFetchSuccess)
   }
 
   guestFetchSuccess(response) {
     const guests = response.guests
-    guests[1].rsvp = true
-    guests[1].rsvp_welcome_drinks = false
-    guests[1].rsvp_brunch = false
-    guests[2].rsvp = false
     const rsvped = _.filter(guests, g => g.rsvp !== null)
+    const numInvited = _.reduce(guests, (memo, num) => memo.num_invited || memo + num.num_invited)
     const rsvpYes = _.filter(guests, g => g.rsvp === true)
     let rsvpCount = 0
     let rsvpYesCount = 0
@@ -66,6 +75,7 @@ export default class GuestsPage extends React.PureComponent {
       guests,
       rsvpCount,
       rsvpYesCount,
+      numInvited,
     })
   }
 
@@ -109,7 +119,7 @@ export default class GuestsPage extends React.PureComponent {
   }
 
   toggleSave() {
-    this.setState({ editing: null })
+    // this.setState({ editing: null })
     console.log('>>>>', this.state.editingItem)
   }
 
@@ -164,7 +174,7 @@ export default class GuestsPage extends React.PureComponent {
           ]}
         />
         <div className='content-wrapper guests-page'>
-          {!this.state.signedIn ?
+          {!this.state.token ?
             <div className='sign-in-form'>
               <div><h4>Hi !</h4></div>
               <form>
@@ -181,27 +191,30 @@ export default class GuestsPage extends React.PureComponent {
             </div> :
             <div className='guests-table'>
               <h4>Hi {this.state.person} !</h4>
-              <p>{this.state.rsvpCount} guests have RSVPed! {this.state.rsvpYesCount} people are coming. The acceptance rate so far is {Math.round(this.state.rsvpYesCount / this.state.rsvpCount) * 100}%.</p>
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th scope='col'>Count</th>
-                    <th scope='col'>First Name</th>
-                    <th scope='col'>Last Name</th>
-                    <th scope='col'>First Name</th>
-                    <th scope='col'>Last Name</th>
-                    <th scope='col'>RSVP</th>
-                    <th scope='col'>Welcome Drinks</th>
-                    <th scope='col'>Goodbye Brunch</th>
-                    <th scope='col'>Hotel</th>
-                    <th scope='col'>Shuttles</th>
-                    <th scope='col'>Note</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows}
-                </tbody>
-              </table>
+              {!rows.length ? <p>Loading guests...</p> :
+                <div>
+                  <p>Out of {this.state.numInvited} invited, {this.state.rsvpCount} guests have RSVPed! {this.state.rsvpYesCount} people are coming. The acceptance rate so far is {Math.round(this.state.rsvpYesCount / this.state.numInvited) * 100}%.</p>
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th scope='col'>Count</th>
+                        <th scope='col'>First Name</th>
+                        <th scope='col'>Last Name</th>
+                        <th scope='col'>First Name</th>
+                        <th scope='col'>Last Name</th>
+                        <th scope='col'>RSVP</th>
+                        <th scope='col'>Welcome Drinks</th>
+                        <th scope='col'>Goodbye Brunch</th>
+                        <th scope='col'>Hotel</th>
+                        <th scope='col'>Shuttles</th>
+                        <th scope='col'>Note</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {rows}
+                    </tbody>
+                  </table>
+                </div>}
             </div>
           }
         </div>
