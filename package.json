@@ -210,6 +210,7 @@
     "reselect": "2.5.4",
     "sanitize.css": "4.1.0",
     "styled-components": "2.2.1",
+    "underscore": "^1.8.3",
     "warning": "3.0.0",
     "whatwg-fetch": "1.0.0"
   },

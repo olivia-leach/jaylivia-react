@@ -95,3 +95,40 @@ article.rsvp {
     }
   }
 }
+
+.content-wrapper.guests-page {
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  h4 {
+    font-family: 'Satisfy';
+    font-size: 60px;
+  }
+  h4, p {
+    text-align: center;
+  }
+  p {
+    font-weight: bold;
+  }
+  .guests-table {
+    padding-top: 150px;
+    h4 {
+      margin-bottom: 20px;
+    }
+    table {
+      background-color: white;
+      font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+      font-size: 12.5px;
+      .fa-thumbs-up {
+        color: green;
+      }
+      .fa-thumbs-down {
+        color: red;
+        opacity: .7;
+      }
+      td.center {
+        text-align: center;
+      }
+    }
+  }
+}
