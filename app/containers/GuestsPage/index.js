@@ -10,6 +10,7 @@ export default class GuestsPage extends React.PureComponent {
       password: '',
       guests: [],
       token: sessionStorage.getItem('token') || '',
+      person: sessionStorage.getItem('person') || ''
     }
 
     this.logIn = this.logIn.bind(this)
@@ -38,12 +39,14 @@ export default class GuestsPage extends React.PureComponent {
   }
 
   signInSuccess(response) {
+    const person = response.user.email[0].toUpperCase() + _.rest(response.user.email).join('')
     this.setState({
       token: response.user.token,
-      person: response.user.email[0].toUpperCase() + _.rest(response.user.email).join(''),
+      person,
     })
 
     sessionStorage.setItem('token', response.token)
+    sessionStorage.setItem('person', person)
     this.getGuests()
   }
 
