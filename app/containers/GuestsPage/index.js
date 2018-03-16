@@ -10,7 +10,21 @@ export default class GuestsPage extends React.PureComponent {
       password: '',
       guests: [],
       token: sessionStorage.getItem('token') || '',
-      person: sessionStorage.getItem('person') || ''
+      person: sessionStorage.getItem('person') || '',
+      cols: [
+        { label: '#', center: true },
+        { label: 'First Name', key: 'first_name' },
+        { label: 'Last Name', key: 'last_name' },
+        { label: 'First Name', key: 'first_name_2' },
+        { label: 'Last Name', key: 'last_name_2' },
+        { label: '# Invited', key: 'num_invited', center: true },
+        { label: 'Hotel', key: 'hotel' },
+        { label: 'Note', key: 'note' },
+        { label: 'RSVP', key: 'rsvp', boolean: true },
+        { label: 'Fri. Drinks', key: 'rsvp_welcome_drinks', boolean: true },
+        { label: 'Brunch', key: 'rsvp_brunch', boolean: true },
+        { label: 'Shuttles', key: 'shuttles', boolean: true },
+      ]
     }
 
     this.logIn = this.logIn.bind(this)
@@ -21,6 +35,7 @@ export default class GuestsPage extends React.PureComponent {
     this.toggleSave = this.toggleSave.bind(this)
     this.handleTableEdit = this.handleTableEdit.bind(this)
     this.getGuests = this.getGuests.bind(this)
+    this.sortData = this.sortData.bind(this)
   }
 
   componentWillMount() {
@@ -55,7 +70,7 @@ export default class GuestsPage extends React.PureComponent {
   }
 
   guestFetchSuccess(response) {
-    const guests = response.guests
+    const guests = _.sortBy(response.guests, 'last_name')
     const rsvped = _.filter(guests, g => g.rsvp !== null)
     const numInvited = _.reduce(guests, (memo, num) => memo.num_invited || memo + num.num_invited)
     const rsvpYes = _.filter(guests, g => g.rsvp === true)
@@ -79,6 +94,7 @@ export default class GuestsPage extends React.PureComponent {
       rsvpCount,
       rsvpYesCount,
       numInvited,
+      editingItem: {},
     })
   }
 
@@ -115,58 +131,110 @@ export default class GuestsPage extends React.PureComponent {
   }
 
   toggleEdit(e) {
+    const id = parseInt(e.currentTarget.dataset.id, 10)
     this.setState({
-      editing: parseInt(e.currentTarget.dataset.id, 10),
-      editingItem: {},
+      editingItem: _.findWhere(this.state.guests, { id }),
     })
   }
 
   toggleSave() {
-    // this.setState({ editing: null })
-    console.log('>>>>', this.state.editingItem)
+    this.setState({ editingItem: {} })
+    const request = { guest: this.state.editingItem }
+    this.newXHRRequest('PATCH', `/guests/${this.state.editingItem.id}`, request, this.getGuests)
   }
 
   handleTableEdit(e) {
     const { editingItem } = this.state
-    editingItem[e.target.name] = e.target.value
-    this.setState({ editingItem })
+    let val = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+    if (e.target.name === 'num_invited') {
+      if (val) { val = parseInt(val, 10) }
+      if (val === 1) {
+        editingItem.first_name_2 = ''
+        editingItem.last_name_2 = ''
+      }
+    }
+    editingItem[e.target.name] = val
+    this.setState({ editingItem, editingTimestamp: new Date() })
+  }
+
+  sortData(e) {
+    const sortBy = e.currentTarget.dataset.key
+    if (!sortBy) { return; }
+    const guests = _.clone(this.state.guests)
+    const order = this.state.sortBy === sortBy && this.state.order === 'ASC' ? 'DESC' : 'ASC'
+    let sortedData = _.sortBy(guests, sortBy)
+    if (order === 'DESC') { sortedData = sortedData.reverse(); }
+    this.setState({
+      guests: sortedData,
+      sortBy,
+      order,
+    })
   }
 
   render() {
-    const rows = this.state.guests.map((guest) => {
-      if (guest.id === this.state.editing) {
-        return (
-          <tr key={`guest-${guest.id}`} onClick={this.toggleSave} data-id={guest.id}>
-            <td>{guest.num_invited}</td>
-            <td>{guest.first_name}</td>
-            <td>{guest.last_name}</td>
-            <td>{guest.first_name_2}</td>
-            <td><input type="text" defaultValue={guest.last_name_2} className="form-control" placeholder="Last Name" aria-label="Last Name" name='last_name_2' onChange={this.handleTableEdit} /></td>
-            <td>{guest.rsvp !== null ? <i className={`fa fa-thumbs-${guest.rsvp ? 'up' : 'down'}`} /> : null}</td>
-            <td>{guest.rsvp_welcome_drinks}</td>
-            <td>{guest.rsvp_brunch}</td>
-            <td>{guest.hotel}</td>
-            <td>{guest.shuttles}</td>
-            <td>{guest.note}</td>
-          </tr>
-        )
-      }
+    const rows = this.state.guests.map((guest, i) => {
+      const editingGuest = guest.id === this.state.editingItem.id
       return (
-        <tr key={`guest-${guest.id}`} onClick={this.toggleEdit} data-id={guest.id}>
-          <td>{guest.num_invited}</td>
-          <td>{guest.first_name}</td>
-          <td>{guest.last_name}</td>
-          <td>{guest.first_name_2}</td>
-          <td>{guest.last_name_2}</td>
-          <td className='center'>{guest.rsvp !== null ? <i className={`fa fa-thumbs-${guest.rsvp ? 'up' : 'down'}`} /> : null}</td>
-          <td className='center'>{guest.rsvp_welcome_drinks !== null ? <i className={`fa fa-thumbs-${guest.rsvp_welcome_drinks ? 'up' : 'down'}`} /> : null}</td>
-          <td className='center'>{guest.rsvp_brunch !== null ? <i className={`fa fa-thumbs-${guest.rsvp_brunch ? 'up' : 'down'}`} /> : null}</td>
-          <td>{guest.hotel}</td>
-          <td>{guest.shuttles}</td>
-          <td>{guest.note}</td>
+        <tr key={`guest-${guest.id}`} onClick={editingGuest ? null : this.toggleEdit} data-id={guest.id}>
+          {this.state.cols.map(col => {
+            if (!col.key) {
+              return (
+                <th
+                  key={`num-${i}${editingGuest ? '-editing' : ''}`}
+                  scope='row'
+                  className={`center ${editingGuest ? 'save' : ''}`}
+                  onClick={editingGuest ? this.toggleSave : null}
+                >{editingGuest ? <i className='far fa-2x fa-save' /> : `${i + 1}`}</th>
+              )
+            }
+            if (editingGuest) {
+              return (
+                <td className={col.boolean || col.center ? 'center' : ''} key={`${col.key}-${i}-editing`}>
+                  {col.boolean ?
+                    <div className="form-check">
+                      <input
+                        className="form-check-input position-static"
+                        type="checkbox"
+                        checked={guest[col.key] || false}
+                        name={col.key}
+                        onChange={this.handleTableEdit}
+                      />
+                    </div>
+                    : <input
+                      type="text"
+                      defaultValue={guest[col.key]}
+                      className={`form-control form-control-sm ${col.key}`}
+                      placeholder={col.label}
+                      aria-label={col.label}
+                      name={col.key}
+                      onChange={this.handleTableEdit}
+                      // disabled={this.state.editingItem.num_invited === 1 && (col.key === 'first_name_2' || col.key === 'last_name_2')}
+                    />}
+                </td>
+              )
+            } else {
+              return (
+                <td className={col.boolean || col.center ? 'center' : ''} key={`${col.key}-${i}`}>
+                  {col.boolean ?
+                    (guest[col.key] !== null ? <i className={`fa fa-thumbs-${guest[col.key] ? 'up' : 'down'}`} /> : null)
+                    : guest[col.key]}
+                </td>
+              )
+            }
+          })}
         </tr>
       )
     })
+
+    const tableHeadCells = this.state.cols.map((col) =>
+      <th
+        key={col.key || 'num'}
+        scope='col'
+        onClick={this.sortData}
+        data-key={col.key}
+        className={col.boolean || col.center ? 'center' : ''}
+      >{col.label}</th>
+    )
 
     return (
       <article className='rsvp'>
@@ -200,17 +268,7 @@ export default class GuestsPage extends React.PureComponent {
                   <table className="table">
                     <thead>
                       <tr>
-                        <th scope='col'>Count</th>
-                        <th scope='col'>First Name</th>
-                        <th scope='col'>Last Name</th>
-                        <th scope='col'>First Name</th>
-                        <th scope='col'>Last Name</th>
-                        <th scope='col'>RSVP</th>
-                        <th scope='col'>Welcome Drinks</th>
-                        <th scope='col'>Goodbye Brunch</th>
-                        <th scope='col'>Hotel</th>
-                        <th scope='col'>Shuttles</th>
-                        <th scope='col'>Note</th>
+                        {tableHeadCells}
                       </tr>
                     </thead>
                     <tbody>

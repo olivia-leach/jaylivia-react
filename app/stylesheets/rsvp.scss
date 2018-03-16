@@ -126,8 +126,36 @@ article.rsvp {
         color: red;
         opacity: .7;
       }
-      td.center {
+      td.center, th.center {
         text-align: center;
+        vertical-align: middle;
+      }
+      .form-check {
+        margin-bottom: 0;
+      }
+      .form-check-input {
+        margin-left: 0;
+      }
+      .form-control-sm {
+        max-width: 100px;
+        &.num_invited {
+          max-width: 50px;
+        }
+      }
+      th:not(.center), td:not(.center) {
+        min-width: 124px;
+      }
+      .save {
+        cursor: pointer;
+        transition: .2s ease-in-out all;
+        svg {
+          opacity: .8;
+        }
+        &:hover {
+          svg {
+            opacity: 1;
+          }
+        }
       }
     }
   }
