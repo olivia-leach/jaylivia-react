@@ -60,7 +60,7 @@ export default class GuestsPage extends React.PureComponent {
       person,
     })
 
-    sessionStorage.setItem('token', response.token)
+    sessionStorage.setItem('token', response.user.token)
     sessionStorage.setItem('person', person)
     this.getGuests()
   }
@@ -117,12 +117,15 @@ export default class GuestsPage extends React.PureComponent {
       if (xhr.status >= 200 && xhr.status < 300) {
         onSuccess(JSON.parse(xhr.response));
       } else {
-        console.error(JSON.parse(xhr));
+        console.error(xhr);
       }
     });
     xhr.addEventListener('error', () => onRejected(xhr));
     xhr.open(method, baseUrl + path);
     xhr.setRequestHeader('Content-Type', 'application/json');
+    if (path === '/guests' && this.state.token) {
+      xhr.setRequestHeader('Authorization', `Token token=${this.state.token}`);
+    }
     if (content) {
       xhr.send(JSON.stringify(content));
     } else {

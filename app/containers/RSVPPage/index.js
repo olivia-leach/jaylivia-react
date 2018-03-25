@@ -1,55 +1,30 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import leafTwo from './leaf2.png'
-import leafThree from './leaf3.png'
-import leafFour from './leaf4.png'
-
+import React from "react";
+import Helmet from "react-helmet"
+import leafTwo from "./leaf2.png"
+import leafThree from "./leaf3.png"
+import leafFour from "./leaf4.png"
+import RSVP from './rsvp.png'
+import _ from 'underscore'
 
 export default class RSVPPage extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      guest_count: '1',
-      first_name: '',
-      last_name: '',
-      first_name_2: '',
-      last_name_2: '',
-      message: '',
-      rsvp: '',
-      rsvp_brunch: '',
-      rsvp_drinks: '',
-      rsvp_rehersal: '',
-      rsvp_tubing: '',
-      lodging: '',
-      needs_shuttle: '',
+      invitationFound: false,
     }
 
     this.submitForm = this.submitForm.bind(this)
-    // this.tryGet = this.tryGet.bind(this)
     this.onInputChange = this.onInputChange.bind(this)
+    this.searchForInvitation = this.searchForInvitation.bind(this)
+    this.findFail = this.findFail.bind(this)
+    this.successfulFind = this.successfulFind.bind(this)
+    this.onGuestInputChange = this.onGuestInputChange.bind(this)
+    this.submitSuccess = this.submitSuccess.bind(this)
   }
 
   componentDidMount() {
     window.sr = ScrollReveal();
-    sr.reveal('.form-group', 50);
-    // sr.reveal('.form-check', 50);
-    // sr.reveal('label', 50);
-  }
-
-  // get all data in form and return object
-  getFormData() {
-    // add form-specific values into the data
-    const data = this.state
-    data.formDataNameOrder = JSON.stringify(data);
-    data.formGoogleSheetName = 'responses'; // default sheet name
-
-    console.log(data);
-    return data;
-  }
-
-  validEmail(email) { // see:
-    let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    return re.test(email);
+    sr.reveal(".form-group", 50);
   }
 
   validateHuman(honeypot) {
@@ -61,191 +36,376 @@ export default class RSVPPage extends React.PureComponent {
     }
   }
 
-  // tryGet(e) {
-  //   e.preventDefault();
-  //   const url = "https://script.google.com/macros/s/AKfycbz8Qm6DWJYMNA2_n6vol9JgiNi26gP63Q0cm7wOL573B-lD9AjY/exec?test=test&callback=?"
-  //   // const url = 'https://script.google.com/macros/s/AKfycbz8Qm6DWJYMNA2_n6vol9JgiNi26gP63Q0cm7wOL573B-lD9AjY/exec?firstName=bob&lastName=smith'
-  //   const xhr = new XMLHttpRequest();
-  //   xhr.open('GET', url);
-  //   // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  //   xhr.onreadystatechange = function() {
-  //     console.log(xhr.status, xhr.statusText)
-  //     console.log(xhr.responseText);
-  //     return;
-  //   };
-  //
-  //   const data = {
-  //     firstName: 'hi',
-  //     lastName: 'bob'
-  //   }
-  //
-  //   // url encode form data for sending as post data
-  //   let encoded = Object.keys(data).map(function(k) {
-  //       return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
-  //   }).join('&')
-  //   xhr.send(data => console.log(data))
-  // }
-
   submitForm(event) {
-    this.setState({ submitting: true })
+    this.setState({ submitting: true, rsvp: this.state.invitationFound.rsvp })
     event.preventDefault();
-    const form = document.getElementById('gform');
-    const data = this.getFormData();         // get the values submitted in the form
+    const request = { guest: this.state.invitationFound }
+    this.newXHRRequest('PATCH', `/guests/${this.state.invitationFound.id}`, request, this.submitSuccess)
+  }
 
-    if (this.validateHuman(data.honeypot)) {  // if form is filled, form will not be submitted
-      return false;
-    }
+  submitSuccess() {
+    this.setState({
+      submitted: true,
+      submitting: false,
+      invitationFound: null,
+    })
+  }
 
-    const url = 'https://script.google.com/macros/s/AKfycbz8Qm6DWJYMNA2_n6vol9JgiNi26gP63Q0cm7wOL573B-lD9AjY/exec'
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', url);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
-      console.log(xhr.status, xhr.statusText)
-      console.log(xhr.responseText)
-      if (xhr.status === 200) {
-        this.setState({
-          submitted: true
-        })
-      }
-      return;
-    }.bind(this);
-
-    // url encode form data for sending as post data
-    let encoded = Object.keys(data).map(function(k) {
-        return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
-    }).join('&')
-    xhr.send(encoded);
+  searchForInvitation(event) {
+    this.setState({ submitting: true })
+    event.preventDefault()
+    const lastName = this.state.last_name_search[0].toUpperCase() + _.rest(this.state.last_name_search).join('')
+    const firstName = this.state.first_name_search[0].toUpperCase() + _.rest(this.state.first_name_search).join('')
+    const query = `/lookup?last_name=${lastName}&first_name=${firstName}`
+    this.setState({ formattedName: firstName })
+    this.newXHRRequest('GET', query, null, this.successfulFind, this.findFail)
   }
 
   onInputChange(e) {
-    let val = e.target.type === 'checkbox' ? e.target.checked : e.target.value
-    if (val === true) { val = 'yes' }
-    if (val === false) { val = 'false' }
+    let val = e.target.type === "checkbox" ? e.target.checked : e.target.value
+    if (val === true) { val = "yes" }
+    if (val === false) { val = "false" }
     this.setState({
       [e.target.name]: val
     })
   }
 
+  onGuestInputChange(e) {
+    const invitationFound = _.clone(this.state.invitationFound)
+    let val = e.target.type === "checkbox" ? e.target.checked : e.target.value
+    if (val === 'true') { val = true }
+    if (val === 'false') { val = false }
+    if (e.target.name === 'rsvp_welcome_drinks' || e.target.name === 'rsvp_brunch') {
+      val *= invitationFound.num_invited
+    }
+    invitationFound[e.target.name] = val
+    this.setState({ invitationFound })
+  }
+
+  newXHRRequest(method, path, content, onSuccess) {
+    const baseUrl = 'http://localhost:4741'
+    // const baseUrl = 'https://jaylivia-api.herokuapp.com'
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        onSuccess(JSON.parse(xhr.response));
+      } else {
+        console.error(xhr);
+      }
+    });
+    xhr.addEventListener('error', () => onRejected(xhr));
+    xhr.open(method, baseUrl + path);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    // if (path === '/guests' && this.state.token) {
+    //   xhr.setRequestHeader('Authorization', `Token token=${this.state.token}`);
+    // }
+    if (content) {
+      xhr.send(JSON.stringify(content));
+    } else {
+      xhr.send()
+    }
+  }
+
+  successfulFind(response) {
+    const { guests } = response
+    if (!guests.length) {
+      this.setState({
+        errorMessage: "Oh no! We couldn't find your invitation. Did you check your spelling? Did we mess up? If you need help, contact our IT department (aka Olivia) at olivia.i.m.leach@gmail.com.",
+        submitting: false,
+      })
+    } else if (guests.length > 1) {
+      this.setState({
+        multipleFound: true,
+        chooseOne: guests,
+        submitting: false,
+      })
+    } else {
+      this.setState({
+        invitationFound: guests[0],
+        submitting: false,
+        unknownGuest: guests[0].num_invited > 1 && !guests[0].first_name_2,
+      })
+    }
+  }
+
+  findFail() {
+    this.setState({
+      errorMessage: 'Oh no! Something went wrong. If problem persits, contact our IT department (aka Olivia).',
+      submitting: false,
+    })
+  }
+
   render() {
     return (
-      <article className='rsvp'>
+      <article className="rsvp">
         <Helmet
           title="RSVP"
           meta={[
             { name: 'description', content: 'Jay and Olivia' },
           ]}
         />
-        <div className='content-wrapper rsvp-page'>
-          <img className='leaf leaf-two' src={leafTwo} />
-          <img className='leaf leaf-three' src={leafThree} />
-          <img className='leaf leaf-four' src={leafFour} />
+        <div className="content-wrapper rsvp-page">
+          {/*<img className="leaf leaf-two" role="presentation" src={leafTwo} />*/}
+          {/*<img className="leaf leaf-three" role="presentation" src={leafThree} />*/}
+          {/*<img className="leaf leaf-four" role="presentation" src={leafFour} />*/}
 
-          {this.state.submitted ?
-            <div className='thanks'>Thanks for RSVPing{this.state.first_name ? `, ${this.state.first_name}` : ''}. {this.state.rsvp === 'yes' ? "We'll see you in June!" : "We're sorry you can't make it!"}</div>
-          :
-          <form id='gform'>
-            <div className="form-group">
-              <label htmlFor="guestCount">Number of guests</label>
-              <select className="form-control" id="guestCount" name='guest_count' onChange={this.onInputChange}>
-                <option>1</option>
-                <option>2</option>
-              </select>
+          {!this.state.invitationFound && !this.state.submitted &&
+            <div className='rsvp-img'>
+              <img alt="Kindly RSVP by May 26th" src={RSVP} />
             </div>
-            <div className="form-group">
-              {this.state.guest_count == 2 && <label htmlFor="guest1">Human 1</label>}
-              <div className='row' id='guest1'>
-                <div className='col'>
-                  <input type="text" className="form-control" placeholder="First name" aria-label="First Name" name='first_name' onChange={this.onInputChange} />
-                </div>
-                <div className='col'>
-                  <input type="text" className="form-control" placeholder="Last name" aria-label="Last Name" name='last_name' onChange={this.onInputChange} />
+          }
+
+          {this.state.submitted &&
+            <div className="thanks">
+              <div className="check_mark">
+                <div className="sa-icon sa-success animate">
+                  <span className="sa-line sa-tip animateSuccessTip"></span>
+                  <span className="sa-line sa-long animateSuccessLong"></span>
+                  <div className="sa-placeholder"></div>
+                  <div className="sa-fix"></div>
                 </div>
               </div>
-            </div>
-            {this.state.guest_count == 2 &&
+              <h2>Thanks for RSVPing{this.state.formattedName ? `, ${this.state.formattedName}` : ''}.</h2>
+              <p>{this.state.rsvp ? " We'll see you in June!" : " We're sorry you can't make it!"}</p>
+            </div>}
+
+          {this.state.invitationFound &&
+            <form>
+              <h2>Hi {this.state.formattedName} !</h2>
               <div className="form-group">
-                <label htmlFor="guest2">Human 2</label>
-                <div className='row' id='guest2'>
+                <p>We cannot wait to see you!<br />Will you be joining us?</p>
+              </div>
+              <div className="form-group">
+                <div className="row">
+                  <div className="col">
+                    <input
+                      type="text"
+                      className="form-control"
+                      aria-label="First Name"
+                      value={this.state.invitationFound.first_name}
+                      disabled
+                    />
+                  </div>
+                  <div className="col">
+                    <input
+                      type="text"
+                      className="form-control"
+                      aria-label="Last Name"
+                      value={this.state.invitationFound.last_name}
+                      disabled
+                    />
+                  </div>
                   <div className='col'>
-                    <input type="text" defaultValue={this.state.first_name_2} className="form-control" placeholder="First name" aria-label="First Name" name='first_name_2' onChange={this.onInputChange} />
-                  </div>
-                  <div className='col'>
-                    <input type="text" defaultValue={this.state.last_name_2} className="form-control" placeholder="Last name" aria-label="Last Name" name='last_name_2' onChange={this.onInputChange} />
-                  </div>
-                </div>
-              </div>
-            }
-            <div className='form-group'>
-              <p>We cannot wait to see you! Will you be joining us?</p>
-            </div>
-            <div className='form-group'>
-              <div className="form-check form-check-inline">
-                <label className="form-check-label">
-                  <input className="form-check-input" type="radio" name="rsvp" id="inlineRadio1" value="yes" onChange={this.onInputChange} /> Yay!
-                </label>
-              </div>
-              <div className="form-check form-check-inline">
-                <label className="form-check-label">
-                  <input className="form-check-input" type="radio" name="rsvp" id="inlineRadio2" value="no" onChange={this.onInputChange} /> Nay
-                </label>
-              </div>
-            </div>
-            {this.state.rsvp === 'yes' &&
-              <div>
-                <hr />
-                <div className='form-group'>
-                  <p>Yessss! How about these fun activities?</p>
-                </div>
-                <div className='form-group'>
-                  {/*<div className="form-check">
-                    <label className="form-check-label">
-                      <input className="form-check-input" type="checkbox" name="rsvp_tubing" onChange={this.onInputChange} /> Tubing the Esopus River on Friday in Phoenicia
-                    </label>
-                  </div>*/}
-                  <div className="form-check">
-                    <label className="form-check-label">
-                      <input className="form-check-input" type="checkbox" name="rsvp_drinks" onChange={this.onInputChange} /> Welcome drinks on Friday night in Woodstock
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <label className="form-check-label">
-                      <input className="form-check-input" type="checkbox" name="rsvp_brunch" onChange={this.onInputChange} /> Farewell brunch on Sunday morning at Onteora
-                    </label>
-                  </div>
-                </div>
-                <hr />
-                <div className='form-group'>
-                  <p>Help us with logistics!<br />Do you know where you are staying?</p>
-                  <div className='col'>
-                    <input type="text" className="form-control" placeholder="Hotel name or address of where you're staying" aria-label="Lodging" name='lodging' onChange={this.onInputChange} />
-                  </div>
-                </div>
-                <div className='form-group'>
-                  <p>
-                    We will be providing bus transportation to the wedding from various locations around Woodstock.
-                    Do you anticipate using the buses?
-                    (Keep in mind that parking at the venue exists but is fairly limited.)
-                  </p>
-                  <div className="form-check form-check-inline">
-                    <label className="form-check-label">
-                      <input className="form- check-input" type="radio" name="needs_shuttle" id="inlineRadio1" value="yes" onChange={this.onInputChange} /> Yes
-                    </label>
-                  </div>
-                  <div className="form-check form-check-inline">
-                    <label className="form-check-label">
-                      <input className="form-check-input" type="radio" name="needs_shuttle" id="inlineRadio2" value="no" onChange={this.onInputChange} /> Nope
-                    </label>
+                    <div className="form-check form-check-inline">
+                      <label className="form-check-label">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="rsvp"
+                          id="inlineRadio1"
+                          value={true}
+                          onChange={this.onGuestInputChange}
+                          defaultChecked={this.state.invitationFound.rsvp === true}
+                        /> Yes
+                      </label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <label className="form-check-label">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="rsvp"
+                          id="inlineRadio2"
+                          value={false}
+                          onChange={this.onGuestInputChange}
+                          defaultChecked={this.state.invitationFound.rsvp === false}
+                        /> No
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
-            }
-            <hr />
-            <div className="form-group">
-              <textarea className="form-control" name='message' id="messageText" rows="3" placeholder="Send us a note!" onChange={this.onInputChange}></textarea>
-            </div>
-            <button className='btn btn-primary btn-block' type='submit' onClick={this.submitForm} disabled={this.state.submitting}>Submit</button>
-          </form>}
+              {this.state.invitationFound.num_invited > 1 &&
+                <div className="form-group">
+                  <div className="row">
+                    <div className="col">
+                      <input
+                        type="text"
+                        className="form-control"
+                        aria-label="First Name"
+                        value={this.state.invitationFound.first_name_2}
+                        disabled={!this.state.unknownGuest}
+                        onChange={this.onGuestInputChange}
+                        name="first_name_2"
+                        placeholder="Guest First Name"
+                      />
+                    </div>
+                    <div className="col">
+                      <input
+                        type="text"
+                        className="form-control"
+                        aria-label="Last Name"
+                        value={this.state.invitationFound.last_name_2}
+                        disabled={!this.state.unknownGuest}
+                        onChange={this.onGuestInputChange}
+                        name="last_name_2"
+                        placeholder="Guest Last Name"
+                      />
+                    </div>
+                    <div className="col">
+                      <div className="form-check form-check-inline">
+                        <label className="form-check-label">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="rsvp_2"
+                            id="inlineRadio1"
+                            value={true}
+                            onChange={this.onGuestInputChange}
+                            defaultChecked={this.state.invitationFound.rsvp_2 === true}
+                          /> Yes
+                        </label>
+                      </div>
+                      <div className="form-check form-check-inline">
+                        <label className="form-check-label">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="rsvp_2"
+                            id="inlineRadio2"
+                            value={false}
+                            onChange={this.onGuestInputChange}
+                            defaultChecked={this.state.invitationFound.rsvp_2 === false}
+                          /> No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              }
+              {(this.state.invitationFound.rsvp || this.state.invitationFound.rsvp_2) &&
+                <div>
+                  <hr />
+                  <div className="form-group">
+                    <p>Yessss! How about these fun activities?</p>
+                  </div>
+                  <div className="form-group">
+                    <div className="form-check">
+                      <label className="form-check-label">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          name="rsvp_welcome_drinks"
+                          onChange={this.onGuestInputChange}
+                          defaultChecked={this.state.invitationFound.rsvp_welcome_drinks >= 1}
+                        /> Welcome drinks on Friday night in Woodstock (8pm)
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <label className="form-check-label">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          name="rsvp_brunch"
+                          onChange={this.onGuestInputChange}
+                          defaultChecked={this.state.invitationFound.rsvp_brunch >= 1}
+                        /> Farewell brunch on Sunday morning at Onteora (9 - 11am)
+                      </label>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="form-group">
+                    <p>Help us with logistics!<br />Do you know where you are staying?</p>
+                    <div className="col">
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Hotel name or address of where you're staying"
+                        aria-label="Lodging"
+                        name="hotel"
+                        onChange={this.onGuestInputChange}
+                        defaultValue={this.state.invitationFound.hotel}
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <p>
+                      We will be providing bus transportation to the wedding from various locations around Woodstock.
+                      Do you anticipate using the buses?
+                      (Keep in mind that parking at the venue exists but is fairly limited.)
+                    </p>
+                    <div className="form-check form-check-inline">
+                      <label className="form-check-label">
+                        <input
+                          className="form- check-input"
+                          type="radio"
+                          name="shuttles"
+                          id="inlineRadio1"
+                          value={this.state.invitationFound.num_invited}
+                          onChange={this.onGuestInputChange}
+                          defaultChecked={this.state.invitationFound.shuttles >= 1}
+                        /> Yes
+                      </label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <label className="form-check-label">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="shuttles"
+                          id="inlineRadio2"
+                          value={0}
+                          onChange={this.onGuestInputChange}
+                          defaultChecked={this.state.invitationFound.shuttles === 0}
+                        /> Nope
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              }
+              <hr />
+              <div className="form-group">
+                <textarea
+                  className="form-control"
+                  name="note"
+                  id="messageText"
+                  rows="3"
+                  placeholder={`${this.state.invitationFound.rsvp ? 'Anything we missed? ' : ''}Send us a note!`}
+                  onChange={this.onGuestInputChange}
+                  defaultValue={this.state.invitationFound.note}
+                ></textarea>
+              </div>
+              <button
+                className="btn btn-primary btn-block"
+                type="submit"
+                onClick={this.submitForm}
+                disabled={this.state.submitting || (this.state.invitationFound.rsvp === null)}
+              >Submit</button>
+            </form>}
+
+          {!this.state.invitationFound && !this.state.submitted &&
+            <div className="find-form">
+              <form>
+                <h2>Find your invitation</h2>
+                <div className="form-group">
+                  <div className="row">
+                    <div className="col">
+                      <input type="text" className="form-control" placeholder="First name" aria-label="First Name" name="first_name_search" onChange={this.onInputChange} />
+                    </div>
+                    <div className="col">
+                      <input type="text" className="form-control" placeholder="Last name" aria-label="Last Name" name="last_name_search" onChange={this.onInputChange} />
+                    </div>
+                  </div>
+                </div>
+                <button
+                  className="btn btn-primary btn-block"
+                  type="submit"
+                  onClick={this.searchForInvitation}
+                  disabled={this.state.submitting || !this.state.first_name_search || !this.state.last_name_search}
+                >Search</button>
+              </form>
+              {this.state.errorMessage && <p>{this.state.errorMessage}</p>}
+            </div>}
         </div>
       </article>
     );
