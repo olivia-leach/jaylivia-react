@@ -69,8 +69,9 @@ export default class RSVPPage extends React.PureComponent {
   searchForInvitation(event) {
     this.setState({ submitting: true })
     event.preventDefault()
-    const lastName = this.state.last_name_search[0].toUpperCase() + _.rest(this.state.last_name_search).join('')
+    let lastName = this.state.last_name_search[0].toUpperCase() + _.rest(this.state.last_name_search).join('')
     const firstName = this.state.first_name_search[0].toUpperCase() + _.rest(this.state.first_name_search).join('')
+    if (lastName[1] === "'") { lastName = lastName[0] + lastName[1] + lastName[2].toUpperCase() + _.rest(lastName, 3).join('') }
     const query = `/lookup?last_name=${lastName}&first_name=${firstName}`
     this.setState({ formattedName: firstName })
     this.newXHRRequest('GET', query, null, this.successfulFind, this.findFail)
