@@ -49,6 +49,7 @@ export default class RSVPPage extends React.PureComponent {
   }
 
   submitSuccess() {
+    window.scrollTo(0, 0)
     this.setState({
       submitted: true,
       submitting: false,
@@ -60,6 +61,7 @@ export default class RSVPPage extends React.PureComponent {
     e.preventDefault()
     const id = parseInt(e.target.name, 10)
     const invitationFound = _.findWhere(this.state.chooseOne, { id })
+    window.scrollTo(0, 0)
     this.setState({
       invitationFound,
       unknownGuest: invitationFound.num_invited > 1 && !invitationFound.first_name_2,
@@ -134,6 +136,7 @@ export default class RSVPPage extends React.PureComponent {
         submitting: false,
       })
     } else {
+      window.scrollTo(0, 0)
       this.setState({
         invitationFound: guests[0],
         submitting: false,
