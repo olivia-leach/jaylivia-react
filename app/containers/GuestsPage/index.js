@@ -15,15 +15,16 @@ export default class GuestsPage extends React.PureComponent {
         { label: '#', center: true },
         { label: 'First Name', key: 'first_name' },
         { label: 'Last Name', key: 'last_name' },
+        { label: 'RSVP', key: 'rsvp', boolean: true, center: true },
         { label: 'First Name', key: 'first_name_2' },
         { label: 'Last Name', key: 'last_name_2' },
-        { label: '# Invited', key: 'num_invited', center: true },
+        { label: 'RSVP (2)', key: 'rsvp_2', boolean: true, center: true },
+        // { label: '# Invited', key: 'num_invited', center: true },
         { label: 'Hotel', key: 'hotel' },
         { label: 'Note', key: 'note' },
-        { label: 'RSVP', key: 'rsvp', boolean: true },
-        { label: 'Fri. Drinks', key: 'rsvp_welcome_drinks', boolean: true },
-        { label: 'Brunch', key: 'rsvp_brunch', boolean: true },
-        { label: 'Shuttles', key: 'shuttles', boolean: true },
+        { label: 'Fri. Drinks', key: 'rsvp_welcome_drinks' },
+        { label: 'Brunch', key: 'rsvp_brunch' },
+        { label: 'Shuttles', key: 'shuttles' },
       ]
     }
 
