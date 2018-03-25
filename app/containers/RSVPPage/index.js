@@ -20,6 +20,7 @@ export default class RSVPPage extends React.PureComponent {
     this.successfulFind = this.successfulFind.bind(this)
     this.onGuestInputChange = this.onGuestInputChange.bind(this)
     this.submitSuccess = this.submitSuccess.bind(this)
+    this.chooseGuest = this.chooseGuest.bind(this)
   }
 
   componentDidMount() {
@@ -36,6 +37,10 @@ export default class RSVPPage extends React.PureComponent {
     }
   }
 
+  formatGuestNames(guest) {
+    return (`${guest.first_name}${guest.last_name === guest.last_name_2 ? '' : ` ${guest.last_name}`}${guest.num_invited > 1 ? ` and ${guest.first_name_2 || 'Guest'}${guest.last_name_2 ? ` ${guest.last_name_2}` : ''}` : ''}`)
+  }
+
   submitForm(event) {
     this.setState({ submitting: true, rsvp: this.state.invitationFound.rsvp })
     event.preventDefault();
@@ -48,6 +53,16 @@ export default class RSVPPage extends React.PureComponent {
       submitted: true,
       submitting: false,
       invitationFound: null,
+    })
+  }
+
+  chooseGuest(e) {
+    e.preventDefault()
+    const id = parseInt(e.target.name, 10)
+    const invitationFound = _.findWhere(this.state.chooseOne, { id })
+    this.setState({
+      invitationFound,
+      unknownGuest: invitationFound.num_invited > 1 && !invitationFound.first_name_2,
     })
   }
 
@@ -82,7 +97,7 @@ export default class RSVPPage extends React.PureComponent {
     this.setState({ invitationFound })
   }
 
-  newXHRRequest(method, path, content, onSuccess) {
+  newXHRRequest(method, path, content, onSuccess, onErr) {
     const baseUrl = 'http://localhost:4741'
     // const baseUrl = 'https://jaylivia-api.herokuapp.com'
     const xhr = new XMLHttpRequest();
@@ -90,15 +105,13 @@ export default class RSVPPage extends React.PureComponent {
       if (xhr.status >= 200 && xhr.status < 300) {
         onSuccess(JSON.parse(xhr.response));
       } else {
+        onErr(xhr)
         console.error(xhr);
       }
     });
-    xhr.addEventListener('error', () => onRejected(xhr));
+    xhr.addEventListener('error', () => onErr(xhr));
     xhr.open(method, baseUrl + path);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    // if (path === '/guests' && this.state.token) {
-    //   xhr.setRequestHeader('Authorization', `Token token=${this.state.token}`);
-    // }
     if (content) {
       xhr.send(JSON.stringify(content));
     } else {
@@ -108,9 +121,9 @@ export default class RSVPPage extends React.PureComponent {
 
   successfulFind(response) {
     const { guests } = response
-    if (!guests.length) {
+    if (!guests || !guests.length) {
       this.setState({
-        errorMessage: "Oh no! We couldn't find your invitation. Did you check your spelling? Did we mess up? If you need help, contact our IT department (aka Olivia) at olivia.i.m.leach@gmail.com.",
+        errorMessage: <span>Oh no! We couldn&#39;t find your invitation. Did you check your spelling? Did we mess up? It&#39;s totally possible!<br />If you need help, contact our IT department (aka Olivia) at olivia.i.m.leach@gmail.com.</span>,
         submitting: false,
       })
     } else if (guests.length > 1) {
@@ -130,7 +143,7 @@ export default class RSVPPage extends React.PureComponent {
 
   findFail() {
     this.setState({
-      errorMessage: 'Oh no! Something went wrong. If problem persits, contact our IT department (aka Olivia).',
+      errorMessage: <span>Oh no! We couldn&#39;t find your invitation. Did you check your spelling? Did we mess up? It&#39;s totally possible!<br />If you need help, contact our IT department (aka Olivia) at olivia.i.m.leach@gmail.com.</span>,
       submitting: false,
     })
   }
@@ -165,13 +178,13 @@ export default class RSVPPage extends React.PureComponent {
                   <div className="sa-fix"></div>
                 </div>
               </div>
-              <h2>Thanks for RSVPing{this.state.formattedName ? `, ${this.state.formattedName}` : ''}.</h2>
+              <h2>Thanks for RSVPing !</h2>
               <p>{this.state.rsvp ? " We'll see you in June!" : " We're sorry you can't make it!"}</p>
             </div>}
 
           {this.state.invitationFound &&
             <form>
-              <h2>Hi {this.state.formattedName} !</h2>
+              <h2>{this.formatGuestNames(this.state.invitationFound)}</h2>
               <div className="form-group">
                 <p>We cannot wait to see you!<br />Will you be joining us?</p>
               </div>
@@ -195,7 +208,7 @@ export default class RSVPPage extends React.PureComponent {
                       disabled
                     />
                   </div>
-                  <div className='col'>
+                  <div className='col yesno'>
                     <div className="form-check form-check-inline">
                       <label className="form-check-label">
                         <input
@@ -252,7 +265,7 @@ export default class RSVPPage extends React.PureComponent {
                         placeholder="Guest Last Name"
                       />
                     </div>
-                    <div className="col">
+                    <div className="col yesno">
                       <div className="form-check form-check-inline">
                         <label className="form-check-label">
                           <input
@@ -405,6 +418,19 @@ export default class RSVPPage extends React.PureComponent {
                 >Search</button>
               </form>
               {this.state.errorMessage && <p>{this.state.errorMessage}</p>}
+              {this.state.multipleFound &&
+                <div>
+                  <hr />
+                  <p>We couldn&#39;t find an exact match with that name. Does one of these belong to you?</p>
+                  {this.state.chooseOne.map(guest =>
+                    <div className='form-block'>
+                      <button className='btn btn-block btn-secondary margin' onClick={this.chooseGuest} name={guest.id}>
+                        {this.formatGuestNames(guest)}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              }
             </div>}
         </div>
       </article>

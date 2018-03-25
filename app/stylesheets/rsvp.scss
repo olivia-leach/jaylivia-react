@@ -1,3 +1,14 @@
+.form-check-inline {
+  margin-bottom: 0;
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.row {
+  align-items: center;
+}
+
 .content-wrapper.rsvp-page {
   transition: .2s ease-in-out all;
   min-height: calc(100vh - 120px);
@@ -24,6 +35,10 @@
     &:last-of-type {
       padding-right: 0;
     }
+    &.yesno {
+      flex-grow: unset;
+      min-width: 100px;
+    }
   }
 }
 
@@ -45,6 +60,10 @@ button.btn-primary.btn-block {
   }
 }
 
+button.margin {
+  margin-bottom: 10px;
+}
+
 .find-form {
   p {
     max-width: 396px;
@@ -54,7 +73,7 @@ button.btn-primary.btn-block {
 }
 
 .form-group {
-  max-width: 450px;
+  max-width: 500px;
 }
 
 article.rsvp {
