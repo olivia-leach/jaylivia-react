@@ -4,7 +4,7 @@ const Button = styled.button`
   background-color: #36b3a8;
   transition: 0.2s all ease-in;
   text-transform: uppercase;
-  padding: 10px 20px;
+  padding: 10px 0px;
   border-radius: 300px;
   color: #fff;
   cursor: pointer;
@@ -14,6 +14,9 @@ const Button = styled.button`
   &:hover {
     background-color: rgba(54, 179, 168, 1);
     letter-spacing: 3px;
+  }
+  a {
+    padding: 10px 20px;
   }
 `;
 
