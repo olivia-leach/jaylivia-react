@@ -38,7 +38,7 @@ export default class RSVPPage extends React.PureComponent {
   }
 
   formatGuestNames(guest) {
-    return (`${guest.first_name}${guest.last_name === guest.last_name_2 ? '' : ` ${guest.last_name}`}${guest.num_invited > 1 ? ` and ${guest.first_name_2 || 'Guest'}${guest.last_name_2 ? ` ${guest.last_name_2}` : ''}` : ''}`)
+    return (`${guest.first_name}${guest.last_name === guest.last_name_2 ? '' : ` ${guest.last_name}`}${guest.num_invited > 1 ? ` and ${guest.first_name_2 || 'Guest'}${guest.last_name_2 ? ` ${guest.last_name_2}` : ''}` : ''}${guest.num_invited > 2 ? ' & Family' : ''}`)
   }
 
   submitForm(event) {
@@ -183,9 +183,9 @@ export default class RSVPPage extends React.PureComponent {
               <p>{this.state.rsvp ? " We'll see you in June!" : " We're sorry you can't make it!"}</p>
             </div>}
 
+          {this.state.invitationFound && <h2>{this.formatGuestNames(this.state.invitationFound)}</h2>}
           {this.state.invitationFound &&
             <form>
-              <h2>{this.formatGuestNames(this.state.invitationFound)}</h2>
               <div className="form-group">
                 <p>We cannot wait to see you!<br />Will you be joining us?</p>
               </div>
