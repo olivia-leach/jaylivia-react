@@ -90,7 +90,7 @@ export default class HomePage extends React.PureComponent {
               <span className="hashtag"><FormattedMessage {...messages.hashtags.jay} /></span>
             </div>
             <Link to="timeline" smooth offset={-80} duration={500}>
-              <Button className='watch-video'>celebrate with us! <i className="fa fa-hand-o-down" aria-hidden="true"></i></Button>
+              <Button className='watch-video'>celebrate with us! <i className="far fa-hand-point-down" aria-hidden="true"></i></Button>
             </Link>
           </ImgContainer>
         </div>
