@@ -7,6 +7,9 @@
   @include bp(laptop) {
     padding-left: 60px;
   }
+  @include bp(mobileonly) {
+    padding-left: 0;
+  }
 }
 
 #travel {

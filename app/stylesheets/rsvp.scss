@@ -11,7 +11,7 @@
 
 .content-wrapper.rsvp-page {
   transition: .2s ease-in-out all;
-  min-height: calc(100vh - 120px);
+  min-height: 100vh;
   padding: 100px 20px 100px 20px;
   // background: url('/rsvp.png');
   // background-position: top center;
@@ -48,6 +48,9 @@
   margin-bottom: 40px;
   img {
     height: 130px;
+    @include bp(mobileonly) {
+      height: 100px;
+    }
   }
 }
 

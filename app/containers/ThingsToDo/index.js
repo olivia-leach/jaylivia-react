@@ -55,7 +55,7 @@ export default class ThingsToDo extends React.PureComponent {
             offset={-100}
             duration={500}
           >
-            Eats and Drinks
+            Eats & Drinks
           </Link>
           <Link
             to="more"

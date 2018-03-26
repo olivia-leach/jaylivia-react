@@ -49,7 +49,9 @@ export default class Header extends React.Component {
   componentDidUpdate() {
     const el = document.getElementById(this.state.active)
     if (el && this.state.scrollTo) {
-      scroll.scrollTo(document.getElementById(this.state.active).offsetTop - 100, { duration: 0 });
+      let scrolloffset = window.innerWidth <= 952 ? 80 : 100
+      if (screen.width <= 400) { scrolloffset = -300 }
+      scroll.scrollTo(document.getElementById(this.state.active).offsetTop - scrolloffset, { duration: 0 });
       this.setState({ scrollTo: null })
     }
   }
@@ -76,6 +78,8 @@ export default class Header extends React.Component {
   render() {
     const darkLinks = this.state.active === 'rsvp' || this.state.active === 'notfound' || this.state.active === 'guests'
 
+    const scrolloffset = window.innerWidth <= 952 ? -80 : -100
+
     const links = this.state.pages.map((page) => {
       const correctRoute = `/${page.route}` === this.props.location.pathname && page.id !== 'rsvp'
       return (
@@ -91,7 +95,7 @@ export default class Header extends React.Component {
               to={page.id}
               spy
               smooth
-              offset={-100}
+              offset={scrolloffset}
               duration={500}
               // href={`${page.route}#${page.id}`}
               onClick={() => this.setState({ active: page.id, menuOpen: false })}

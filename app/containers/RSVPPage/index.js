@@ -397,7 +397,7 @@ export default class RSVPPage extends React.PureComponent {
                 type="submit"
                 onClick={this.submitForm}
                 disabled={this.state.submitting || (this.state.invitationFound.rsvp === null)}
-              >Submit</button>
+              >Submit{this.state.submitting ? 'ting' : ''}</button>
             </form>}
 
           {!this.state.invitationFound && !this.state.submitted &&
