@@ -20,11 +20,11 @@ export default class GuestsPage extends React.PureComponent {
         { label: 'Last Name', key: 'last_name_2' },
         { label: 'RSVP (2)', key: 'rsvp_2', boolean: true, center: true },
         // { label: '# Invited', key: 'num_invited', center: true },
-        { label: 'Hotel', key: 'hotel' },
-        { label: 'Note', key: 'note' },
-        { label: 'Fri. Drinks', key: 'rsvp_welcome_drinks' },
-        { label: 'Brunch', key: 'rsvp_brunch' },
-        { label: 'Shuttles', key: 'shuttles' },
+        { label: 'Hotel', key: 'hotel', limitWidth: true },
+        { label: 'Note', key: 'note', limitWidth: true },
+        { label: 'Fri. Drinks', key: 'rsvp_welcome_drinks', center: true },
+        { label: 'Brunch', key: 'rsvp_brunch', center: true },
+        { label: 'Shuttles', key: 'shuttles', center: true },
       ]
     }
 
@@ -72,28 +72,26 @@ export default class GuestsPage extends React.PureComponent {
 
   guestFetchSuccess(response) {
     const guests = _.sortBy(response.guests, 'last_name')
-    const rsvped = _.filter(guests, g => g.rsvp !== null)
-    const numInvited = _.reduce(guests, (memo, num) => memo.num_invited || memo + num.num_invited)
-    const rsvpYes = _.filter(guests, g => g.rsvp === true)
-    let rsvpCount = 0
     let rsvpYesCount = 0
+    let rsvpNoCount = 0
+    let rsvpNullCount = 0
+    let numInvited = 0
 
-    if (rsvped.length > 1) {
-      rsvpCount = _.reduce(rsvped, (memo, num) => memo.num_invited + num.num_invited)
-    } else if (rsvped.length === 1) {
-      rsvpCount = rsvped[0].num_invited
-    }
-
-    if (rsvpYes.length > 1) {
-      rsvpYesCount = _.reduce(rsvpYes, (memo, num) => memo.num_invited + num.num_invited)
-    } else if (rsvpYes.length === 1) {
-      rsvpYesCount = rsvpYes[0].num_invited
-    }
+    _.map(guests, g => {
+      if (g.rsvp) { rsvpYesCount += 1 }
+      if (g.rsvp_2) { rsvpYesCount += 1 }
+      if (g.rsvp === false) { rsvpNoCount += 1 }
+      if (g.rsvp_2 === false) { rsvpNoCount += 1}
+      if (g.rsvp === null) { rsvpNullCount += 1 }
+      if (g.num_invited > 1 && g.rsvp_2 === null) { rsvpNullCount += 1}
+      numInvited += g.num_invited
+    })
 
     this.setState({
       guests,
-      rsvpCount,
       rsvpYesCount,
+      rsvpNoCount,
+      rsvpNullCount,
       numInvited,
       editingItem: {},
     })
@@ -218,7 +216,7 @@ export default class GuestsPage extends React.PureComponent {
               )
             } else {
               return (
-                <td className={col.boolean || col.center ? 'center' : ''} key={`${col.key}-${i}`}>
+                <td className={`${col.boolean || col.center ? 'center' : ''}${col.limitWidth ? 'limit-width' : ''}`} key={`${col.key}-${i}`}>
                   {col.boolean ?
                     (guest[col.key] !== null ? <i className={`fa fa-thumbs-${guest[col.key] ? 'up' : 'down'}`} /> : null)
                     : guest[col.key]}
@@ -268,7 +266,12 @@ export default class GuestsPage extends React.PureComponent {
               <h4>Hi {this.state.person} !</h4>
               {!rows.length ? <p>Loading guests...</p> :
                 <div>
-                  <p>Out of {this.state.numInvited} invited, {this.state.rsvpCount} guests have RSVPed! {this.state.rsvpYesCount} people are coming. The acceptance rate so far is {Math.round(this.state.rsvpYesCount / this.state.numInvited) * 100}%.</p>
+                  <div className='flex center'>
+                    <p><span className='big'>{this.state.numInvited}</span> invited</p>
+                    <p><span className='big'>{this.state.rsvpYesCount}</span> guests attending</p>
+                    <p><span className='big'>{this.state.rsvpNoCount}</span> guests declinded</p>
+                    <p><span className='big'>{this.state.rsvpNullCount}</span> guests not responded</p>
+                  </div>
                   <table className="table">
                     <thead>
                       <tr>

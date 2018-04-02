@@ -165,6 +165,9 @@ article.rsvp {
   }
   .guests-table {
     padding: 150px 0;
+    .flex.center p:not(:last-of-type) {
+      margin-right: 25px;
+    }
     h4 {
       margin-bottom: 20px;
     }
@@ -182,6 +185,9 @@ article.rsvp {
       td.center, th.center {
         text-align: center;
         vertical-align: middle;
+      }
+      td.limit-width {
+        max-width: 150px;
       }
       .form-check {
         margin-bottom: 0;
@@ -496,4 +502,8 @@ article.rsvp {
     transform: rotate(-405deg);
     -webkit-transform: rotate(-405deg);
   }
+}
+
+.big {
+  font-size: 32px;
 }
