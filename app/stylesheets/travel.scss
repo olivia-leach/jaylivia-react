@@ -81,6 +81,9 @@
   &.center {
     justify-content: center;
   }
+  &.end {
+    justify-content: flex-end;
+  }
 }
 
 .travel-block {

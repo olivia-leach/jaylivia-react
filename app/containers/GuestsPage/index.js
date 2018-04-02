@@ -37,6 +37,7 @@ export default class GuestsPage extends React.PureComponent {
     this.handleTableEdit = this.handleTableEdit.bind(this)
     this.getGuests = this.getGuests.bind(this)
     this.sortData = this.sortData.bind(this)
+    this.downloadData = this.downloadData.bind(this)
   }
 
   componentWillMount() {
@@ -52,6 +53,50 @@ export default class GuestsPage extends React.PureComponent {
     this.setState({
       [e.target.name]: val
     })
+  }
+
+  downloadData() {
+    this.exportTableToCSV.apply($('#downloadCSV'), [this.state.guests, 'jaylivia-guests']);
+  }
+
+  exportTableToCSV(data, filename) {
+    const convertObjsToCSV = (objArray) => {
+      // Temporary delimiter characters unlikely to be typed by keyboard
+      // This is to avoid accidentally splitting the actual contents
+      const tmpColDelim = String.fromCharCode(11); // vertical tab character
+      const tmpRowDelim = String.fromCharCode(0); // null character
+
+      // actual delimiter characters for CSV format
+      const colDelim = '","';
+      const rowDelim = '"\r\n"';
+
+      const array = typeof objArray !== 'object' ? JSON.parse(objArray) : objArray;
+      let str = '';
+      for (let i = 0; i < array.length; i++) {
+        let line = '';
+        for (const index in array[i]) {
+          if (line !== '') line += tmpColDelim
+          const nextItem = array[i][index] === null ? '' : array[i][index]
+          line += nextItem.toString().replace(/"/g, '""'); // escape double quotes
+        }
+
+        str += line + tmpRowDelim;
+      }
+      str = '"' + str // append missing " to front of string
+      return str.split(tmpRowDelim).join(rowDelim).split(tmpColDelim).join(colDelim)
+    }
+
+    const headerRow = _.keys(data[0])
+    data.unshift(headerRow)
+    const formattedData = convertObjsToCSV(data)
+    const csvData = new Blob([formattedData], { type: 'text/csv' })
+    const csvURL = URL.createObjectURL(csvData)
+
+    if (window.navigator.msSaveBlob) { // IE 10+
+      window.navigator.msSaveOrOpenBlob(new Blob([formattedData], { type: "text/plain;charset=utf-8;" }), filename)
+    } else {
+      $(this).attr({ download: filename, href: csvURL });
+    }
   }
 
   signInSuccess(response) {
@@ -269,8 +314,12 @@ export default class GuestsPage extends React.PureComponent {
                   <div className='flex center'>
                     <p><span className='big'>{this.state.numInvited}</span> invited</p>
                     <p><span className='big'>{this.state.rsvpYesCount}</span> guests attending</p>
-                    <p><span className='big'>{this.state.rsvpNoCount}</span> guests declinded</p>
+                    <p><span className='big'>{this.state.rsvpNoCount}</span> guests declined</p>
                     <p><span className='big'>{this.state.rsvpNullCount}</span> guests not responded</p>
+                    <p><span className='big'>{Math.round(this.state.rsvpYesCount / (this.state.rsvpNoCount + this.state.rsvpYesCount))}%</span> acceptance rate</p>
+                  </div>
+                  <div className='flex end'>
+                    <a id='downloadCSV' onClick={this.downloadData} className='btn btn-sm btn-secondary'>Download</a>
                   </div>
                   <table className="table">
                     <thead>

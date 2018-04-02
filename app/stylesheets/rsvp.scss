@@ -184,7 +184,6 @@ article.rsvp {
       }
       td.center, th.center {
         text-align: center;
-        vertical-align: middle;
       }
       td.limit-width {
         max-width: 150px;
@@ -506,4 +505,11 @@ article.rsvp {
 
 .big {
   font-size: 32px;
+}
+
+a.btn-sm {
+  color: white !important;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-top: -30px;
 }
