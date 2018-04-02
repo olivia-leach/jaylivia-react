@@ -316,7 +316,7 @@ export default class GuestsPage extends React.PureComponent {
                     <p><span className='big'>{this.state.rsvpYesCount}</span> guests attending</p>
                     <p><span className='big'>{this.state.rsvpNoCount}</span> guests declined</p>
                     <p><span className='big'>{this.state.rsvpNullCount}</span> guests not responded</p>
-                    <p><span className='big'>{Math.round(this.state.rsvpYesCount / (this.state.rsvpNoCount + this.state.rsvpYesCount))}%</span> acceptance rate</p>
+                    <p><span className='big'>{Math.round(this.state.rsvpYesCount / (this.state.rsvpNoCount + this.state.rsvpYesCount)) * 100}%</span> acceptance rate</p>
                   </div>
                   <div className='flex end'>
                     <a id='downloadCSV' onClick={this.downloadData} className='btn btn-sm btn-secondary'>Download</a>
