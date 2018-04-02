@@ -387,7 +387,7 @@ export default class RSVPPage extends React.PureComponent {
                   name="note"
                   id="messageText"
                   rows="3"
-                  placeholder={`${this.state.invitationFound.rsvp ? 'Anything we missed? ' : ''}Send us a note!`}
+                  placeholder={`${this.state.invitationFound.rsvp ? 'Does anyone in your party have any allergies / dietary restrictions? Anything else we missed? ' : ''}Send us a note!`}
                   onChange={this.onGuestInputChange}
                   defaultValue={this.state.invitationFound.note}
                 ></textarea>
