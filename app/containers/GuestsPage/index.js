@@ -1,6 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import _ from 'underscore'
+import Sticky from 'components/Sticky'
 
 export default class GuestsPage extends React.PureComponent {
   constructor(props) {
@@ -15,16 +16,16 @@ export default class GuestsPage extends React.PureComponent {
         { label: '#', center: true },
         { label: 'First Name', key: 'first_name' },
         { label: 'Last Name', key: 'last_name' },
+        { label: 'First Name', key: 'first_name_2', needsGuest: true },
+        { label: 'Last Name', key: 'last_name_2', needsGuest: true },
         { label: 'RSVP', key: 'rsvp', boolean: true, center: true },
-        { label: 'First Name', key: 'first_name_2' },
-        { label: 'Last Name', key: 'last_name_2' },
-        { label: 'RSVP (2)', key: 'rsvp_2', boolean: true, center: true },
+        { label: 'RSVP (2)', key: 'rsvp_2', boolean: true, center: true, needsGuest: true },
         // { label: '# Invited', key: 'num_invited', center: true },
-        { label: 'Hotel', key: 'hotel', limitWidth: true },
-        { label: 'Note', key: 'note', limitWidth: true },
         { label: 'Fri. Drinks', key: 'rsvp_welcome_drinks', center: true },
         { label: 'Brunch', key: 'rsvp_brunch', center: true },
         { label: 'Shuttles', key: 'shuttles', center: true },
+        { label: 'Hotel', key: 'hotel', limitWidth: true },
+        { label: 'Note', key: 'note', limitWidth: true },
       ]
     }
 
@@ -261,7 +262,7 @@ export default class GuestsPage extends React.PureComponent {
               )
             } else {
               return (
-                <td className={`${col.boolean || col.center ? 'center' : ''}${col.limitWidth ? 'limit-width' : ''}`} key={`${col.key}-${i}`}>
+                <td className={`${col.boolean || col.center ? 'center' : ''}${col.limitWidth ? 'limit-width' : ''}${col.needsGuest && guest.num_invited < 2 ? ' disabled' : ''}`} key={`${col.key}-${i}`}>
                   {col.boolean ?
                     (guest[col.key] !== null ? <i className={`fa fa-thumbs-${guest[col.key] ? 'up' : 'down'}`} /> : null)
                     : guest[col.key]}
@@ -321,16 +322,30 @@ export default class GuestsPage extends React.PureComponent {
                   <div className='flex end'>
                     <a id='downloadCSV' onClick={this.downloadData} className='btn btn-sm btn-secondary'>Download</a>
                   </div>
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        {tableHeadCells}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {rows}
-                    </tbody>
-                  </table>
+                  <div className='table-container'>
+                    <Sticky id='guests-table-header' margin={70} theresholdOffset={70} top>
+                      <table className="table">
+                        <thead>
+                          <tr>
+                            {tableHeadCells}
+                          </tr>
+                        </thead>
+                        <tbody className='secret'>
+                          {rows}
+                        </tbody>
+                      </table>
+                    </Sticky>
+                    <table className="table">
+                      <thead className='secret'>
+                        <tr>
+                          {tableHeadCells}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {rows}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>}
             </div>
           }
