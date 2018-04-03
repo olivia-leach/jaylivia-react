@@ -210,8 +210,11 @@ export default class GuestsPage extends React.PureComponent {
     if (!sortBy) { return; }
     const guests = _.clone(this.state.guests)
     const order = this.state.sortBy === sortBy && this.state.order === 'ASC' ? 'DESC' : 'ASC'
-    let sortedData = _.sortBy(guests, sortBy)
-    if (order === 'DESC') { sortedData = sortedData.reverse(); }
+    const nullVals = _.filter(guests, g => g[sortBy] === null)
+    const haveVals = _.filter(guests, g => g[sortBy] !== null)
+    let sortedData = _.sortBy(haveVals, sortBy)
+    if (order === 'DESC') { sortedData = haveVals.reverse(); }
+    sortedData = _.union(sortedData, nullVals)
     this.setState({
       guests: sortedData,
       sortBy,
