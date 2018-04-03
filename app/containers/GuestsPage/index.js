@@ -155,8 +155,8 @@ export default class GuestsPage extends React.PureComponent {
   }
 
   newXHRRequest(method, path, content, onSuccess) {
-    const baseUrl = 'http://localhost:4741'
-    // const baseUrl = 'https://jaylivia-api.herokuapp.com'
+    // const baseUrl = 'http://localhost:4741'
+    const baseUrl = 'https://jaylivia-api.herokuapp.com'
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', () => {
       if (xhr.status >= 200 && xhr.status < 300) {
