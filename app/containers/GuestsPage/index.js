@@ -128,8 +128,11 @@ export default class GuestsPage extends React.PureComponent {
       if (g.rsvp_2) { rsvpYesCount += 1 }
       if (g.rsvp === false) { rsvpNoCount += 1 }
       if (g.rsvp_2 === false) { rsvpNoCount += 1}
-      if (g.rsvp === null) { rsvpNullCount += 1 }
-      if (g.num_invited > 1 && g.rsvp_2 === null) { rsvpNullCount += 1}
+      if (g.rsvp === null) { rsvpNullCount += 1}
+      if (g.num_invited > 1 && g.rsvp_2 === null) { rsvpNullCount += 1 }
+      if (g.rsvp === null && g.num_invited > 2) {
+        rsvpNullCount += (g.num_invited - 2)
+      }
       numInvited += g.num_invited
     })
 
@@ -287,6 +290,11 @@ export default class GuestsPage extends React.PureComponent {
       >{col.label}</th>
     )
 
+    const precisionRound = (number, precision) => {
+      const factor = Math.pow(10, precision);
+      return Math.round(number * factor) / factor;
+    }
+
     return (
       <article className='rsvp'>
         <Helmet
@@ -320,7 +328,7 @@ export default class GuestsPage extends React.PureComponent {
                     <p><span className='big'>{this.state.rsvpYesCount}</span> guests attending</p>
                     <p><span className='big'>{this.state.rsvpNoCount}</span> guests declined</p>
                     <p><span className='big'>{this.state.rsvpNullCount}</span> guests not responded</p>
-                    <p><span className='big'>{Math.round(this.state.rsvpYesCount / (this.state.rsvpNoCount + this.state.rsvpYesCount)) * 100}%</span> acceptance rate</p>
+                    <p><span className='big'>{precisionRound((this.state.rsvpYesCount / (this.state.rsvpNoCount + this.state.rsvpYesCount)) * 100, 0)}%</span> acceptance rate</p>
                   </div>
                   <div className='flex end'>
                     <a id='downloadCSV' onClick={this.downloadData} className='btn btn-sm btn-secondary'>Download</a>
