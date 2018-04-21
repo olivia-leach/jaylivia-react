@@ -24,6 +24,9 @@
   a {
     color: #1976d2;
     font-size: 14px;
+    &.booked {
+      text-decoration: line-through;
+    }
     &:hover {
       color: darken(#1976d2, 15%);
     }

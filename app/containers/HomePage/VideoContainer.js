@@ -38,7 +38,7 @@ export default styled.div`
     width: 100%;
     height: 100%;
   }
-  .fa {
+  .fa-play {
     font-size: 6rem;
     color: #fff;
   }
