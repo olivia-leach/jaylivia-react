@@ -344,6 +344,7 @@ export default class RSVPPage extends React.PureComponent {
                         defaultValue={this.state.invitationFound.hotel}
                       />
                     </div>
+                    <p className='small margin-top'><span className='italics'>Psst...</span> Don&#39;t know where you&#39;re staying yet? You can come back and edit this later!</p>
                   </div>
                   <div className="form-group">
                     <p>
