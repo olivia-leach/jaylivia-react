@@ -67,7 +67,13 @@ export default class ThingsToDo extends React.PureComponent {
           </Link>
         </div>
         <div className="content">
-          <p className='blurb'>We&#39;re super excited to have all our friends and family in one place.<br />We think you&#39;ll love it here!</p>
+          <p className='blurb'>
+            We&#39;re super excited to have all our friends and family in one place.
+            <br />
+            We think you&#39;ll love it here!
+            <br />
+            <a className='small' href='https://drive.google.com/open?id=1aTzc1daOmYa7uh6Qr-esQgcVvy4&usp=sharing' target='_blank'><i className='fa fa-map-marker-alt' />&nbsp;&nbsp;See this list on a map</a>
+          </p>
           <h1 id="outdoors" className='section-head'><span className='line' />the great outdoors<span className='line' /></h1>
           <div className="row">
             <div>
