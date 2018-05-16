@@ -6,6 +6,7 @@ import Sticky from 'components/Sticky'
 export default class GuestsPage extends React.PureComponent {
   constructor(props) {
     super(props)
+    const canEdit = props.location.query.edit === 'true'
     this.state = {
       username: '',
       password: '',
@@ -20,13 +21,14 @@ export default class GuestsPage extends React.PureComponent {
         { label: 'Last Name', key: 'last_name_2', needsGuest: true },
         { label: 'RSVP', key: 'rsvp', boolean: true, center: true },
         { label: 'RSVP (2)', key: 'rsvp_2', boolean: true, center: true, needsGuest: true },
-        // { label: '# Invited', key: 'num_invited', center: true },
+        { label: '# Invited', key: 'num_invited', center: true, hidden: !canEdit },
         { label: 'Fri. Drinks', key: 'rsvp_welcome_drinks', center: true },
         { label: 'Brunch', key: 'rsvp_brunch', center: true },
         { label: 'Shuttles', key: 'shuttles', center: true },
         { label: 'Hotel', key: 'hotel', limitWidth: true },
         { label: 'Note', key: 'note', limitWidth: true },
-      ]
+      ],
+      canEdit,
     }
 
     this.logIn = this.logIn.bind(this)
@@ -182,10 +184,10 @@ export default class GuestsPage extends React.PureComponent {
   }
 
   toggleEdit(e) {
-    // const id = parseInt(e.currentTarget.dataset.id, 10)
-    // this.setState({
-    //   editingItem: _.findWhere(this.state.guests, { id }),
-    // })
+    const id = parseInt(e.currentTarget.dataset.id, 10)
+    this.setState({
+      editingItem: _.findWhere(this.state.guests, { id }),
+    })
   }
 
   toggleSave() {
@@ -229,8 +231,9 @@ export default class GuestsPage extends React.PureComponent {
     const rows = this.state.guests.map((guest, i) => {
       const editingGuest = guest.id === this.state.editingItem.id
       return (
-        <tr key={`guest-${guest.id}`} onClick={editingGuest ? null : this.toggleEdit} data-id={guest.id}>
+        <tr key={`guest-${guest.id}`} onClick={editingGuest || !this.state.canEdit ? null : this.toggleEdit} data-id={guest.id}>
           {this.state.cols.map(col => {
+            if (col.hidden) { return null; }
             if (!col.key) {
               return (
                 <th
