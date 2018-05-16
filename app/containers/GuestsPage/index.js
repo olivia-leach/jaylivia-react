@@ -283,7 +283,8 @@ export default class GuestsPage extends React.PureComponent {
       )
     })
 
-    const tableHeadCells = this.state.cols.map((col) =>
+    const activeHeaderCells = _.filter(this.state.cols, col => !col.hidden)
+    const tableHeadCells = activeHeaderCells.map((col) =>
       <th
         key={col.key || 'num'}
         scope='col'
