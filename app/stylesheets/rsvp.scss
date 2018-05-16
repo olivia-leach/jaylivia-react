@@ -578,3 +578,11 @@ tbody.secret {
 .italics {
   font-style: italic;
 }
+
+.rsvp-link {
+  color: $green;
+  &:hover {
+    font-weight: bold;
+    color: $green;
+  }
+}
