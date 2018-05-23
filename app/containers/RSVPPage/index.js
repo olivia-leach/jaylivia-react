@@ -348,7 +348,7 @@ export default class RSVPPage extends React.PureComponent {
                   </div>
                   <div className="form-group">
                     <p>
-                      We are providing bus transportation to the wedding from the following locations: Kingston Best Western, The Lodge, <a target='_blank' href='https://goo.gl/maps/hpymfA4abhy' className='rsvp-link'>downtown Woodstock</a>, and the Emerson.<br /><br />
+                      We are providing bus transportation to the wedding from the following locations: Kingston Best Western, The Lodge, and <a target='_blank' href='https://goo.gl/maps/hpymfA4abhy' className='rsvp-link'>downtown Woodstock</a>.<br /><br />
                       Do you anticipate using the buses?
                       (Keep in mind that parking at the venue exists but is fairly limited.)
                     </p>
