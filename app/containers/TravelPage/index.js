@@ -83,7 +83,7 @@ export default class HotelsPage extends React.PureComponent {
           <div className='travel-block'>
             <h1>Wedding Transportation</h1>
             <p>
-              We will be providing buses from Woodstock (and the <ScrollLink smooth offset={-100} duration={500} to='accommodations'>other accommodations</ScrollLink> listed above) to the wedding.
+              We are providing bus transportation to the wedding from the following locations: Kingston Best Western, The Lodge, and <a target='_blank' href='https://goo.gl/maps/hpymfA4abhy' className='rsvp-link'>downtown Woodstock</a>.
               If you are staying elsewhere you will need to arrange your own transportation to the venue.
               Parking is available on site, but it is somewhat limited, so we encourage carpooling!
               Please check the website for more details on bus schedules as the big event gets closer!
