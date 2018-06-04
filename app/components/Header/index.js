@@ -5,6 +5,9 @@ import HeaderLink from './HeaderLink';
 import messages from './messages';
 import LogoInverse from './logo_simp.png';
 
+import moment from 'moment/moment'
+import Rosie from './rosiehead.png'
+
 const Scroll = require('react-scroll');
 
 const Link = Scroll.Link;
@@ -80,6 +83,9 @@ export default class Header extends React.Component {
 
     const scrolloffset = window.innerWidth <= 952 ? -80 : -100
 
+    const days = moment([2018, 5, 23, 17]).diff(moment(), 'days')
+    const hours = moment([2018, 5, 23, 17]).diff(moment(), 'hours') - (days * 24)
+
     const links = this.state.pages.map((page) => {
       const correctRoute = `/${page.route}` === this.props.location.pathname && page.id !== 'rsvp'
       return (
@@ -114,19 +120,35 @@ export default class Header extends React.Component {
     return (
       <div>
         <header className={this.state.status}>
-          <HeaderLink className={`logo ${darkLinks ? 'black' : ''}`} to="/" onClick={() => this.setState({ active: 'home' })}>olivia + jay</HeaderLink>
-          <div
-            className={`hamburger hamburger--squeeze ${this.state.menuOpen ? 'is-active' : ''} ${darkLinks ? 'black' : ''}`}
-            onClick={this.toggleMenu.bind(this)}
-          >
-            <span className="hamburger-box">
-              <span className="hamburger-inner"></span>
+          <div className='banner'>
+            <div>
+              <i className="fas fa-bus"></i>
+              &nbsp;&nbsp;Catching a bus? Here&#39;s what you need to know:
+              <ul>
+                <li>Buses are departing The Lodge, Central Woodstock, and the Best Western at 4:15pm sharp.</li>
+                <li>Buses will drop off guests at each of these locations after the reception. Take any bus home, but get off at The Lodge for the after party!</li>
+              </ul>
+            </div>
+            <div className='rosie-container'>
+              {days} day{days > 1 ? 's' : ''},<br />{hours} hour{hours > 1 ? 's' : ''}<br />to go!
+              <img src={Rosie} />
+            </div>
+          </div>
+          <div className='header'>
+            <HeaderLink className={`logo ${darkLinks ? 'black' : ''}`} to="/" onClick={() => this.setState({ active: 'home' })}>olivia + jay</HeaderLink>
+            <div
+              className={`hamburger hamburger--squeeze ${this.state.menuOpen ? 'is-active' : ''} ${darkLinks ? 'black' : ''}`}
+              onClick={this.toggleMenu.bind(this)}
+            >
+              <span className="hamburger-box">
+                <span className="hamburger-inner"></span>
+              </span>
+            </div>
+            <span className={`header-links ${this.state.menuOpen ? 'open' : ''}`} id="nav">
+              {links}
+              {/*}<HeaderLink to='https://www.zola.com/registry/oliviajay' target='_blank'><a><span>REGISTRY</span></a></HeaderLink>*/}
             </span>
           </div>
-          <span className={`header-links ${this.state.menuOpen ? 'open' : ''}`} id="nav">
-            {links}
-            {/*}<HeaderLink to='https://www.zola.com/registry/oliviajay' target='_blank'><a><span>REGISTRY</span></a></HeaderLink>*/}
-          </span>
         </header>
       </div>
     );

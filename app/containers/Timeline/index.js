@@ -29,7 +29,7 @@ export default class RSVPPage extends React.PureComponent {
           <div className="timeline-line" />
           <TimelineEvent
             title="Welcome Drinks"
-            date="Friday: 8pm"
+            date="Friday: 8:30pm"
             image={BasementBoys}
             desc="Station Bar & Curio, Woodstock"
             desc2="Join us for welcome drinks and sing along with special guests Buddy Clark & The Basement Boys!"

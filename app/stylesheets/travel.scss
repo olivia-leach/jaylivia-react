@@ -25,11 +25,11 @@
   }
   a {
     font-family: 'arial';
-    color: $green;
+    color: $blue;
     transition: .2s ease-in-out all;
     cursor: pointer;
     &:hover {
-      color: darken($green, 10%);
+      color: darken($blue, 10%);
     }
   }
   h1 {

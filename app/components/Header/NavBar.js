@@ -16,7 +16,7 @@ export default styled.div`
     font-size: 0.9rem;
     font-weight: bold;
     &.active {
-      border-bottom: 3px solid #36b3a8;
+      border-bottom: 3px solid #5a7d9b;
     }
     &.black {
       color: #1E1B14;

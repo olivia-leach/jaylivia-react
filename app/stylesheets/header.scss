@@ -1,47 +1,50 @@
 header {
-  text-align: right;
   background-color: 'transparent';
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 2000;
-  padding: 30px 20px;
-  @include bp(tablet) {
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  }
-  @include bp(laptop) {
-    padding: 30px 40px;
-  }
-  @include bp(desktop) {
-    padding: 30px 50px;
-  }
-  .logo.black {
-    text-shadow: none;
-  }
-  transition: .2s all ease-in-out;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  span {
-    display: flex;
-    @include bp(tabletOrSmaller) {
-      flex-direction: column;
-      align-items: flex-end;
+  .header {
+    padding: 30px 20px;
+    text-align: right;
+    position: relative;
+    @include bp(tablet) {
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     }
-  }
-  a > a {
-    font-size: 0.9rem;
-    font-weight: bold;
-    padding: 10px;
-    &.active {
-      border-bottom: 3px solid #36b3a8;
+    @include bp(laptop) {
+      padding: 30px 40px;
     }
-    &.black span {
-      color: #1E1B14;
+    @include bp(desktop) {
+      padding: 30px 50px;
+    }
+    .logo.black {
       text-shadow: none;
     }
+    transition: .2s all ease-in-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span {
+      display: flex;
+      @include bp(tabletOrSmaller) {
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
+    a > a {
+      font-size: 0.9rem;
+      font-weight: bold;
+      padding: 10px;
+      &.active {
+        border-bottom: 3px solid $blue;
+      }
+      &.black span {
+        color: #1E1B14;
+        text-shadow: none;
+      }
+    }
   }
-  &.fixed {
+  &.fixed .header {
     background-color: #1E1B14;
     @include bp(tablet) {
       padding: 10px 30px;
@@ -66,66 +69,68 @@ header {
       }
     }
   }
-  @include bp(tabletOrSmaller) {
-    padding: 1rem;
-    &.fixed {
-      // justify-content: center;
-      padding: 0.5rem 1rem;
-    }
-  }
-  .hamburger {
-    display: none;
-    background-color: transparent;
-    padding: 0;
-    border: 0;
-    z-index: 1000;
-    position: absolute;
-    right: 1.5rem;
-    top: 1rem;
+  .header {
     @include bp(tabletOrSmaller) {
-      display: block;
-    }
-    &.black, &.is-active {
-      .hamburger-inner, .hamburger-inner:before, .hamburger-inner:after {
-        background-color: rgba(#1E1B14, 0.9);
+      padding: 1rem;
+      &.fixed {
+        // justify-content: center;
+        padding: 0.5rem 1rem;
       }
     }
-    .hamburger-inner, .hamburger-inner:before, .hamburger-inner:after {
-      background-color: rgba(#fff, 0.9);
-    }
-  }
-  .header-links {
-    a span {
-      color: #fff;
-    }
-    a {
-      margin: 0;
-    }
-    @include bp(tabletOrSmaller) {
-      display: flex;
-      flex-direction: column;
+    .hamburger {
+      display: none;
+      background-color: transparent;
+      padding: 0;
+      border: 0;
+      z-index: 1000;
       position: absolute;
-      background-color: rgba(255, 255, 255, 1);
-      @include shadow(1);
-      width: 100%;
-      margin: 0;
-      left: 0;
-      justify-content: center;
-      align-items: center;
-      max-height: 0;
-      top: 0;
-      transition: .15s ease-in-out all;
-      a {
-        display: none;
-        span {
-          color: black;
+      right: 1.5rem;
+      top: 1rem;
+      @include bp(tabletOrSmaller) {
+        display: block;
+      }
+      &.black, &.is-active {
+        .hamburger-inner, .hamburger-inner:before, .hamburger-inner:after {
+          background-color: rgba(#1E1B14, 0.9);
         }
       }
-      &.open {
-        max-height: 500px;
-        padding: 1rem 0;
+      .hamburger-inner, .hamburger-inner:before, .hamburger-inner:after {
+        background-color: rgba(#fff, 0.9);
+      }
+    }
+    .header-links {
+      a span {
+        color: #fff;
+      }
+      a {
+        margin: 0;
+      }
+      @include bp(tabletOrSmaller) {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        background-color: rgba(255, 255, 255, 1);
+        @include shadow(1);
+        width: 100%;
+        margin: 0;
+        left: 0;
+        justify-content: center;
+        align-items: center;
+        max-height: 0;
+        top: 0;
+        transition: .15s ease-in-out all;
         a {
-          display: block;
+          display: none;
+          span {
+            color: black;
+          }
+        }
+        &.open {
+          max-height: 500px;
+          padding: 1rem 0;
+          a {
+            display: block;
+          }
         }
       }
     }

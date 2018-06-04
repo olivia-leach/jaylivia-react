@@ -37,7 +37,7 @@
   }
   .timeline-line {
     width: 6px;
-    background-color: #36b3a8;
+    background-color: $blue;
     border-radius: 10px;
     height: calc(100% - 60px);
     position: absolute;
@@ -180,7 +180,7 @@
     padding: 0 0 0 70px;
   }
   a {
-    color: #36b3a8 !important;
+    color: $blue !important;
     cursor: pointer;
     font-weight: bold;
   }

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
-  background-color: #36b3a8;
+  background-color: #5a7d9b;
   transition: 0.2s all ease-in;
   text-transform: uppercase;
   padding: 10px 0px;

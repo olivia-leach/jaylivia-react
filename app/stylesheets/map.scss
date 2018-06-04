@@ -33,14 +33,14 @@
     width: 100%;
     button {
       width: 100%;
-      background-color: #36b3a8;
+      background-color: $blue;
       transition: .5s ease-in-out all;
       font-size: 12px;
       padding: .5rem 1rem;
       border-radius: 5px;
       @include shadow(1);
       &:hover {
-        background-color: darken(#36b3a8, 10%);
+        background-color: darken($blue, 10%);
       }
     }
     input#places-search {

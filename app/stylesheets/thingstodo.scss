@@ -176,7 +176,7 @@
     height: 350px;
   }
   a {
-    color: $green;
+    color: $blue;
     font-weight: bold;
   }
   button a {
@@ -199,7 +199,7 @@
       cursor: pointer;
       letter-spacing: 0px;
       &:hover, &.active {
-        border-color: #36b3a8;
+        border-color: $blue;
         font-weight: bold;
       }
       @include bp(mobileonly) {
