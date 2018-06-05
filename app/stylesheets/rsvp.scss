@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: flex-start;
   @include bp(phablet) {
-    padding-top: 140px;
+    padding-top: 240px;
   }
   form, .thanks {
     text-align: center;
@@ -67,6 +67,18 @@ button.margin {
     max-width: 396px;
     text-align: center;
     margin-top: 20px;
+  }
+  a {
+    color: white;
+    background-color: $blue;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: .2s ease-in-out all;
+    @include shadow(1);
+    &:hover {
+      background-color: darken($blue, 5%);
+      @include shadow(2);
+    }
   }
 }
 

@@ -404,41 +404,46 @@ export default class RSVPPage extends React.PureComponent {
           {!this.state.invitationFound && !this.state.submitted &&
             <div className="find-form">
               <form>
-                <h2>Find your invitation</h2>
-                <div className="form-group">
-                  <div className="row">
-                    <div className="col">
-                      <input type="text" className="form-control" placeholder="First name" aria-label="First Name" name="first_name_search" onChange={this.onInputChange} />
-                    </div>
-                    <div className="col">
-                      <input type="text" className="form-control" placeholder="Last name" aria-label="Last Name" name="last_name_search" onChange={this.onInputChange} />
-                    </div>
-                  </div>
-                </div>
-                <button
-                  className="btn btn-primary btn-block"
-                  type="submit"
-                  onClick={this.searchForInvitation}
-                  disabled={this.state.submitting || !this.state.first_name_search || !this.state.last_name_search}
-                >Search</button>
+                <p>Looking to make a change to your RSVP? Please contact us directly so we&#39;re sure not to miss it!</p>
+                <p><a href='mailto:olivia.i.m.leach@gmail.com?subject=Jay and Olivia Wedding RSVP'>olivia.i.m.leach@gmail.com</a></p>
               </form>
-              {this.state.errorMessage && <p>{this.state.errorMessage}</p>}
-              {this.state.multipleFound &&
-                <div>
-                  <hr />
-                  <p>We couldn&#39;t find an exact match with that name. Does one of these belong to you?</p>
-                  {this.state.chooseOne.map(guest =>
-                    <div className='form-block'>
-                      <button className='btn btn-block btn-secondary margin' onClick={this.chooseGuest} name={guest.id}>
-                        {this.formatGuestNames(guest)}
-                      </button>
-                    </div>
-                  )}
-                </div>
-              }
             </div>}
-        </div>
+          </div>
       </article>
     );
   }
 }
+
+// <div className="form-group">
+//   <div className="row">
+//     <div className="col">
+//       <input type="text" className="form-control" placeholder="First name" aria-label="First Name" name="first_name_search" onChange={this.onInputChange} />
+//     </div>
+//     <div className="col">
+//       <input type="text" className="form-control" placeholder="Last name" aria-label="Last Name" name="last_name_search" onChange={this.onInputChange} />
+//     </div>
+//   </div>
+// </div>
+// <button
+//   className="btn btn-primary btn-block"
+//   type="submit"
+//   onClick={this.searchForInvitation}
+//   disabled={this.state.submitting || !this.state.first_name_search || !this.state.last_name_search}
+// >Search</button>
+// </form>
+// {this.state.errorMessage && <p>{this.state.errorMessage}</p>}
+// {this.state.multipleFound &&
+// <div>
+//   <hr />
+//   <p>We couldn&#39;t find an exact match with that name. Does one of these belong to you?</p>
+//   {this.state.chooseOne.map(guest =>
+//     <div className='form-block'>
+//       <button className='btn btn-block btn-secondary margin' onClick={this.chooseGuest} name={guest.id}>
+//         {this.formatGuestNames(guest)}
+//       </button>
+//     </div>
+//   )}
+// </div>
+// }
+// </div>}
+// </div>
