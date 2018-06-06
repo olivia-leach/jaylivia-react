@@ -8,7 +8,12 @@ export default class Map extends React.PureComponent {
       directionsType: 'DRIVING',
       onteora: { lat: 42.014140, lng: -74.257930 },
       rhinecliff: { lat: 41.921277, lng: -73.951379 },
+      lodge: { lat: 42.034640, lng: -74.114870 },
+      central: { lat: 42.041799, lng: -74.117484 },
+      bw: { lat: 41.939784, lng: -74.029311 },
     };
+
+    this.fitBounds = this.fitBounds.bind(this)
   }
 
   componentDidMount() {
@@ -92,27 +97,49 @@ export default class Map extends React.PureComponent {
           ]
       }
     ]
-    const infowindow = new google.maps.InfoWindow({
-      content: '<p class="info-window"><a target="_blank" href="http://www.onteora.com/">Onteora Mountain House</a><br />Boiceville, NY</p>',
-    });
+
     const map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 7,
-      center: this.state.onteora,
+      zoom: 10,
+      center: { lat: 42.0420, lng: -74.160139 },
+      // center: this.state.central,
       styles,
       mapTypeControl: false,
       streetViewControl: false,
+      gestureHandling: 'greedy',
     });
-    const marker = new google.maps.Marker({
-      position: this.state.onteora,
-      map,
-      animation: google.maps.Animation.DROP,
-    });
-    infowindow.open(map, marker)
-    this.initDirections();
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
-    this.setState({ map, marker })
+
+    this.addMarkerWithTimeout(this.state.onteora, 200, map, 'Onteora')
+    this.addMarkerWithTimeout(this.state.bw, 200, map, 'Best Western')
+    this.addMarkerWithTimeout(this.state.central, 200, map, 'Central Woodstock<br />Parking Lot')
+    this.addMarkerWithTimeout(this.state.lodge, 200, map, 'The Lodge')
+    this.setState({ map }, () => { window.setTimeout(this.fitBounds, 500) })
+  }
+
+  addMarkerWithTimeout(position, timeout, map, label) {
+    window.setTimeout(function() {
+      const marker = new google.maps.Marker({
+        position,
+        map,
+        animation: google.maps.Animation.DROP
+      })
+      const infoWindow = new google.maps.InfoWindow({
+        content: `<p class="info-window">${label}</p>`,
+      });
+      infoWindow.open(map, marker)
+      marker.addListener('click', function() {
+        infoWindow.open(map, marker)
+      })
+    }, timeout);
+  }
+
+  fitBounds() {
+    var bounds = new google.maps.LatLngBounds();
+    bounds.extend(this.state.onteora)
+    bounds.extend(this.state.bw)
+    bounds.extend(this.state.lodge)
+    bounds.extend(this.state.central)
+    this.state.map.fitBounds(bounds)
+    this.state.map.setZoom(this.state.map.getZoom() - 1)
   }
 
   initDirections() {
@@ -177,7 +204,7 @@ export default class Map extends React.PureComponent {
           </div>
         }
         <div id="map" className='map-canvas' />
-        <div className='controls'>
+        {/*}<div className='controls'>
           <input id='places-search' type='text' placeholder='Where ya coming from?' />
           <div className='radios'>
             <div>

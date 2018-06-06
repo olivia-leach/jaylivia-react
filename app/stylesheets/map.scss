@@ -1,25 +1,29 @@
 .map-container {
-  max-width: 60vh;
-  min-width: 500px;
-  height: 55vh;
-  opacity: .85;
+  // max-width: 60vh;
+  // min-width: 500px;
+  width: 100px;
+  height: 500px;
+  // max-height: 50vh;
+  // height: 55vh;
+  // opacity: .85;
   position: relative;
-  margin-top: -7rem;
+  // margin-top: -7rem;
   h2 {
     margin: 0;
     text-align: center;
     letter-spacing: 2px;
     margin-bottom: .5rem;
   }
-  @include bp(tablet) {
-    min-width: 800px;
-  }
+  // @include bp(tablet) {
+    min-width: 100%;
+  // }
   @include bp(mobileonly) {
-    width: 95%;
-    min-width: 95%;
-    height: calc(100vh - 45px - 50px - 72px - 20px - 50px);
-    margin-top: -50px;
-    min-height: 200px;
+    // width: 95%;
+    // min-width: 95%;
+    // height: calc(100vh - 45px - 50px - 72px - 20px - 50px);
+    // margin-top: -50px;
+    // min-height: 200px;
+    height: 300px;
   }
   > .map-canvas {
     width: 100%;
@@ -110,7 +114,7 @@
   position: relative;
   top: 0;
   text-decoration: none;
-  min-width: 150px;
+  // min-width: 150px;
 }
 
 .info-window a {

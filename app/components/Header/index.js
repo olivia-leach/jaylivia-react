@@ -5,8 +5,9 @@ import HeaderLink from './HeaderLink';
 import messages from './messages';
 import LogoInverse from './logo_simp.png';
 
-import moment from 'moment/moment'
-import Rosie from './rosiehead.png'
+// import moment from 'moment/moment'
+// import Rosie from './rosiehead.png'
+import Map from '../Map'
 
 const Scroll = require('react-scroll');
 
@@ -83,9 +84,6 @@ export default class Header extends React.Component {
 
     const scrolloffset = window.innerWidth <= 952 ? -80 : -100
 
-    const days = moment([2018, 5, 23, 17]).diff(moment(), 'days')
-    const hours = moment([2018, 5, 23, 17]).diff(moment(), 'hours') - (days * 24)
-
     const links = this.state.pages.map((page) => {
       const correctRoute = `/${page.route}` === this.props.location.pathname && page.id !== 'rsvp'
       return (
@@ -119,19 +117,30 @@ export default class Header extends React.Component {
 
     return (
       <div>
+        <div className="modal fade show" tabIndex="-1" role="dialog" id='modal'>
+          <div className="modal-dialog modal-lg" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title"><i className="fas fa-bus"></i>&nbsp;&nbsp;Bus Information</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <ul>
+                  <li>School buses are departing The Lodge, Central Woodstock, and the Best Western at 4:15pm sharp.</li>
+                  <li>Buses will drop off guests at each of these locations after the reception. Take any bus home, but get off at The Lodge for the after party!</li>
+                </ul>
+                {this.state.modalOpen && <Map />}
+              </div>
+            </div>
+          </div>
+        </div>
         <header className={this.state.status}>
-          <div className='banner'>
+          <div className='banner' data-toggle="modal" data-target="#modal" onClick={() => { this.setState({ modalOpen: true })}}>
             <div>
               <i className="fas fa-bus"></i>
-              &nbsp;&nbsp;Catching a bus? Here&#39;s what you need to know:
-              <ul>
-                <li>Buses are departing The Lodge, Central Woodstock, and the Best Western at 4:15pm sharp.</li>
-                <li>Buses will drop off guests at each of these locations after the reception. Take any bus home, but get off at The Lodge for the after party!</li>
-              </ul>
-            </div>
-            <div className='rosie-container'>
-              {days} day{days > 1 ? 's' : ''},<br />{hours} hour{hours > 1 ? 's' : ''}<br />to go!
-              <img src={Rosie} />
+              &nbsp;&nbsp;Catching a bus? Click for info!
             </div>
           </div>
           <div className='header'>
