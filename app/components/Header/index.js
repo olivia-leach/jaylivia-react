@@ -84,6 +84,20 @@ export default class Header extends React.Component {
 
     const scrolloffset = window.innerWidth <= 952 ? -80 : -100
 
+    // const addrUrl = thisRide.pickup.addr1.replace(/ /g , '+')
+    // const cityUrl = thisRide.pickup.city.replace(/ /g , '+')
+    // const stateUrl = thisRide.pickup.state
+    //
+    // const addrUrld = thisRide.destination.addr1.replace(/ /g , '+')
+    // const cityUrld = thisRide.destination.city.replace(/ /g , '+')
+    // const stateUrld = thisRide.destination.state
+
+    // const mapsUrl = `&origin=${addrUrl}%2C+${cityUrl}%2C+${stateUrl}&destination=${addrUrld}%2C+${cityUrld}%2C+${stateUrld}`
+    const baseUrl = 'https://www.google.com/maps?daddr='
+    const lodgeMapLink = `${baseUrl}The+Lodge+Woodstock+NY`
+    const centralMapLink = `${baseUrl}Municipal+Parking,+Co+Rd+33,+Woodstock,+NY+12498`
+    const bwLink = `${baseUrl}Best+Western+Kingston+NY`
+
     const links = this.state.pages.map((page) => {
       const correctRoute = `/${page.route}` === this.props.location.pathname && page.id !== 'rsvp'
       return (
@@ -128,7 +142,7 @@ export default class Header extends React.Component {
               </div>
               <div className="modal-body">
                 <ul>
-                  <li>School buses are departing The Lodge, Central Woodstock, and the Best Western at 4:15pm sharp.</li>
+                  <li>School buses are departing <a href={lodgeMapLink} target='_blank'>The Lodge</a>, <a href={centralMapLink} target='_blank'>Central Woodstock</a>, and the <a href={bwLink} target='_blank'>Best Western</a> at 4:15pm sharp.</li>
                   <li>Buses will drop off guests at each of these locations after the reception. Take any bus home, but get off at The Lodge for the after party!</li>
                 </ul>
                 {this.state.modalOpen && <Map />}

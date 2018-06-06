@@ -72,7 +72,7 @@ export default class ThingsToDo extends React.PureComponent {
             <br />
             We think you&#39;ll love it here!
             <br />
-            <a className='small' href='https://drive.google.com/open?id=1aTzc1daOmYa7uh6Qr-esQgcVvy4&usp=sharing' target='_blank'><i className='fa fa-map-marker-alt' />&nbsp;&nbsp;See this list on a map</a>
+            <a className='small' href='https://www.google.com/maps/d/u/0/viewer?mid=1aTzc1daOmYa7uh6Qr-esQgcVvy4&ll=42.06946579278531%2C-74.21186979310306&z=10' target='_blank'><i className='fa fa-map-marker-alt' />&nbsp;&nbsp;See this list on a map</a>
           </p>
           <h1 id="outdoors" className='section-head'><span className='line' />the great outdoors<span className='line' /></h1>
           <div className="row">

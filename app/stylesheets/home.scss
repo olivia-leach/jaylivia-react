@@ -313,4 +313,11 @@ a {
   .modal-header {
     padding-bottom: 7px;
   }
+  a {
+    color: $blue;
+    border-bottom: 1px solid $blue;
+    &:hover {
+      color: darken($blue, 5%);
+    }
+  }
 }
