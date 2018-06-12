@@ -182,7 +182,7 @@ export default class ThingsToDo extends React.PureComponent {
           </div>
           <div className="row">
             <div>
-              <h3>Ashokan Rservoir</h3>
+              <h3>Ashokan Reservoir</h3>
               <p>An easy, flat trail (5.4 miles out-and-back) with beautiful views of the reservoir and surrounding mountains. Park at the <a target="_blank" href="https://goo.gl/maps/yykNAPQ91YQ2" className="dark-link">East Parking Lot</a>, which is 20 minutes from Woodstock.</p>
               <p>"Every time I go there I see a bald eagle."<br />—Our friend Lindsey</p>
               <Button>
