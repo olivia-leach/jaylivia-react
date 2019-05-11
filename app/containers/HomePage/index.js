@@ -85,7 +85,10 @@ export default class HomePage extends React.PureComponent {
           ]}
         />
         <div className='rosie-container'>
-          {days} day{days > 1 ? 's' : ''},<br />{hours} hour{hours > 1 ? 's' : ''}<br />to go!
+          {/*{days} day{days > 1 ? 's' : ''},<br />{hours} hour{hours > 1 ? 's' : ''}<br />to go!*/}
+          happy {-days}-day
+          <br />
+          anniversary!
           <img src={Rosie} />
         </div>
         <div id='home'>
