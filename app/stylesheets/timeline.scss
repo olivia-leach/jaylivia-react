@@ -50,6 +50,7 @@
     }
   }
   .timeline-event {
+    position: relative;
     background-color: white;
     transition: .5s ease-in-out all;
     @include shadow(1);
